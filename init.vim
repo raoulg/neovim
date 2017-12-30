@@ -5,6 +5,7 @@ Plug 'vim-latex/vim-latex'
 Plug 'vim-syntastic/syntastic'
 Plug 'iCyMind/NeoSolarized'
 Plug 'sjl/badwolf'
+Plug 'jalvesaq/Nvim-R'
 call plug#end()
 inoremap jj <Esc>
 set number
