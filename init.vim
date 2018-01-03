@@ -1,4 +1,4 @@
-call plug#begin('~/.vim/plugged')
+call plug#begin('~/.local/share/nvim/plugged')
 Plug 'rlue/vim-getting-things-down'
 Plug 'nightsense/simplifysimplify'
 Plug 'vim-latex/vim-latex'
@@ -12,7 +12,6 @@ inoremap jj <Esc>
 set number
 set cursorline
 let mapleader=","
-let maplocalleader=","
 " recommended settings for syntastic
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
