@@ -7,6 +7,7 @@ Plug 'iCyMind/NeoSolarized'
 Plug 'sjl/badwolf'
 Plug 'jalvesaq/Nvim-R'
 Plug 'mileszs/ack.vim'
+Plug 'donRaphaco/neotex', { 'for': 'tex' }
 call plug#end()
 inoremap jj <Esc>
 set number
