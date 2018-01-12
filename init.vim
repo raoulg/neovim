@@ -8,6 +8,10 @@ Plug 'sjl/badwolf'
 Plug 'jalvesaq/Nvim-R'
 Plug 'mileszs/ack.vim'
 Plug 'donRaphaco/neotex', { 'for': 'tex' }
+Plug 'ctrlpvim/ctrlp.vim'
+Plug 'scrooloose/nerdtree'
+Plug 'bling/vim-airline'
+Plug 'yuttie/comfortable-motion.vim'
 call plug#end()
 inoremap jj <Esc>
 set number
@@ -24,9 +28,16 @@ let g:syntastic_check_on_wq = 0
 " end recommended settings for syntastic
 nnoremap <leader><space> :nohlsearch<CR>
 set foldmethod=indent
+set foldlevelstart=20
 nnoremap <leader>ev :vsp ~/.config/nvim/init.vim<CR>
 nnoremap <leader>ez :vsp ~/.zshrc<CR>
 nnoremap <leader>so :source ~/.config/nvim/init.vim<CR>
+nnoremap <leader>sa :source ~/Dropbox/KI/ModPro/Prakticum/SatSolver/SatSolver/satsession.vim<CR>
 set background=dark
 nnoremap j gj
 nnoremap k gk
+noremap <leader>n :NERDTreeToggle<CR>
+set tabstop=4
+set shiftwidth=4
+set expandtab
+colorscheme badwolf
