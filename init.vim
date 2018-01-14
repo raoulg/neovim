@@ -2,8 +2,8 @@ call plug#begin('~/.local/share/nvim/plugged')
 Plug 'rlue/vim-getting-things-down'
 Plug 'nightsense/simplifysimplify'
 Plug 'vim-latex/vim-latex'
+" http://vim-latex.sourceforge.net/documentation/latex-suite-quickstart/lsq-keyboard-shortcuts.html
 Plug 'vim-syntastic/syntastic'
-Plug 'iCyMind/NeoSolarized'
 Plug 'sjl/badwolf'
 Plug 'jalvesaq/Nvim-R'
 Plug 'mileszs/ack.vim'
@@ -12,6 +12,7 @@ Plug 'ctrlpvim/ctrlp.vim'
 Plug 'scrooloose/nerdtree'
 Plug 'bling/vim-airline'
 Plug 'yuttie/comfortable-motion.vim'
+Plug 'altercation/vim-colors-solarized'
 call plug#end()
 inoremap jj <Esc>
 set number
@@ -34,10 +35,13 @@ nnoremap <leader>ez :vsp ~/.zshrc<CR>
 nnoremap <leader>so :source ~/.config/nvim/init.vim<CR>
 nnoremap <leader>sa :source ~/Dropbox/KI/ModPro/Prakticum/SatSolver/SatSolver/satsession.vim<CR>
 set background=dark
+syntax enable
 nnoremap j gj
 nnoremap k gk
 noremap <leader>n :NERDTreeToggle<CR>
-set tabstop=4
-set shiftwidth=4
+set tabstop=2
+set shiftwidth=2
 set expandtab
+set termguicolors
 colorscheme badwolf
+let g:ctrlp_working_path_mode='c'
