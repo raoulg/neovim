@@ -17,6 +17,7 @@ Plug 'jceb/vim-orgmode'
 call plug#end()
 let g:ctrlp_working_path_mode='c'
 set number
+let NERDTreeShowLineNumbers=1
 set cursorline
 let mapleader=","
 " recommended settings for syntastic
