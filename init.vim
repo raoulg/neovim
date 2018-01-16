@@ -33,7 +33,6 @@ nnoremap <leader>ev :vsp ~/.config/nvim/init.vim<CR>
 nnoremap <leader>ez :vsp ~/.zshrc<CR>
 nnoremap <leader>so :source ~/.config/nvim/init.vim<CR>
 nnoremap <leader>sa :source ~/Dropbox/KI/ModPro/Prakticum/SatSolver/SatSolver/satsession.vim<CR>
-<<<<<<< HEAD
 nnoremap j gj
 nnoremap k gk
 noremap <leader>n :NERDTreeToggle<CR>
