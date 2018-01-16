@@ -13,6 +13,7 @@ Plug 'scrooloose/nerdtree'
 Plug 'bling/vim-airline'
 Plug 'yuttie/comfortable-motion.vim'
 Plug 'altercation/vim-colors-solarized'
+Plug 'tpope/vim-fugitive'
 call plug#end()
 inoremap jj <Esc>
 set number
@@ -45,3 +46,4 @@ set expandtab
 set termguicolors
 colorscheme badwolf
 let g:ctrlp_working_path_mode='c'
+let NERDTreeQuitOnOpen=1
