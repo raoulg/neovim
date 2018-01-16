@@ -12,8 +12,8 @@ Plug 'ctrlpvim/ctrlp.vim'
 Plug 'scrooloose/nerdtree'
 Plug 'bling/vim-airline'
 Plug 'yuttie/comfortable-motion.vim'
+Plug 'jceb/vim-orgmode'
 call plug#end()
-inoremap jj <Esc>
 set number
 set cursorline
 let mapleader=","
@@ -26,18 +26,21 @@ let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 " end recommended settings for syntastic
+" remapping
 nnoremap <leader><space> :nohlsearch<CR>
-set foldmethod=indent
-set foldlevelstart=20
 nnoremap <leader>ev :vsp ~/.config/nvim/init.vim<CR>
 nnoremap <leader>ez :vsp ~/.zshrc<CR>
 nnoremap <leader>so :source ~/.config/nvim/init.vim<CR>
 nnoremap <leader>sa :source ~/Dropbox/KI/ModPro/Prakticum/SatSolver/SatSolver/satsession.vim<CR>
-set background=dark
 nnoremap j gj
 nnoremap k gk
 noremap <leader>n :NERDTreeToggle<CR>
+" theme
+set background=dark
+colorscheme badwolf
+" tabs, folding
 set tabstop=4
 set shiftwidth=4
 set expandtab
-colorscheme badwolf
+set foldmethod=indent
+set foldlevelstart=20
