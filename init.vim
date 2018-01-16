@@ -2,8 +2,8 @@ call plug#begin('~/.local/share/nvim/plugged')
 Plug 'rlue/vim-getting-things-down'
 Plug 'nightsense/simplifysimplify'
 Plug 'vim-latex/vim-latex'
+" http://vim-latex.sourceforge.net/documentation/latex-suite-quickstart/lsq-keyboard-shortcuts.html
 Plug 'vim-syntastic/syntastic'
-Plug 'iCyMind/NeoSolarized'
 Plug 'sjl/badwolf'
 Plug 'jalvesaq/Nvim-R'
 Plug 'mileszs/ack.vim'
@@ -14,6 +14,7 @@ Plug 'bling/vim-airline'
 Plug 'yuttie/comfortable-motion.vim'
 Plug 'jceb/vim-orgmode'
 call plug#end()
+let g:ctrlp_working_path_mode='c'
 set number
 set cursorline
 let mapleader=","
@@ -32,6 +33,7 @@ nnoremap <leader>ev :vsp ~/.config/nvim/init.vim<CR>
 nnoremap <leader>ez :vsp ~/.zshrc<CR>
 nnoremap <leader>so :source ~/.config/nvim/init.vim<CR>
 nnoremap <leader>sa :source ~/Dropbox/KI/ModPro/Prakticum/SatSolver/SatSolver/satsession.vim<CR>
+<<<<<<< HEAD
 nnoremap j gj
 nnoremap k gk
 noremap <leader>n :NERDTreeToggle<CR>
