@@ -1,5 +1,5 @@
 call plug#begin('~/.local/share/nvim/plugged')
-Plug 'rlue/vim-getting-things-down'
+"Plug 'rlue/vim-getting-things-down'
 Plug 'nightsense/simplifysimplify'
 Plug 'vim-latex/vim-latex'
 " http://vim-latex.sourceforge.net/documentation/latex-suite-quickstart/lsq-keyboard-shortcuts.html
