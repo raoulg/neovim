@@ -1,5 +1,5 @@
 call plug#begin('~/.local/share/nvim/plugged')
-Plug 'rlue/vim-getting-things-down'
+"Plug 'rlue/vim-getting-things-down'
 Plug 'nightsense/simplifysimplify'
 Plug 'vim-latex/vim-latex'
 " http://vim-latex.sourceforge.net/documentation/latex-suite-quickstart/lsq-keyboard-shortcuts.html
@@ -20,6 +20,7 @@ Plug 'plasticboy/vim-markdown'
 call plug#end()
 let g:ctrlp_working_path_mode='c'
 set number
+let NERDTreeShowLineNumbers=1
 set cursorline
 let mapleader=","
 " recommended settings for syntastic
