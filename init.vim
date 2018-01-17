@@ -14,6 +14,9 @@ Plug 'bling/vim-airline'
 Plug 'yuttie/comfortable-motion.vim'
 Plug 'tpope/vim-fugitive'
 Plug 'jceb/vim-orgmode'
+Plug 'jiangmiao/auto-pairs'
+Plug 'godlygeek/tabular'
+Plug 'plasticboy/vim-markdown'
 call plug#end()
 let g:ctrlp_working_path_mode='c'
 set number
@@ -28,15 +31,19 @@ let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 " end recommended settings for syntastic
+let g:vim_markdown_math = 1 "markdown math
 " remapping
 nnoremap <leader><space> :nohlsearch<CR>
 nnoremap <leader>ev :vsp ~/.config/nvim/init.vim<CR>
 nnoremap <leader>ez :vsp ~/.zshrc<CR>
 nnoremap <leader>so :source ~/.config/nvim/init.vim<CR>
 nnoremap <leader>sa :source ~/Dropbox/KI/ModPro/Prakticum/SatSolver/SatSolver/satsession.vim<CR>
+inoremap <leader><leader> <Esc>:w<CR>
 nnoremap j gj
 nnoremap k gk
 noremap <leader>n :NERDTreeToggle<CR>
+noremap <CR> o<Esc>
+noremap <S-Enter> O<Esc>
 " theme
 set background=dark
 colorscheme badwolf
@@ -46,4 +53,6 @@ set tabstop=4
 set shiftwidth=4
 set expandtab
 set foldmethod=indent
+set foldlevel=20
 set foldlevelstart=20
+set sessionoptions+=folds
