@@ -17,10 +17,20 @@ Plug 'jceb/vim-orgmode'
 Plug 'jiangmiao/auto-pairs'
 Plug 'godlygeek/tabular'
 Plug 'plasticboy/vim-markdown'
+Plug 'dkarter/bullets.vim'
+Plug 'morhetz/gruvbox'
 call plug#end()
-let g:ctrlp_working_path_mode='c'
+" Plugin settings
+let g:ctrlp_working_path_mode='c'  "ctrl p
 set number
-let NERDTreeShowLineNumbers=1
+let NERDTreeShowLineNumbers=1 "nerdtree
+" Bullets.vim
+let g:bullets_enabled_file_types = [
+    \ 'markdown',
+    \ 'text',
+    \ 'gitcommit',
+    \ 'scratch'
+    \]
 set cursorline
 let mapleader=","
 " recommended settings for syntastic
