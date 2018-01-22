@@ -19,6 +19,7 @@ Plug 'godlygeek/tabular'
 Plug 'plasticboy/vim-markdown'
 Plug 'dkarter/bullets.vim'
 Plug 'morhetz/gruvbox'
+Plug 'nightsense/night-and-day'
 call plug#end()
 " Plugin settings
 let g:ctrlp_working_path_mode='c'  "ctrl p
@@ -31,6 +32,13 @@ let g:bullets_enabled_file_types = [
     \ 'gitcommit',
     \ 'scratch'
     \]
+" night-and-day
+let g:nd_themes = [
+  \ ['sunrise+0', 'gruvbox', 'light' ],
+  \ ['sunset+0',  'gruvbox', 'dark'  ],
+  \ ]
+let g:nd_latitude = '50'
+let g:nd_timeshift = '40'
 set cursorline
 let mapleader=","
 " recommended settings for syntastic
@@ -52,12 +60,11 @@ nnoremap <leader>sa :source ~/Dropbox/KI/ModPro/Prakticum/SatSolver/SatSolver/sa
 inoremap <leader><leader> <Esc>:w<CR>
 nnoremap j gj
 nnoremap k gk
-noremap <leader>n :NERDTreeToggle<CR>
+noremap <leader>n :NERDTeeToggle<CR>
 noremap <CR> o<Esc>
 noremap <S-Enter> O<Esc>
 " theme
 colorscheme gruvbox
-set background=dark
 let NERDTreeQuitOnOpen=1
 " tabs, folding
 set tabstop=4
