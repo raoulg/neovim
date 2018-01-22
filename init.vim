@@ -56,8 +56,8 @@ noremap <leader>n :NERDTreeToggle<CR>
 noremap <CR> o<Esc>
 noremap <S-Enter> O<Esc>
 " theme
+colorscheme gruvbox
 set background=dark
-colorscheme badwolf
 let NERDTreeQuitOnOpen=1
 " tabs, folding
 set tabstop=4
