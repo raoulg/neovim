@@ -19,6 +19,7 @@ Plug 'godlygeek/tabular'
 Plug 'plasticboy/vim-markdown'
 Plug 'dkarter/bullets.vim'
 Plug 'morhetz/gruvbox'
+Plug 'vimwiki/vimwiki'
 Plug 'nightsense/night-and-day'
 call plug#end()
 " Plugin settings
