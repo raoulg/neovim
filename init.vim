@@ -62,7 +62,8 @@ nnoremap <leader>ez :vsp ~/.zshrc<CR>
 " source vim-init after changes
 nnoremap <leader>so :source ~/.config/nvim/init.vim<CR> 
 " save changes
-inoremap <leader><leader> <Esc>:w<CR>i 
+" urce vim-init after changes
+inoremap <leader><leader> <Esc>:w<CR> 
 " remap movement for multiline navigation
 nnoremap j gj
 nnoremap k gk
