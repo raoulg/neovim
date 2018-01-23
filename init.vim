@@ -61,7 +61,7 @@ nnoremap <leader>sa :source ~/Dropbox/KI/ModPro/Prakticum/SatSolver/SatSolver/sa
 inoremap <leader><leader> <Esc>:w<CR>
 nnoremap j gj
 nnoremap k gk
-noremap <leader>n :NERDTeeToggle<CR>
+noremap <leader>n :NERDTreeToggle<CR>
 noremap <CR> o<Esc>
 noremap <S-Enter> O<Esc>
 " theme
