@@ -21,6 +21,7 @@ Plug 'dkarter/bullets.vim'
 Plug 'morhetz/gruvbox'
 Plug 'vimwiki/vimwiki'
 Plug 'nightsense/night-and-day'
+Plug 'chrisbra/csv.vim'
 call plug#end()
 " Plugin settings
 let g:ctrlp_working_path_mode='c'  "ctrl p
