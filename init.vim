@@ -51,7 +51,7 @@ let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 " end recommended settings for syntastic
-let g:vim_markdown_math = 1 "markdown math
+" let g:vim_markdown_math = 1 "markdown math
 "" remapping
 "stop highlight after search
 nnoremap <leader><space> :nohlsearch<CR> 
@@ -80,7 +80,6 @@ let NERDTreeQuitOnOpen=1
 set tabstop=4
 set shiftwidth=4
 set expandtab
-set foldmethod=indent
-set foldlevel=20
-set foldlevelstart=20
 set sessionoptions+=folds
+autocmd BufWinLeave *.* mkview
+autocmd BufWinEnter *.* silent loadview
