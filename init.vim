@@ -7,6 +7,7 @@ call plug#begin('~/.local/share/nvim/plugged')
 Plug 'nightsense/simplifysimplify'
 Plug 'vim-latex/vim-latex'
 " http://vim-latex.sourceforge.net/documentation/latex-suite-quickstart/lsq-keyboard-shortcuts.html
+"
 Plug 'vim-syntastic/syntastic'
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
@@ -18,8 +19,11 @@ let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 
 Plug 'jalvesaq/Nvim-R'
+let R_term = 'iTerm'
 Plug 'ncm2/ncm2'
 Plug 'gaalcaras/ncm-R'
+Plug 'majutsushi/tagbar'
+noremap <leader>t :TagbarOpenAutoClose<CR>
 
 Plug 'SirVer/ultisnips'
 
@@ -162,6 +166,7 @@ autocmd FileType python nnoremap <buffer> <leader>r :exec '!python' shellescape(
 " run python files in other tmux window
 autocmd FileType python nnoremap <buffer> <leader>m :!tmux run-shell -t 1 'python %'<CR> 
 autocmd FileType org set fdm=manual
+autocmd FileType markdown set fdm=manual
 
 let R_assign_map = '<A-->'
 set rnu
@@ -186,3 +191,21 @@ endfunction
 
 autocmd! User GoyoEnter nested call <SID>goyo_enter()
 autocmd! User GoyoLeave nested call <SID>goyo_leave()
+
+let g:tagbar_type_r = {
+    \ 'ctagstype' : 'r',
+    \ 'kinds'     : [
+        \ 'f:Functions',
+        \ 'g:GlobalVariables',
+        \ 'v:FunctionVariables',
+    \ ]
+    \ }
+
+let g:tagbar_type_markdown = {
+    \ 'ctagstype' : 'markdown',
+    \ 'kinds'     : [
+        \ 'h:headings',
+        \ 't:todo',
+        \ 'd:done',
+    \ ]
+    \ }
