@@ -19,7 +19,12 @@ let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 
 Plug 'jalvesaq/Nvim-R'
+
 let R_term = 'iTerm'
+" exit terminal and move to the upper window
+tnoremap <C-k> <C-\><C-n><C-w>k
+
+
 Plug 'ncm2/ncm2'
 Plug 'gaalcaras/ncm-R'
 Plug 'majutsushi/tagbar'
@@ -33,6 +38,8 @@ Plug 'scrooloose/nerdtree'
 let NERDTreeShowLineNumbers=1 "nerdtree linenumbers
 noremap <leader>n :NERDTreeToggle<CR>
 let NERDTreeQuitOnOpen=1
+Plug 'thaerkh/vim-workspace'
+nnoremap <leader>w :ToggleWorkspace<CR>
 
 Plug 'bling/vim-airline'
 Plug 'yuttie/comfortable-motion.vim'
@@ -116,7 +123,7 @@ let g:syntastic_quiet_messages = { "level": [],
 " let g:syntastic_quiet_messages = {
         \ "regex":   'missing-docstring'}
 nnoremap <leader>e :SyntasticToggleMode<CR>
-nnoremap <leader>w :SyntasticToggleWarnings<CR>
+nnoremap <leader>ew :SyntasticToggleWarnings<CR>
 
 nnoremap <leader>j :lne<CR>
 nnoremap <leader>k :lprev<CR>
@@ -129,10 +136,13 @@ nnoremap <leader>ev :vsp ~/.config/nvim/init.vim<CR>
 nnoremap <leader>ez :vsp ~/.zshrc<CR> 
 " source vim-init after changes
 nnoremap <leader>so :source ~/.config/nvim/init.vim<CR> 
+nnoremap <leader>" ea"<esc>bi"<esc>lel
+nnoremap H ^
+nnoremap L $
 
 " R
-imap <leader>- <space><-<space>
-imap <leader>p <space>%>%
+inoremap <leader>- <space><-<space>
+inoremap <leader>p <space>%>%
 
 inoremap <leader><leader> <Esc>:w<CR> 
 " remap movement for multiline navigation
@@ -164,9 +174,10 @@ let g:UltiSnipsExpandTrigger="<tab>"
 " run python files below
 autocmd FileType python nnoremap <buffer> <leader>r :exec '!python' shellescape(@%, 1)<cr>
 " run python files in other tmux window
-autocmd FileType python nnoremap <buffer> <leader>m :!tmux run-shell -t 1 'python %'<CR> 
+autocmd FileType python nnoremap <buffer> <leader>m :!tmux run-shell -t 1 'python %'<CR>
 autocmd FileType org set fdm=manual
 autocmd FileType markdown set fdm=manual
+"autocmd FileType r :iabbrev <buffer> func function() {}<left><CR><CR><esc>:norm kf(a<CR>
 
 let R_assign_map = '<A-->'
 set rnu
