@@ -130,9 +130,6 @@ nnoremap <leader>ez :vsp ~/.zshrc<CR>
 " source vim-init after changes
 nnoremap <leader>so :source ~/.config/nvim/init.vim<CR> 
 
-" R
-imap <leader>- <space><-<space>
-imap <leader>p <space>%>%
 
 inoremap <leader><leader> <Esc>:w<CR> 
 " remap movement for multiline navigation
@@ -162,11 +159,24 @@ let g:UltiSnipsExpandTrigger="<tab>"
 
 
 " run python files below
+augroup python_files
+autocmd!
 autocmd FileType python nnoremap <buffer> <leader>r :exec '!python' shellescape(@%, 1)<cr>
 " run python files in other tmux window
 autocmd FileType python nnoremap <buffer> <leader>m :!tmux run-shell -t 1 'python %'<CR> 
-autocmd FileType org set fdm=manual
-autocmd FileType markdown set fdm=manual
+augroup END
+
+augroup note_files
+autocmd!
+autocmd FileType org,markdown set fdm=manual
+augroup END
+
+" R
+augroup r_files
+autocmd!
+autocmd FileType r inoremap <leader>- <space><-<space>
+autocmd FileType r inoremap <leader>p <space>%>%
+augroup END
 
 let R_assign_map = '<A-->'
 set rnu
