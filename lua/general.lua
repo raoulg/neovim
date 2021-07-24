@@ -25,6 +25,8 @@ vim.o.number = true  -- enable number column  TODO: not sure how happy I am abou
 vim.o.numberwidth = 2  -- number column fixed width
 vim.o.cursorline = true  -- highlight line number of cursor (depending on CursorLineNr and CursorLine highlights)
 
+vim.o.foldenable = false  -- get rid of folding, which I despise so much
+
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
@@ -41,3 +43,5 @@ vim.cmd("autocmd BufRead,BufNewFile *.tex set conceallevel=1")
 vim.g.latex_to_unicode_auto = 1
 vim.g.latex_to_unicode_tab = 1
 
+-- an old and crazy hack for finding the highlight group under the cursor, now bound to F10 in all modes
+vim.cmd([[map <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<' . synIDattr(synID(line("."),col("."),0),"name") . "> lo<" . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>]])
