@@ -1,0 +1,73 @@
+local fn = vim.fn
+
+local install_path = fn.stdpath("data").."/site/pack/packer/start/packer.nvim"
+if fn.empty(fn.glob(install_path)) > 0 then
+    vim.api.nvim_command("!git clone https://github.com/wbthomason/packer.nvim "..install_path)
+end
+
+-- auto compile when there are changes in `plugins.lua`
+vim.cmd("autocmd BufWritePost plugins.lua PackerCompile")
+
+return require("packer").startup(function()
+    use "wbthomason/packer.nvim"
+
+    -- lua utilities
+    use "nvim-lua/plenary.nvim"
+    use "nvim-lua/popup.nvim"  -- required by (at least) telescope.nvim
+    use "rafcamlet/nvim-luapad"
+
+    -- colors and appearance
+    use "ryanoasis/vim-devicons"
+    use "kyazdani42/nvim-web-devicons"
+
+    -- languages and file types
+    use "JuliaEditorSupport/julia-vim"
+    use "rust-lang/rust.vim"
+    use "lervag/vimtex"
+    use "cespare/vim-toml"
+    use "plasticboy/vim-markdown"
+    use "ziglang/zig.vim"
+    use "vim-crystal/vim-crystal"
+    use "godlygeek/tabular"
+    use "chrisbra/csv.vim"
+
+    -- statusline
+    use "glepnir/galaxyline.nvim"
+
+    -- buffer bar
+    use "akinsho/nvim-bufferline.lua"
+
+    -- file explorer
+    use "kyazdani42/nvim-tree.lua"
+
+    -- completion
+    use "hrsh7th/nvim-compe"
+    use "racer-rust/vim-racer"
+
+    -- which key
+    use "folke/which-key.nvim"
+
+    -- terminal
+    use "akinsho/nvim-toggleterm.lua"
+
+    -- search
+    use "nvim-telescope/telescope.nvim"
+
+    -- motions
+    use "ggandor/lightspeed.nvim"
+
+    -- snippets
+    use "SirVer/ultisnips"
+
+    -- registers
+    use "tversteeg/registers.nvim"
+
+    -- todo comments
+    use "folke/todo-comments.nvim"
+    -- TODO: this will be far more useful once LSP is set up... if that ever happens
+    --use "folke/trouble.nvim"
+
+    -- dashboard
+    use "glepnir/dashboard-nvim"
+
+end)

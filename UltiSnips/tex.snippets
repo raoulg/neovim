@@ -1,0 +1,22 @@
+
+snippet beginend "begin end block" b
+\\begin{${1:equation}}
+	$2
+\\end{$1}
+endsnippet
+
+snippet docclass "document class header" b
+\\documentclass[${1:10pt}]\{${2:article}\}
+endsnippet
+
+snippet docblock "document block" b
+\\begin{document}
+
+$1
+
+\\end{document}
+endsnippet
+
+snippet margin "set margin to something reasonable" b
+\\usepackage[margin=${1:2cm}]{geometry}
+endsnippet
