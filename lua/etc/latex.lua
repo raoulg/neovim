@@ -30,3 +30,18 @@ WhichKey.register({
         u = {":call LaTeXtoUnicode#Toggle()<CR>", "toggle latex-to-unicode", noremap=true},
     }
 }, {prefix="<leader>"})
+
+
+-- tex is another of those things that has very unique syntax, so we define highlights here
+sethighlight("texBeginEndName", {fg=colors.orange, style="italic"})
+sethighlight("texBoldItalStyle", {fg=colors.orange, style="bold,italic"})
+sethighlight("texBoldStyle", {fg=colors.orange, style="bold"})
+sethighlight("texInputFile", {fg=colors.orange, style="italic"})
+sethighlight("texStyleItal", {fg=colors.yellow, style="italic"})
+sethighlight("texLigature", {fg=colors.purple})
+sethighlight("texMath", {fg=colors.red})
+sethighlight("texMathMatcher", {fg=colors.red})
+sethighlight("texMathSymbol", {fg=colors.cyan})
+sethighlight("texSpecialChar", {fg=colors.purple})
+sethighlight("texSubscripts", {fg=colors.pink})
+sethighlight("texTitle", {fg=colors.foreground, style="bold"})
