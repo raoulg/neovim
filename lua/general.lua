@@ -17,6 +17,7 @@ vim.o.wildmode = "list:longest"                    -- command-line completion mo
 vim.o.pumheight = 12                               -- maximum autocomplete popup height
 vim.o.shortmess = vim.o.shortmess.."c"
 vim.o.timeoutlen = 500                             -- note that this controls which-key.nvim
+vim.o.textwidth = 100
 
 vim.o.hidden = true  -- if true, buffers are merely hidden when closed; needed for toggleterm to work as intended
 

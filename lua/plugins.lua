@@ -1,14 +1,18 @@
 local fn = vim.fn
 
 local install_path = fn.stdpath("data").."/site/pack/packer/start/packer.nvim"
+
 if fn.empty(fn.glob(install_path)) > 0 then
-    vim.api.nvim_command("!git clone https://github.com/wbthomason/packer.nvim "..install_path)
+    fn.system({"git", "clone", "https://github.com/wbthomason/packer.nvim", install_path})
+    vim.cmd("packadd packer.nvim")
 end
 
 -- auto compile when there are changes in `plugins.lua`
 vim.cmd("autocmd BufWritePost plugins.lua PackerCompile")
 
-return require("packer").startup(function()
+Packer = require("packer")
+
+Packer.startup(function()
     use "wbthomason/packer.nvim"
 
     -- lua utilities
