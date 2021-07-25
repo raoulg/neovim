@@ -80,4 +80,13 @@ Packer.startup(function()
     use "rmagatti/auto-session"
     use "rmagatti/session-lens"
 
+    -- treesitter
+    use "nvim-treesitter/nvim-treesitter"
+
+    -- LSP
+    if ENABLE_LSP then
+        use "neovim/nvim-lspconfig"
+        use "glepnir/lspsaga.nvim"
+    end
+
 end)

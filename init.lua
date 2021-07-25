@@ -11,8 +11,8 @@
 
 require("plugins")
 
-pcall(require, "utils")
-pcall(require, "general")
+require("utils")
+require("general")
 
 pcall(require, "appearance")
 
@@ -35,3 +35,5 @@ pcall(require, "etc/todo")
 pcall(require, "etc/sessions")
 pcall(require, "etc/markdown")
 pcall(require, "etc/json")
+
+if ENABLE_LSP then pcall(require, "etc/lsp") end

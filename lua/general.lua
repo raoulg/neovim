@@ -3,7 +3,7 @@ local indent = 4
 vim.cmd("filetype plugin indent on")
 
 -- set this to true to disable all LSP related crap
-DISABLE_LSP = true
+ENABLE_LSP = false
 
 vim.o.clipboard = "unnamedplus"                    -- have vim use OS clipboard
 vim.o.completeopt = "menuone,noinsert,noselect"    -- autocomplete options

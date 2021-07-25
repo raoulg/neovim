@@ -20,34 +20,32 @@ local function fileicon()
     return DevIcons.get_icon(n, e, {default=true})
 end
 
--- TODO improve whitespace
+-- TODO: improve whitespace
 
-local mode_names = {
-    n = "normal",
-    i = "insert",
-    c = "command",
-    v = "visual",
-    v = "visual",
-    [""] = "visual",
-    R = "replace",
-    t = "terminal",
-}
-
-local mode_colors = {
-    n = {bg=colors.bgdark, fg=colors.purple, style="bold"},
-    i = {bg=colors.bgdark, fg=colors.green, style="bold"},
-    c = {bg=colors.bgdark, fg=colors.cyan, style="bold"},
-    v = {bg=colors.bgdark, fg=colors.orange, style="bold"},
-    V = {bg=colors.bgdark, fg=colors.orange, style="bold"},
-    [""] = {bg=colors.bgdark, fg=colors.orange, style="bold"},
-    R = {bg=colors.bgdark, fg=colors.red, style="bold"},
-    t = {bg=colors.bgdark, fg=colors.yellow, style="bold"},
+local mode_cfg = {
+    n = {name="normal", bg=colors.bgdark, fg=colors.purple},
+    i = {name="insert", bg=colors.bgdark, fg=colors.green},
+    R = {name="replace", bg=colors.bgdark, fg=colors.red},
+    v = {name="visual", bg=colors.bgdark, fg=colors.orange},
+    V = {name="v-line", bg=colors.bgdark, fg=colors.orange},
+    [""] = {name="v-block", bg=colors.bgdark, fg=colors.orange},
+    s = {name="select", bg=colors.bgdark, fg=colors.pink},
+    S = {name="s-line", bg=colors.bgdark, fg=colors.pink},
+    [""] = {name="s-block", bg=colors.bgdark, fg=colors.pink},
+    c = {name="command", bg=colors.bgdark, fg=colors.cyan},
+    t = {name="terminal", bg=colors.bgdark, fg=colors.green},
+    Rv = {name="virtual", bg=colors.bgdark, fg=colors.pink},
+    rm = {name="--more", bg=colors.bgdark, fg=colors.pink},
+    unknown = {name="UNKNOWN", bg=colors.bgdark, fg=colors.subtle},
 }
 
 local function modeprovider()
-    m = vim.fn.mode()
-    sethighlight("GalaxyViMode", mode_colors[m])
-    return padtolength(mode_names[m], 10, " ").."▮"
+    local c = mode_cfg[vim.fn.mode()]
+    if c == nil then
+        local c = mode_cfg["unknown"]
+    end
+    sethighlight("GalaxyViMode", {fg=c.fg, bg=c.bg, style="bold"})
+    return padtolength(c.name, 10, " ").."▮"
 end
 
 table.insert(Section.left, {
@@ -170,7 +168,7 @@ table.insert(Section.right, {
     ShowLspClient = {
         provider = getlspclient,
         condition = function()
-            if DISABLE_LSP then
+            if not ENABLE_LSP then
                 return false
             end
             local tbl = { ["dashboard"] = true, [" "] = true }
