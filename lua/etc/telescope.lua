@@ -57,6 +57,7 @@ WhichKey.register({
         d = {"<cmd>Telescope lsp_definitions<CR>", "search LSP definitions", noremap=true},
         w = {"<cmd>Telescope highlights<CR>", "search nvim highlight groups", noremap=true},
         r = {"<cmd>Telescope registers<CR>", "search vim registers", noremap=true},
+        s = {"<cmd>SearchSession<CR>", "search sessions", noremap=true}
     }
 }, {prefix="<leader>"})
 

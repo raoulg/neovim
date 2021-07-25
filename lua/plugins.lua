@@ -32,6 +32,7 @@ Packer.startup(function()
     use "plasticboy/vim-markdown"
     use "ziglang/zig.vim"
     use "vim-crystal/vim-crystal"
+    use "gennaro-tedesco/nvim-jqx"
     use "godlygeek/tabular"
     use "chrisbra/csv.vim"
 
@@ -54,8 +55,12 @@ Packer.startup(function()
     -- terminal
     use "akinsho/nvim-toggleterm.lua"
 
+    -- running and compiling
+    use {"michaelb/sniprun", run="bash ./install.sh"}
+
     -- search
     use "nvim-telescope/telescope.nvim"
+    use "windwp/nvim-spectre"
 
     -- motions
     use "ggandor/lightspeed.nvim"
@@ -71,7 +76,8 @@ Packer.startup(function()
     -- TODO: this will be far more useful once LSP is set up... if that ever happens
     --use "folke/trouble.nvim"
 
-    -- dashboard
-    use "glepnir/dashboard-nvim"
+    -- sessions
+    use "rmagatti/auto-session"
+    use "rmagatti/session-lens"
 
 end)
