@@ -28,6 +28,9 @@ vim.o.cursorline = true  -- highlight line number of cursor (depending on Cursor
 
 vim.o.foldenable = false  -- get rid of folding, which I despise so much
 
+-- ensure leader isn't doing any weird shit
+vim.api.nvim_set_keymap("", "<space>", "<nop>", {noremap=true, silent=true})
+
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
