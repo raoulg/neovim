@@ -47,6 +47,7 @@ Packer.startup(function()
 
     -- completion
     use "hrsh7th/nvim-compe"
+    use "GoldsteinE/compe-latex-symbols"
     use "racer-rust/vim-racer"
 
     -- which key
