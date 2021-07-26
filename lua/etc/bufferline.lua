@@ -107,6 +107,7 @@ WhichKey.register({
         e = {":BufferLineSortByExtension<CR>", "sort buffers by extension", noremap=true},
         s = {":BufferLineSortByDirectory<CR>", "sort buffers by directory", noremap=true},
         d = {":bd<CR>", "close current buffer", noremap=true},
+        D = {":BufferLinePickClose<CR>", "pick buffer to close", noremap=true},
         p = {":BufferLinePick<CR>", "interactively pick a buffer", noremap=true},
         [","] = {":BufferLineCloseLeft<CR>", "close all buffers to the left", noremap=true},
         ["."] = {":BufferLineCloseRight<CR>", "close all buffers to the right", noremap=true},
