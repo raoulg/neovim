@@ -73,20 +73,14 @@ Packer.startup(function()
 
     -- todo comments
     use "folke/todo-comments.nvim"
-    -- TODO: this will be far more useful once LSP is set up... if that ever happens
-    --use "folke/trouble.nvim"
+    use "folke/trouble.nvim"
 
     -- sessions
     use "rmagatti/auto-session"
     use "rmagatti/session-lens"
 
-    -- treesitter
-    use "nvim-treesitter/nvim-treesitter"
-
     -- LSP
-    if ENABLE_LSP then
-        use "neovim/nvim-lspconfig"
-        use "glepnir/lspsaga.nvim"
-    end
+    use "neovim/nvim-lspconfig"
+    use "glepnir/lspsaga.nvim"
 
 end)

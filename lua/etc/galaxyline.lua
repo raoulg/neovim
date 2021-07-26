@@ -164,21 +164,51 @@ table.insert(Section.right, {
     }
 })
 
+local function lspcondition()
+    if not ENABLE_LSP then return false end
+    if _G.LSP_FILETYPES[vim.bo.filetype] == nil then return false end
+    return true
+end
+
+-- returns text listing LSP clients
+function getlspclient(msg)
+    msg = msg or "LSP inactive"
+    local buf_ft = vim.api.nvim_buf_get_option(0, "filetype")
+    local clients = vim.lsp.get_active_clients()
+    if next(clients) == nil then
+        return "("..msg..")"
+    end
+    local lsps = ""
+    for _, client in ipairs(clients) do
+        local filetypes = client.config.filetypes
+        if filetypes and vim.fn.index(filetypes, buf_ft) ~= -1 then
+            -- print(client.name)
+            if lsps == "" then
+                -- print("first", lsps)
+                lsps = client.name
+            else
+                if not string.find(lsps, client.name) then
+                    lsps = lsps .. ", " .. client.name
+                end
+                -- print("more", lsps)
+            end
+        end
+    end
+    if lsps == "" then
+        return "("..msg..")"
+    else
+        return "("..lsps..")"
+    end
+end
+
 table.insert(Section.right, {
     ShowLspClient = {
         provider = getlspclient,
-        condition = function()
-            if not ENABLE_LSP then
-                return false
-            end
-            local tbl = { ["dashboard"] = true, [" "] = true }
-            if tbl[vim.bo.filetype] then
-                return false
-            end
-            return true
-        end,
+        condition = lspcondition,
         icon = " ",
+        separator = "  ",
         highlight = {colors.subtle, colors.bgdark},
+        separator_highlight = {colors.subtle, colors.bgdark},
     },
 })
 
@@ -187,7 +217,7 @@ table.insert(Section.right, {
         provider = function()
             return vim.fn.expand("%:t")
         end,
-        separator = " ◖ ",
+        separator = "  ◖ ",
         highlight = {colors.cyan, colors.bgdark},
         separator_highlight = {colors.purple, colors.bgdark},
     },
