@@ -1,5 +1,7 @@
 vim.cmd("hi clear")  -- make sure we are starting with defaults
 
+vim.g.colors_name = "dracula"
+
 -- dracula color scheme
 colors = {
     background = "#282a36",
