@@ -2,6 +2,10 @@ vim.cmd("hi clear")  -- make sure we are starting with defaults
 
 vim.g.colors_name = "dracula"
 
+
+-- good reference at https://www.material-theme.com/docs/reference/color-palette/
+-- but it has a slightly different dracula theme
+
 -- dracula color scheme
 colors = {
     background = "#282a36",
@@ -11,6 +15,7 @@ colors = {
     cyan = "#8be9fd",
     green = "#50fa7b",
     orange = "#ffb86c",
+    blue = "#79cbdc",   -- note this is really close to cyan
     pink = "#ff79c6",
     purple = "#bd93f9",
     red = "#ff5555",
