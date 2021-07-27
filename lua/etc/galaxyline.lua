@@ -376,7 +376,9 @@ table.insert(Section.short_line_left, {
 
 table.insert(Section.short_line_left, {
     ShortLeftSeparator = {
+        provider = function() return "" end,
         separator = "◗ ",
+        highlight = {colors.bgdark, colors.bgdark},
         separator_highlight = {colors.purple, colors.bgdark},
     },
 })
