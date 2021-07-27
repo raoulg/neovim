@@ -114,6 +114,7 @@ sethighlight("TabLineFill", {fg=colors.bgdark, bg=colors.bgdark})
 sethighlight("StatusLine", {fg=colors.bgdark, bg=colors.bgdark})
 sethighlight("StatusLineNC", {fg=colors.bgdark, bg=colors.bgdark})
 sethighlight("Conceal", {fg=colors.cyan, bg="NONE"})  -- for our case, these are abbreviated latex
+sethighlight("SpellBad", {fg=colors.orange, style="underline"})
 
 -- links
 linkhighlight("CursorColumn", "CursorLine")

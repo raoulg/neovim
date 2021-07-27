@@ -1,12 +1,5 @@
 -- ==============================================================================================
 -- Expanding Man's neovim config
---
--- see these guides on using lua with neovim:
---   - https://github.com/nanotee/nvim-lua-guide
---   - https://www.imaginaryrobots.net/2021/04/17/converting-vimrc-to-lua
---
--- see here for a great list of neovim plugins:
---   - https://github.com/rockerBOO/awesome-neovim#terminal-integration
 -- ==============================================================================================
 
 require("plugins")
