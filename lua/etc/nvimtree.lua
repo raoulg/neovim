@@ -12,3 +12,9 @@ WhichKey.register({
         ["/"] = {":NvimTreeFindFile<CR>", "find file", noremap=true},
     }
 }, {prefix="<leader>"})
+
+sethighlight("NvimTreeWindowPicker", {fg=colors.bgdark, bg=colors.cyan})
+sethighlight("NvimTreeFolderIcon", {fg=colors.purple})
+sethighlight("NvimTreeIndentMarker", {fg=colors.pink})
+sethighlight("NvimTreeExecFile", {fg=colors.green})
+sethighlight("NvimTreeOpenedFile", {fg=colors.orange})
