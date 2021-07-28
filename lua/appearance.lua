@@ -25,6 +25,7 @@ colors = {
     bglighter = "#424450",
     bgdark = "#21222c",
     bgdarker = "#191a21",
+    black = "#000000",
 }
 
 colors.todo = {fg=colors.background, bg=colors.cyan, style="bold"}
@@ -115,6 +116,10 @@ sethighlight("StatusLine", {fg=colors.bgdark, bg=colors.bgdark})
 sethighlight("StatusLineNC", {fg=colors.bgdark, bg=colors.bgdark})
 sethighlight("Conceal", {fg=colors.cyan, bg="NONE"})  -- for our case, these are abbreviated latex
 sethighlight("SpellBad", {fg=colors.orange, style="underline"})
+sethighlight("DiffAdd", {fg=colors.green, bg=colors.purple})
+sethighlight("DiffChange", {fg=colors.pink, bg=colors.black})
+sethighlight("DiffDelete", {fg=colors.red, bg=colors.black})
+sethighlight("DiffText", {fg=colors.background, bg=colors.orange})
 
 -- links
 linkhighlight("CursorColumn", "CursorLine")
