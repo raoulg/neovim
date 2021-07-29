@@ -1,14 +1,16 @@
 local Spectre = require("spectre")
 
 WhichKey.register({
+    S = {Spectre.open, "open spectre search and replace"},
+    a = {Spectre.open_file_search, "open search and replace in current file only"},
+}, {prefix="\\"})
+
+WhichKey.register({
     f = {
-        S = {Spectre.open, "open spectre search and replace", noremap=true},
-        ["1"] = {function() Spectre.open_visual({select_word=true}) end,
-                 "open visual search and replace with selected word"},
-        v = {Spectre.open_visual, "open search and replace visual", noremap=true},
-        a = {Spectre.open_file_search, "open search and replace in current file only", noremap=true}
+        s = {Spectre.open_visual, "open spectre search and replace in visual mode"},
+        w = {function() Spectre.open_visual({selected_word=true}) end, "search and replace on selected word"}
     },
-}, {prefix="<leader>"})
+}, {mode="v", prefix="\\"})
 
 Spectre.setup({
     color_devicons = true,

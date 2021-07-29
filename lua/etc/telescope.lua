@@ -44,23 +44,23 @@ Telescope.setup({
 })
 
 WhichKey.register({
-    f = {
-        name = "search",
-        f = {"<cmd>Telescope find_files<CR>", "find files", noremap=true},
-        g = {"<cmd>Telescope live_grep<CR>", "live grep", noremap=true},
-        b = {"<cmd>Telescope buffers<CR>", "search buffers", noremap=true},
-        h = {"<cmd>Telescope help_tags<CR>", "search help tags", noremap=true},
-        k = {"<cmd>Telescope keymaps<CR>", "search key mappings", noremap=true},
-        q = {"<cmd>Telescope current_buffer_fuzzy_find<CR>", "search current buffer", noremap=true},
-        c = {"<cmd>Telescope commands<CR>", "search vim commands", noremap=true},
-        l = {"<cmd>Telescope lsp_references<CR>", "search LSP references", noremap=true},
-        d = {"<cmd>Telescope lsp_definitions<CR>", "search LSP definitions", noremap=true},
-        w = {"<cmd>Telescope highlights<CR>", "search nvim highlight groups", noremap=true},
-        r = {"<cmd>Telescope registers<CR>", "search vim registers", noremap=true},
-        s = {"<cmd>SearchSession<CR>", "search sessions", noremap=true}
-    }
-}, {prefix="<leader>"})
-
+    name = "search",
+    f = {"<cmd>Telescope find_files<CR>", "find files"},
+    g = {"<cmd>Telescope live_grep<CR>", "live grep"},
+    b = {"<cmd>Telescope buffers<CR>", "search buffers"},
+    h = {"<cmd>Telescope help_tags<CR>", "search help tags"},
+    k = {"<cmd>Telescope keymaps<CR>", "search key mappings"},
+    q = {"<cmd>Telescope current_buffer_fuzzy_find<CR>", "search current buffer"},
+    c = {"<cmd>Telescope commands<CR>", "search vim commands"},
+    l = {"<cmd>Telescope lsp_references<CR>", "search LSP references"},
+    d = {"<cmd>Telescope lsp_definitions<CR>", "search LSP definitions"},
+    w = {"<cmd>Telescope highlights<CR>", "search nvim highlight groups"},
+    r = {"<cmd>Telescope registers<CR>", "search vim registers"},
+    s = {"<cmd>SearchSession<CR>", "search sessions"},
+    o = {"<cmd>Telescope grep_string<cr>", "search for string under cursor"},
+    m = {"<cmd>Telescope marks<cr>", "search marks"},
+    V = {"<cmd>Telescope vim_options<cr>", "search vim options"},
+}, {prefix="\\", noremap=true})
 
 -- appearance
 sethighlight("TelescopeBorder", {fg=colors.pink, bg="NONE"})

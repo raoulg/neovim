@@ -53,7 +53,7 @@ WhichKey.setup({
 })
 
 -- <C-z> to show which-key help in any relevant mode
-local _modes = {"n", "i", "t"}
+local _modes = {"n", "i", "t", "v"}
 for m = 1, #_modes do
     WhichKey.register({
         ["<C-z>"] = {"<cmd>WhichKey<CR>", "show which key help", noremap=true},
