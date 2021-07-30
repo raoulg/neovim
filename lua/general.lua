@@ -18,6 +18,7 @@ vim.o.pumheight = 12                               -- maximum autocomplete popup
 vim.o.shortmess = vim.o.shortmess.."c"
 vim.o.timeoutlen = 500                             -- note that this controls which-key.nvim
 vim.o.textwidth = 100
+vim.o.splitright = true                            -- open splits on the right by default
 
 vim.o.hidden = true  -- if true, buffers are merely hidden when closed; needed for toggleterm to work as intended
 
