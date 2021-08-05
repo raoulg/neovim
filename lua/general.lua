@@ -23,7 +23,7 @@ vim.o.splitright = true                            -- open splits on the right b
 vim.o.hidden = true  -- if true, buffers are merely hidden when closed; needed for toggleterm to work as intended
 
 vim.o.signcolumn = "number"  -- display signs in the number column
-vim.o.number = true  -- enable number column  TODO: not sure how happy I am about this yet
+vim.o.number = true  -- enable number column
 vim.o.numberwidth = 2  -- number column fixed width
 vim.o.cursorline = true  -- highlight line number of cursor (depending on CursorLineNr and CursorLine highlights)
 

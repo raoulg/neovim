@@ -97,27 +97,36 @@ Bufferline.setup({
     }
 })
 
+local function temporal_compare(buf1, buf2)
+    local t1 = vim.loop.fs_stat(buf1.path).mtime.sec
+    local t2 = vim.loop.fs_stat(buf2.path).mtime.sec
+    return t1 > t2
+end
+
 WhichKey.register({
     name = "manage buffers and tabs",
-    ["]"] = {":BufferLineCycleNext<CR>", "cycle next"},
-    ["["] = {":BufferLineCyclePrev<CR>", "cycle previous"},
-    ["}"] = {":BufferLineMoveNext<CR>", "move to next"},
-    ["{"] = {":BufferLineMovePrev<CR>", "move to previous"},
-    e = {":BufferLineSortByExtension<CR>", "sort buffers by extension"},
-    s = {":BufferLineSortByDirectory<CR>", "sort buffers by directory"},
-    x = {":bd<CR>", "close current buffer"},
-    d = {":BufferLinePickClose<CR>", "pick buffer to close"},
-    p = {":BufferLinePick<CR>", "interactively pick a buffer"},
-    [","] = {":BufferLineCloseLeft<CR>", "close all buffers to the left"},
-    ["."] = {":BufferLineCloseRight<CR>", "close all buffers to the right"},
-    ["1"] = {":lua require'bufferline'.go_to_buffer(1)<CR>", "go to buffer 1"},
-    ["2"] = {":lua require'bufferline'.go_to_buffer(2)<CR>", "go to buffer 2"},
-    ["3"] = {":lua require'bufferline'.go_to_buffer(3)<CR>", "go to buffer 3"},
-    ["4"] = {":lua require'bufferline'.go_to_buffer(4)<CR>", "go to buffer 4"},
-    ["5"] = {":lua require'bufferline'.go_to_buffer(5)<CR>", "go to buffer 5"},
-    ["6"] = {":lua require'bufferline'.go_to_buffer(6)<CR>", "go to buffer 6"},
-    ["7"] = {":lua require'bufferline'.go_to_buffer(7)<CR>", "go to buffer 7"},
-    ["8"] = {":lua require'bufferline'.go_to_buffer(8)<CR>", "go to buffer 8"},
-    ["9"] = {":lua require'bufferline'.go_to_buffer(9)<CR>", "go to buffer 9"},
+    ["]"] = {function() return Bufferline.cycle(1) end, "cycle next"},
+    ["["] = {function() return Bufferline.cycle(-1) end, "cycle previous"},
+    ["}"] = {function() return Bufferline.move(1) end, "move to next"},
+    ["{"] = {function() return Bufferline.move(-1) end, "move to previous"},
+    e = {function() return Bufferline.sort_buffers_by("extension") end, "sort buffers by extension"},
+    s = {function() return Bufferline.sort_buffers_by("directory") end, "sort buffers by directory"},
+    t = {function() return Bufferline.sort_buffers_by(temporal_compare) end, "sort buffers by last modified"},
+    T = {function() return Bufferline.sort_buffers_by("tabs") end, "sort buffers by tabs"},
+    x = {function() return vim.cmd("bd") end, "close current buffer"},
+    d = {function() return Bufferline.close_buffer_with_pick() end, "pick buffer to close"},
+    p = {function() return Bufferline.pick_buffer() end, "pick a buffer"},
+    [","] = {function() return Bufferline.close_in_direction("left") end, "close all buffers to the left"},
+    ["."] = {function() return Bufferline.close_in_direction("right") end, "close all buffers to the right"},
+    ["1"] = {function() return Bufferline.go_to_buffer(1) end, "go to buffer 1"},
+    ["2"] = {function() return Bufferline.go_to_buffer(2) end, "go to buffer 2"},
+    ["3"] = {function() return Bufferline.go_to_buffer(3) end, "go to buffer 3"},
+    ["4"] = {function() return Bufferline.go_to_buffer(4) end, "go to buffer 4"},
+    ["5"] = {function() return Bufferline.go_to_buffer(5) end, "go to buffer 5"},
+    ["6"] = {function() return Bufferline.go_to_buffer(6) end, "go to buffer 6"},
+    ["7"] = {function() return Bufferline.go_to_buffer(7) end, "go to buffer 7"},
+    ["8"] = {function() return Bufferline.go_to_buffer(8) end, "go to buffer 8"},
+    ["9"] = {function() return Bufferline.go_to_buffer(9) end, "go to buffer 9"},
+    ["0"] = {function() return Bufferline.go_to_buffer(10) end, "go to buffer 10"},
 }, {prefix=";"})
 
