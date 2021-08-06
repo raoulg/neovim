@@ -1,7 +1,7 @@
 
 function sethighlight(syntax, opts)
-    local bg = opts.bg == nil and "" or "guibg=" .. opts.bg
-    local fg = opts.fg == nil and "" or "guifg=" .. opts.fg
+    local bg = opts.bg == nil and "guibg=NONE" or "guibg=" .. opts.bg
+    local fg = opts.fg == nil and "guifg=NONE" or "guifg=" .. opts.fg
     -- note that style is a comma separated list e.g. "underline,bold,italic"
     local style = opts.style == nil and "gui=NONE" or "gui=" .. opts.style
 
