@@ -35,8 +35,6 @@ colors.boundary = {fg=colors.background, bg=colors.bgdark}
 vim.cmd("hi Normal guibg=NONE ctermbg=NONE")
 vim.cmd("hi NonText guibg=NONE ctermbg=NONE")
 
--- NOTE: you can use `:hi` to get a list of syntax group names
-
 -- main
 sethighlight("Normal", {fg=colors.foreground})
 sethighlight("Identifier", {fg=colors.orange})
