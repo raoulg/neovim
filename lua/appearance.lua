@@ -62,7 +62,7 @@ sethighlight("Keyword", {fg=colors.pink})
 sethighlight("MatchParen", {bg=colors.comment})
 sethighlight("Exception", {fg=colors.pink})
 sethighlight("Error", {fg=colors.red, style="bold"})
-sethighlight("Search", {bg=colors.green, style="standout"})
+sethighlight("Search", {bg=colors.green, bg=colors.bgdark, style="underline"})
 sethighlight("IncSearch", {fg=colors.green, bg=colors.bgdark, style="underline"})
 sethighlight("Todo", colors.todo)
 
