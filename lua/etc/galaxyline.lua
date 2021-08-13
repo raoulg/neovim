@@ -23,20 +23,20 @@ end
 -- TODO: improve whitespace
 
 local mode_cfg = {
-    n = {name="normal", bg=colors.bgdark, fg=colors.purple},
-    i = {name="insert", bg=colors.bgdark, fg=colors.green},
-    R = {name="replace", bg=colors.bgdark, fg=colors.red},
-    v = {name="visual", bg=colors.bgdark, fg=colors.orange},
-    V = {name="v-line", bg=colors.bgdark, fg=colors.orange},
-    [""] = {name="v-block", bg=colors.bgdark, fg=colors.orange},
-    s = {name="select", bg=colors.bgdark, fg=colors.pink},
-    S = {name="s-line", bg=colors.bgdark, fg=colors.pink},
-    [""] = {name="s-block", bg=colors.bgdark, fg=colors.pink},
-    c = {name="command", bg=colors.bgdark, fg=colors.cyan},
-    t = {name="terminal", bg=colors.bgdark, fg=colors.green},
-    Rv = {name="virtual", bg=colors.bgdark, fg=colors.pink},
-    rm = {name="--more", bg=colors.bgdark, fg=colors.pink},
-    unknown = {name="UNKNOWN", bg=colors.bgdark, fg=colors.subtle},
+    n = {name="normal", fg=colors.purple},
+    i = {name="insert", fg=colors.green},
+    R = {name="replace", fg=colors.red},
+    v = {name="visual", fg=colors.orange},
+    V = {name="v-line", fg=colors.orange},
+    [""] = {name="v-block", fg=colors.orange},
+    s = {name="select", fg=colors.pink},
+    S = {name="s-line", fg=colors.pink},
+    [""] = {name="s-block", fg=colors.pink},
+    c = {name="command", fg=colors.cyan},
+    t = {name="terminal", fg=colors.green},
+    Rv = {name="virtual", fg=colors.pink},
+    rm = {name="--more", fg=colors.pink},
+    unknown = {name="UNKNOWN", fg=colors.subtle},
 }
 
 local function modeprovider()
@@ -44,7 +44,7 @@ local function modeprovider()
     if c == nil then
         local c = mode_cfg["unknown"]
     end
-    sethighlight("GalaxyViMode", {fg=c.fg, bg=c.bg, style="bold"})
+    sethighlightsimple("GalaxyViMode", {fg=c.fg})
     return "▮"..padtolength(c.name, 10, " ").."▮"
 end
 
@@ -54,6 +54,8 @@ table.insert(Section.left, {
         highlight = {colors.purple, colors.bgdark},
     },
 })
+
+sethighlight("GalaxyViMode", {fg=colors.purple, bg=colors.bgdark})
 
 table.insert(Section.left, {
     ViMode = {
@@ -150,12 +152,14 @@ local function luapad_provider()
     local s = LuapadInfo.status()
     if s == nil then return nil end
     if s == "ok" then
-        sethighlight("GalaxyLuapad", {fg=colors.green, bg=colors.bgdark})
+        sethighlightsimple("GalaxyLuapad", {fg=colors.green})
     else
-        sethighlight("GalaxyLuapad", {fg=colors.orange, bg=colors.bgdark})
+        sethighlightsimple("GalaxyLuapad", {fg=colors.orange})
     end
     return " ⟦ Luapad: "..s.." ⟧ "
 end
+
+sethighlight("GalaxyLuapad", {fg=colors.orange, colors.bgdark})
 
 table.insert(Section.right, {
     Luapad = {
@@ -234,12 +238,10 @@ table.insert(Section.right, {
 local function modified_buffer_indicator(hl)
     return function()
         if vim.bo.modifiable and vim.bo.modified then
-            --sethighlight(hl, {fg=colors.red})
-            --vim.cmd("hi "..hl.." guifg="..colors.red)
+            --sethighlightsimple(hl, {fg=colors.red})
             return "▮"
         else
-            --sethighlight(hl, {fg=colors.purple})
-            --vim.cmd("hi "..hl.." guifg="..colors.purple)
+            --sethighlightsimple(hl, {fg=colors.purple})
             return "▯"
         end
     end

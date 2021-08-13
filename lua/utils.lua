@@ -8,6 +8,22 @@ function sethighlight(syntax, opts)
     vim.cmd("hi "..syntax.." "..bg.." "..fg.." "..style)
 end
 
+-- this is a lighter version of the above because hi is so inefficient...
+-- but don't use this exclusively, as it doesn't set what it's not passed
+function sethighlightsimple(syntax, opts)
+    local c = "hi "..syntax.." "
+    if opts.bg ~= nil then
+        c = c.."guibg="..opts.bg
+    end
+    if opts.fg ~= nil then
+        c = c.."guifg="..opts.fg
+    end
+    if opts.style ~= nil then
+        c = c.."gui="..opts.style
+    end
+    vim.cmd(c)
+end
+
 function linkhighlight(s1, s2)
     vim.cmd(string.format("hi! link %s %s", s1, s2))
 end
