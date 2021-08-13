@@ -228,17 +228,18 @@ table.insert(Section.right, {
     },
 })
 
---TODO for some reason using sethighlight here is very inefficient and causes sluggishness
---see https://neovim.discourse.group/t/why-does-this-lua-function-cause-lag/991
+--TODO: I would like this element to change colors, but this is too expensive because calls to `hi`
+--are so inefficient. not sure what the alternative is...
+--issue here: https://github.com/glepnir/galaxyline.nvim/issues/210
 local function modified_buffer_indicator(hl)
     return function()
         if vim.bo.modifiable and vim.bo.modified then
             --sethighlight(hl, {fg=colors.red})
-            vim.cmd("hi "..hl.." guifg="..colors.red)
+            --vim.cmd("hi "..hl.." guifg="..colors.red)
             return "▮"
         else
             --sethighlight(hl, {fg=colors.purple})
-            vim.cmd("hi "..hl.." guifg="..colors.purple)
+            --vim.cmd("hi "..hl.." guifg="..colors.purple)
             return "▯"
         end
     end
@@ -247,7 +248,7 @@ end
 table.insert(Section.right, {
     ModifiedBufferIndicator = {
         provider = modified_buffer_indicator("GalaxyModifiedBufferIndicator"),
-        highlight = {colors.purple, colors.bgdark},
+        highlight = {colors.orange, colors.bgdark},
     },
 })
 
@@ -374,7 +375,7 @@ table.insert(Section.short_line_left, {
 table.insert(Section.short_line_left, {
     ShortModifiedBufferIndicator = {
         provider = modified_buffer_indicator("GalaxyShortModifiedBufferIndicator"),
-        highlight = {colors.purple, colors.bgdark},
+        highlight = {colors.orange, colors.bgdark},
     },
 })
 
