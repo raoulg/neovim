@@ -228,13 +228,17 @@ table.insert(Section.right, {
     },
 })
 
+--TODO for some reason using sethighlight here is very inefficient and causes sluggishness
+--see https://neovim.discourse.group/t/why-does-this-lua-function-cause-lag/991
 local function modified_buffer_indicator(hl)
     return function()
         if vim.bo.modifiable and vim.bo.modified then
-            sethighlight(hl, {fg=colors.red})
+            --sethighlight(hl, {fg=colors.red})
+            vim.cmd("hi "..hl.." guifg="..colors.red)
             return "▮"
         else
-            sethighlight(hl, {fg=colors.purple})
+            --sethighlight(hl, {fg=colors.purple})
+            vim.cmd("hi "..hl.." guifg="..colors.purple)
             return "▯"
         end
     end

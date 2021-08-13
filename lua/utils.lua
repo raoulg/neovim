@@ -5,7 +5,7 @@ function sethighlight(syntax, opts)
     -- note that style is a comma separated list e.g. "underline,bold,italic"
     local style = opts.style == nil and "gui=NONE" or "gui=" .. opts.style
 
-    vim.cmd(string.format("hi %s %s %s %s", syntax, bg, fg, style))
+    vim.cmd("hi "..syntax.." "..bg.." "..fg.." "..style)
 end
 
 function linkhighlight(s1, s2)
@@ -27,3 +27,12 @@ function padtolength(s, n, c)
     return string.rep(c, lpad)..s..string.rep(c, rpad)
 end
 
+function reloadconfig()
+    for name, _ in pairs(package.loaded) do
+        if name:match("^etc") then
+            package.loaded[name] = nil
+        end
+    end
+
+    dofile(vim.env.MYVIMRC)
+end
