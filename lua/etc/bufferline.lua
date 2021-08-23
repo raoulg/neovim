@@ -57,13 +57,13 @@ Bufferline.setup({
         show_buffer_close_icons = false,
         show_close_icon = false,
         show_tab_indicators = true,
-        persist_buffer_sort = true, -- whether or not custom sorted buffers should persist
+        persist_buffer_sort = false, -- whether or not custom sorted buffers should persist
         -- can also be a table containing 2 custom separators
         -- [focused and unfocused]. eg: { '|', '|' }
         separator_style = {"▮", ""},
         enforce_regular_tabs = true,
         always_show_bufferline = false,
-        sort_by = "tabs",  -- sorting by "tabs" makes the keymaps nice and consistent
+        sort_by = "id",
     },
     highlights = {
         fill = {
