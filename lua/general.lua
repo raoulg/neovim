@@ -29,6 +29,8 @@ vim.o.cursorline = true  -- highlight line number of cursor (depending on Cursor
 
 vim.o.foldenable = false  -- get rid of folding, which I despise so much
 
+vim.o.sessionoptions = "buffers,curdir,localoptions,options,resize,tabpages,terminal,winsize"
+
 --vim.api.nvim_del_keymap("", "`")
 
 vim.g.mapleader = " "
