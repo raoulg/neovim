@@ -63,7 +63,7 @@ Bufferline.setup({
         separator_style = {"▮", ""},
         enforce_regular_tabs = true,
         always_show_bufferline = false,
-        sort_by = "relative_directory",
+        sort_by = "tabs",  -- sorting by "tabs" makes the keymaps nice and consistent
     },
     highlights = {
         fill = {
@@ -118,15 +118,15 @@ WhichKey.register({
     p = {function() return Bufferline.pick_buffer() end, "pick a buffer"},
     [","] = {function() return Bufferline.close_in_direction("left") end, "close all buffers to the left"},
     ["."] = {function() return Bufferline.close_in_direction("right") end, "close all buffers to the right"},
-    ["1"] = {function() return Bufferline.go_to_buffer(1) end, "go to buffer 1"},
-    ["2"] = {function() return Bufferline.go_to_buffer(2) end, "go to buffer 2"},
-    ["3"] = {function() return Bufferline.go_to_buffer(3) end, "go to buffer 3"},
-    ["4"] = {function() return Bufferline.go_to_buffer(4) end, "go to buffer 4"},
-    ["5"] = {function() return Bufferline.go_to_buffer(5) end, "go to buffer 5"},
-    ["6"] = {function() return Bufferline.go_to_buffer(6) end, "go to buffer 6"},
-    ["7"] = {function() return Bufferline.go_to_buffer(7) end, "go to buffer 7"},
-    ["8"] = {function() return Bufferline.go_to_buffer(8) end, "go to buffer 8"},
-    ["9"] = {function() return Bufferline.go_to_buffer(9) end, "go to buffer 9"},
-    ["0"] = {function() return Bufferline.go_to_buffer(10) end, "go to buffer 10"},
+    ["1"] = {function() return Bufferline.go_to_buffer(1, true) end, "go to buffer 1"},
+    ["2"] = {function() return Bufferline.go_to_buffer(2, true) end, "go to buffer 2"},
+    ["3"] = {function() return Bufferline.go_to_buffer(3, true) end, "go to buffer 3"},
+    ["4"] = {function() return Bufferline.go_to_buffer(4, true) end, "go to buffer 4"},
+    ["5"] = {function() return Bufferline.go_to_buffer(5, true) end, "go to buffer 5"},
+    ["6"] = {function() return Bufferline.go_to_buffer(6, true) end, "go to buffer 6"},
+    ["7"] = {function() return Bufferline.go_to_buffer(7, true) end, "go to buffer 7"},
+    ["8"] = {function() return Bufferline.go_to_buffer(8, true) end, "go to buffer 8"},
+    ["9"] = {function() return Bufferline.go_to_buffer(9, true) end, "go to buffer 9"},
+    ["0"] = {function() return Bufferline.go_to_buffer(10, true) end, "go to buffer 10"},
 }, {prefix=";"})
 
