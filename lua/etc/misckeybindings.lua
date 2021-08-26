@@ -1,7 +1,7 @@
 -- directory stuff
 WhichKey.register({
-    d = {
-        name = "filesystem directory functions",
+    [","] = {
+        name = "filesystem and directory functions",
         p = {":pwd<CR>", "show current working directory", noremap=true},
         d = {":cd %:p:h<CR>:pwd<CR>", "change to directory of current file", noremap=true},
         e = {":cd %:p:h/..<CR>:pwd<CR>", "change to parent directory of current file", noremap=true},
@@ -9,7 +9,7 @@ WhichKey.register({
         J = {":cd -<CR>:pwd<CR>", "change to previous directory", noremap=true},
         a = {":set autochdir!", "toggle auto directory switching", noremap=true},
     }
-}, {prefix="<leader>"})
+})
 
 -- REPL and terminal interaction stuff
 WhichKey.register({

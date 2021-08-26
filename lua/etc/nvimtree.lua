@@ -7,13 +7,11 @@ vim.g.nvim_tree_auto_open = 0
 vim.g.nvim_tree_highlight_opened_files = 1
 
 WhichKey.register({
-    t = {
-        name = "nvim tree",
-        t = {":NvimTreeToggle<CR>", "toggle", noremap=true},
-        r = {":NvimTreeRefresh<CR>", "refresh", noremap=true},
-        ["/"] = {":NvimTreeFindFile<CR>", "find file", noremap=true},
-    }
-}, {prefix="<leader>"})
+    name = "nvim tree",
+    t = {":NvimTreeToggle<CR>", "toggle NvimTree", noremap=true},
+    r = {":NvimTreeRefresh<CR>", "refresh NvimTree", noremap=true},
+    ["/"] = {":NvimTreeFindFile<CR>", "find file with NvimTree", noremap=true},
+}, {prefix=","})
 
 sethighlight("NvimTreeWindowPicker", {fg=colors.bgdark, bg=colors.cyan})
 sethighlight("NvimTreeFolderIcon", {fg=colors.purple})
