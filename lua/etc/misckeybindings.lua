@@ -19,3 +19,10 @@ WhichKey.register({
     },
 }, {prefix="<leader>"})
 
+-- arrow bindings for switching windows
+WhichKey.register({
+    ["<up>"] = {"<cmd>wincmd k<cr>", "window, move up"},
+    ["<right>"] = {"<cmd>wincmd l<cr>", "window, move right"},
+    ["<down>"] = {"<cmd>wincmd j<cr>", "window, move down"},
+    ["<left>"] = {"<cmd>wincmd h<cr>", "window, move left"},
+})
