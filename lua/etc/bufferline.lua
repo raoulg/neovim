@@ -1,10 +1,12 @@
 local Bufferline = require("bufferline")
 
+local function print_numbers(opts)
+    return string.format("%s", opts.raise(opts.ordinal), opts.raise((opts.id)))
+end
+
 Bufferline.setup({
     options = {
-        numbers = "ordinal",
-        number_style = "superscript",
-        mappings = false,
+        numbers = print_numbers,
         close_command = "bdelete! %d",
         right_mouse_command = "bdelete! %d",
         left_mouse_command = "buffer %d",
