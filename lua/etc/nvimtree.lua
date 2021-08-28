@@ -3,7 +3,7 @@ vim.g.nvim_tree_width = 40
 vim.g.nvim_tree_ignore = {".git", ".cache"}
 --TODO: it would be nice if this just worked better, see
 --https://github.com/kyazdani42/nvim-tree.lua/issues/528
-vim.g.nvim_tree_auto_open = 0
+vim.g.nvim_tree_auto_open = 1
 vim.g.nvim_tree_highlight_opened_files = 1
 
 WhichKey.register({
