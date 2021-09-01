@@ -45,8 +45,8 @@ Telescope.setup({
 
 WhichKey.register({
     name = "search",
+    ["\\"] = {"<cmd>Telescope live_grep<CR>", "live grep"},
     f = {"<cmd>Telescope find_files<CR>", "find files"},
-    g = {"<cmd>Telescope live_grep<CR>", "live grep"},
     b = {"<cmd>Telescope buffers<CR>", "search buffers"},
     h = {"<cmd>Telescope help_tags<CR>", "search help tags"},
     k = {"<cmd>Telescope keymaps<CR>", "search key mappings"},
