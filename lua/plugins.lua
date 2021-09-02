@@ -35,6 +35,7 @@ Packer.startup(function()
     use "gennaro-tedesco/nvim-jqx"
     use "godlygeek/tabular"
     use "chrisbra/csv.vim"
+    use "dag/vim-fish"
 
     -- statusline
     use "glepnir/galaxyline.nvim"
