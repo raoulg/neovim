@@ -1,6 +1,7 @@
 vim.cmd("hi clear")  -- make sure we are starting with defaults
 
-vim.g.colors_name = "dracula"
+--TODO: wtf is going on here?
+--vim.g.colors_name = "dracula"
 
 
 -- good reference at https://www.material-theme.com/docs/reference/color-palette/
