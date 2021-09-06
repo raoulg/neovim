@@ -39,18 +39,24 @@ ToggleTerm.setup({
 WhichKey.register({
     r = {
         name = "REPL and terminal interaction",
-        l = {":Luapad<CR>", "open a luapad", noremap=true},
-        t = {":ToggleTerm<CR>", "toggle terminal (can also do <C-\\>)", noremap=true},
-        h = {":lua _htop_term_toggle()<CR>", "show htop in a floating terminal", noremap=true},
-        j = {":lua _julia_term_toggle()<CR>", "toggle a Julia terminal", noremap=true},
-        z = {"<cmd>vs term://zsh<CR>", "open a zsh terminal in a new vertical split", noremap=true},
-        x = {"<cmd>vs term://julia<CR>", "open a Julia REPL in a new vertical split", noremap=true},
+        L = {"<cmd>Luapad<CR>", "open a luapad"},
+        t = {"<cmd>ToggleTerm<CR>", "toggle terminal (can also do <C-\\>)"},
+        h = {"<cmd>lua _htop_term_toggle()<CR>", "show htop in a floating terminal"},
+        j = {"<cmd>lua _julia_term_toggle()<CR>", "toggle a Julia terminal"},
+        f = {"<cmd>vs term://fish<CR>", "open a fish terminal in a new vertical split"},
+        z = {"<cmd>vs term://zsh<cr>", "open a zsh terminal in a new vertical split"},
+        r = {"<cmd>IronRepl<cr>", "open REPL"},
+        R = {"<cmd>IronRestart<cr>", "restart REPL"},
+        l = {"<plug>(iron-send-line)", "send line to REPL"},
+        x = {"<plug>(iron-clear)", "clear REPL"},
+        q = {"<plug>(iron-exit)", "exit REPL"},
     },
 }, {prefix="<leader>"})
 
--- terminal mode bindings
--- NOTE: it *is* possible to create macros that go directly into the terminal!!
--- TODO add lots of cool functionality here.
+WhichKey.register({
+    r = {"<plug>(iron-visual-send)", "send selected block to REPL"}
+}, {prefix="<leader>", mode="v"})
+
 WhichKey.register({
     ["<C-n>"] = {"<cmd>stopinsert!<CR>", "get out of insert mode", noremap=true},
 }, {mode="t"})
@@ -60,9 +66,6 @@ local htopterm = Terminal:new({
     direction = "float",
 })
 function _htop_term_toggle() return htopterm:toggle() end
-
--- TODO julia terminal with automatic include
--- TODO use TermExec to send useful stuff
 
 local juliaterm = Terminal:new({
     cmd = "julia",

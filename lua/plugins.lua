@@ -56,6 +56,7 @@ Packer.startup(function()
 
     -- terminal
     use "akinsho/nvim-toggleterm.lua"
+    use "hkupty/iron.nvim"
 
     -- running and compiling
     use {"michaelb/sniprun", run="bash ./install.sh"}
