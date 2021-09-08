@@ -47,8 +47,11 @@ Packer.startup(function()
     use "kyazdani42/nvim-tree.lua"
 
     -- completion
-    use "hrsh7th/nvim-compe"
-    use "GoldsteinE/compe-latex-symbols"
+    use "hrsh7th/nvim-cmp"
+    use "hrsh7th/cmp-buffer"
+    use "hrsh7th/cmp-path"
+    use "hrsh7th/cmp-nvim-lua"
+    use "kdheepak/cmp-latex-symbols"
     use "racer-rust/vim-racer"
 
     -- which key

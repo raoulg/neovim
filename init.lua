@@ -9,7 +9,7 @@ require("general")
 
 pcall(require, "appearance")
 
-pcall(require, "etc/compe")
+pcall(require, "etc/completion")
 pcall(require, "etc/whichkey")
 pcall(require, "etc/misckeybindings")
 pcall(require, "etc/terminal")

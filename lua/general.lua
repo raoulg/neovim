@@ -31,12 +31,11 @@ vim.o.foldenable = false  -- get rid of folding, which I despise so much
 
 vim.o.sessionoptions = "buffers,curdir,localoptions,options,resize,tabpages,terminal,winsize"
 
---vim.api.nvim_del_keymap("", "`")
-
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
 -- doing these in lua was ugly and causing problems, need to wait until there's a proper API for it
+-- still need these even with nvim-cmp otherwise e.g. tab is inserted along with selection
 vim.cmd("inoremap <expr> <tab> pumvisible() ? \"\\<C-n>\" : \"\\<tab>\"")
 vim.cmd("inoremap <expr> <S-tab> pumvisible() ? \"\\<C-p>\" : \"\\<S-Tab>\"")
 
