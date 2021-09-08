@@ -51,6 +51,7 @@ Packer.startup(function()
     use "hrsh7th/cmp-buffer"
     use "hrsh7th/cmp-path"
     use "hrsh7th/cmp-nvim-lua"
+    use "saadparwaiz1/cmp_luasnip"
     use "kdheepak/cmp-latex-symbols"
     use "racer-rust/vim-racer"
 
@@ -72,7 +73,7 @@ Packer.startup(function()
     use "ggandor/lightspeed.nvim"
 
     -- snippets
-    use "SirVer/ultisnips"
+    use "L3MON4D3/LuaSnip"
 
     -- registers
     use "tversteeg/registers.nvim"

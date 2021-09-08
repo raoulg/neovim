@@ -1,0 +1,13 @@
+
+
+{
+    "Function": {
+        "prefix": ["function"],
+        "body": [
+            "function ${1:f}(${2:args})",
+            "\t${3:body}",
+            "end"
+        ],
+        "description": "function block"
+    }
+}

@@ -1,9 +1,34 @@
-vim.g.UltiSnipsSnippetDirectories = {"UltiSnips",}
-vim.g.UltiSnipsExpandTrigger = "<C-j>"
+LuaSnip = require("luasnip")
 
--- ensure these aren't doing any weird shenanigans
-vim.api.nvim_set_keymap("i", "<C-j>", "<nop>", {})
-vim.api.nvim_set_keymap("i", "<C-k>", "<nop>", {})
+local Events = require("luasnip.util.events")
+local Loader = require("luasnip.loaders.from_vscode")
 
-vim.g.UltiSnipsJumpForwardTrigger = "<C-j>"
-vim.g.UltiSnipsJumpBackwardTrigger = "<C-k>"
+local parser = LuaSnip.parser
+
+local s = LuaSnip.snippet
+local sn = LuaSnip.snippet_node
+local isn = LuaSnip.indent_snippet_node
+local t = LuaSnip.text_node
+local i = LuaSnip.insert_node
+local f = LuaSnip.function_node
+local c = LuaSnip.choice_node
+local d = LuaSnip.dynamic_node
+
+LuaSnip.config.set_config({
+    history = true,
+    enable_autosnippets = false,
+})
+
+-- see help LuaSnip
+-- and example here: https://github.com/L3MON4D3/LuaSnip/blob/master/Examples/snippets.lua
+
+LuaSnip.snippets = {
+    all = {
+    },
+}
+
+Loader.lazy_load({
+    paths = {"~/.config/nvim/snippets"}
+})
+
+--TODO: can't get keybindings to work for jumps and whatever else

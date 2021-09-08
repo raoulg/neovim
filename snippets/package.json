@@ -1,0 +1,8 @@
+{
+    "name": "general-lsp-snippets",
+    "contributes": {
+        "snippets" : [
+            {"language": "julia", "path": "./julia.json"}
+        ]
+    }
+}
