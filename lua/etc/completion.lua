@@ -30,7 +30,8 @@ Cmp.setup({
         {name = "nvim_lua"},
         {name = "latex_symbols"},
         {name = "path"},
-        {name = "luasnip"},
+        --TODO: this may be causing problems
+        --{name = "luasnip"},
         {name = "buffer"},
     },
     snippet = {
