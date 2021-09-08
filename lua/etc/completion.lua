@@ -1,5 +1,8 @@
 Cmp = require("cmp")
 
+--NOTE: the below functions may be useful for a more contextual tab
+--but seems somewhat unreliable
+
 local check_back_space = function()
   local col = vim.fn.col('.') - 1
   return col == 0 or vim.fn.getline('.'):sub(col, col):match('%s')
@@ -36,7 +39,7 @@ Cmp.setup({
         end,
     },
     mapping = {
-        ["<tab>"] = tabfunc,
+        ["<tab>"] = Cmp.mapping.select_next_item(),
         ["<s-tab>"] = Cmp.mapping.select_prev_item(),
         ["<cr>"] = Cmp.mapping.confirm({
             behavior = Cmp.ConfirmBehavior.Replace,
