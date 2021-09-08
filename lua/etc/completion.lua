@@ -29,7 +29,7 @@ Cmp.setup({
         end,
     },
     mapping = {
-        ["<tab>"] = tabfunc,
+        ["<tab>"] = Cmp.mapping.select_next_item(),
         ["<s-tab>"] = Cmp.mapping.select_prev_item(),
         ["<cr>"] = Cmp.mapping.confirm({
             behavior = Cmp.ConfirmBehavior.Replace,

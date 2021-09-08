@@ -31,4 +31,7 @@ Loader.lazy_load({
     paths = {"~/.config/nvim/snippets"}
 })
 
---TODO: can't get keybindings to work for jumps and whatever else
+WhichKey.register({
+    ["<c-s>"] = {function() return LuaSnip.expand_or_jump() end, "expand snippet; or jump to next snippet position"},
+    ["<c-w>"] = {function() return LuaSnip.jump(-1) end, "jump to previous snippet position"},
+}, {mode="i"})
