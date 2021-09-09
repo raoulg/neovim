@@ -31,7 +31,18 @@ Loader.lazy_load({
     paths = {"~/.config/nvim/snippets"}
 })
 
-WhichKey.register({
-    ["<c-s>"] = {function() return LuaSnip.expand_or_jump() end, "expand snippet; or jump to next snippet position"},
-    ["<c-w>"] = {function() return LuaSnip.jump(-1) end, "jump to previous snippet position"},
-}, {mode="i"})
+local _modes = {"i", "s", "n"}
+for m = 1, #_modes do
+    WhichKey.register({
+        ["<c-s>"] = {
+            name = "snippet control",
+            j = {function() return LuaSnip.expand_or_jump() end, "expand snippet; or jump to next snippet position"},
+            k = {function() return LuaSnip.jump(-1) end, "jump to previous snippet position"},
+            l = {function() return LuaSnip.change_choice(1) end, "next snippet node choice"},
+            h = {function() return LuaSnip.change_choice(-1) end, "previous snippet node choice"},
+            u = {function() return LuaSnip.unlink_current() end, "unlink current snippet"},
+            U = {function() return LuaSnip.unlink_current_if_deleted() end, "unlink current if deleted"},
+        }
+    }, {mode=_modes[m]})
+end
+

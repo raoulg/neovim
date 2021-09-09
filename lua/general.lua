@@ -43,5 +43,8 @@ vim.cmd("autocmd BufRead,BufNewFile *.tex set conceallevel=1")
 vim.g.latex_to_unicode_auto = 1
 vim.g.latex_to_unicode_tab = 1
 
+-- default to latex rather than plaintex
+vim.g.tex_flavor = "latex"
+
 -- an old and crazy hack for finding the highlight group under the cursor, now bound to F10 in all modes
 vim.cmd([[map <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<' . synIDattr(synID(line("."),col("."),0),"name") . "> lo<" . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>]])

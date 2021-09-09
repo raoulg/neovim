@@ -1,0 +1,16 @@
+
+{
+    "Snippet": {
+        "prefix": ["snippet"],
+        "body": [
+            "\"$1\": {",
+            "\t\"prefix\": [\"$2\"],",
+            "\t\"body\": [",
+            "\t\t\"$3\"",
+            "\t],",
+            "\t\"description\": \"$4\"",
+            "}"
+        ],
+        "description": "recursion: ain't it grand"
+    }
+}

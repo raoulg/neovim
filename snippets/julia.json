@@ -1,7 +1,6 @@
 
-
 {
-    "Function": {
+    "FunctionBlock": {
         "prefix": ["function"],
         "body": [
             "function ${1:f}(${2:args})",
@@ -9,5 +8,76 @@
             "end"
         ],
         "description": "function block"
+    },
+
+    "Struct": {
+        "prefix": ["struct"],
+        "body": [
+            "struct ${1:Name}${2:{params}} ${3:<: Abstract}",
+            "\t${4:fields}",
+            "end"
+        ],
+        "description": "struct block"
+    },
+
+    "DocString": {
+        "prefix": ["docstring"],
+        "body": [
+            "\"\"\"",
+            "\t${1:function}",
+            "",
+            "${2:description}",
+            "\"\"\"",
+            "$0"
+        ],
+        "description": "a basic doc string"
+    },
+
+    "DocStringLong": {
+        "prefix": ["docstringlong"],
+        "body": [
+            "\"\"\"",
+            "\t${1:function}",
+            "",
+            "${2:description}",
+            "",
+            "## Methods",
+            "```julia",
+            "${3:methods}",
+            "```",
+            "",
+            "## Arguments",
+            "- `${4:args}`: ${5:desc}",
+            "",
+            "\"\"\"",
+            "$0"
+        ],
+        "description": "an extended doc string for constructors"
+    },
+
+    "CommentDivider1": {
+        "prefix": ["#=="],
+        "body": ["#===================================================================================================#"],
+        "description": "one line comment divider"
+    },
+
+    "CommentDivider2": {
+        "prefix": ["#==="],
+        "body": [
+            "#====================================================================================================",
+            "       ${1:comment}",
+            "====================================================================================================#"
+        ],
+        "description": "multi-line comment divider"
+    },
+
+    "CommentDividerBegin": {
+        "prefix": ["#==\\begin"],
+        "body": [
+            "#====================================================================================================",
+            "       ${1|\\begin,\\end|}{${2:title}}",
+            "====================================================================================================#"
+        ],
+        "description": "begin-end comment divider"
     }
 }

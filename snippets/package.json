@@ -2,7 +2,10 @@
     "name": "general-lsp-snippets",
     "contributes": {
         "snippets" : [
-            {"language": "julia", "path": "./julia.json"}
+            {"language": "julia", "path": "./julia.json"},
+            {"language": ["tex", "latex"], "path": "./latex.json"},
+            {"language": "markdown", "path": "./markdown.json"},
+            {"language": "json", "path": "./json.json"}
         ]
     }
 }
