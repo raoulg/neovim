@@ -52,7 +52,7 @@ Packer.startup(function()
     use "hrsh7th/cmp-path"
     use "hrsh7th/cmp-nvim-lua"
     use "saadparwaiz1/cmp_luasnip"
-    use "kdheepak/cmp-latex-symbols"
+    use "https://gitlab.com/ExpandingMan/cmp-latex"
     use "racer-rust/vim-racer"
 
     -- which key
