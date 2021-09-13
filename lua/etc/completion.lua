@@ -1,15 +1,27 @@
 Cmp = require("cmp")
 
+local function has_words_before()
+    if vim.api.nvim_buf_get_option(0, "buftype") == "prompt" then
+        return false
+    end
+    local l, c = unpack(vim.api.nvim_win_get_cursor(0))
+    return col ~= 0 and vim.api.nvim_buf_get_lines(0, l-1, l, true)[1]:sub(c,c):match("%s") == nil
+end
+
 local function repltermcodes(str)
     return vim.api.nvim_replace_termcodes(str, true, true, true)
 end
 
--- tab functionality for both Cmp and LuaSnip
+local function feedkey(k, mode)
+    vim.api.nvim_feedkeys(repltermcodes(k), mode, true)
+end
+
+-- this is unnecesary for this config, but useful as reference
 local function tabfunc(fallback)
     if vim.fn.pumvisible() == 1 then
-        vim.fn.feedkeys(repltermcodes("<c-n>"), "n")
-    elseif LuaSnip.expand_or_jumpable() then
-        vim.fn.feedkeys(repltermcodes("<plug>luasnip-expand-or-jump"), "")
+        feedkey("<c-n>", "n")
+    elseif has_words_before() then
+        Cmp.complete()
     else
         fallback()
     end
@@ -31,11 +43,11 @@ Cmp.setup({
     mapping = {
         ["<tab>"] = Cmp.mapping.select_next_item(),
         ["<s-tab>"] = Cmp.mapping.select_prev_item(),
-        ["<c-i>"] = Cmp.mapping.confirm({
-            --NOTE: it's hard to decide which is appropriate for most situations
-            --behavior = Cmp.ConfirmBehavior.Replace,
-            behavior = Cmp.ConfirmBehavior.Insert,
-            select = true,
+        ["<cr>"] = Cmp.mapping.confirm({
+            behavior = Cmp.ConfirmBehavior.Replace,
+            --this is important, it prevents <cr> from completing if nothing selected;
+            --otherwise it gest really aggravating at the end of a line
+            select = false,
         }),
         ["<c-e>"] = Cmp.mapping.close(),
     },
