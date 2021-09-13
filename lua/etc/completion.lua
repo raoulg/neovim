@@ -31,8 +31,10 @@ Cmp.setup({
     mapping = {
         ["<tab>"] = Cmp.mapping.select_next_item(),
         ["<s-tab>"] = Cmp.mapping.select_prev_item(),
-        ["<cr>"] = Cmp.mapping.confirm({
-            behavior = Cmp.ConfirmBehavior.Replace,
+        ["<c-i>"] = Cmp.mapping.confirm({
+            --NOTE: it's hard to decide which is appropriate for most situations
+            --behavior = Cmp.ConfirmBehavior.Replace,
+            behavior = Cmp.ConfirmBehavior.Insert,
             select = true,
         }),
         ["<c-e>"] = Cmp.mapping.close(),
