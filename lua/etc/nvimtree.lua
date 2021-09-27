@@ -1,8 +1,18 @@
 
-vim.g.nvim_tree_width = 40
-vim.g.nvim_tree_ignore = {".git", ".cache"}
-vim.g.nvim_tree_auto_open = 1
-vim.g.nvim_tree_highlight_opened_files = 1
+NvimTree = require("nvim-tree")
+
+NvimTree.setup({
+    disable_netrw = true,
+    hijack_netrw = true,
+    open_on_setup = false,
+    auto_close = false,
+
+    view = {
+        width = 40,
+        side = "left",
+        auto_resize = true,
+    },
+})
 
 WhichKey.register({
     name = "nvim tree",
