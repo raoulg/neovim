@@ -57,7 +57,7 @@ WhichKey.register({
     ["."] = {
         name = "the infamous LSP",
         X = {function() lsp.stop_client(lsp.get_active_clients()) end, "stop all LSP clients", noremap=true},
-        f = {"<cmd>Lspsaga lsp_finder<CR>", "open LSP finder", noremap=true},
+        f = {Provider.lsp_finder, "open LSP finder", noremap=true},
         a = {Action.code_action, "open LSP action", noremap=true},
         d = {Hover.render_hover_doc, "view docs", noremap=true},
         s = {SignatureHelp.signature_help, "help with signature", noremap=true},
@@ -82,31 +82,4 @@ sethighlight("LspSagaCodeActionBorder", {fg=colors.pink, bg="NONE"})
 sethighlight("LspSagaAutoPreview", {fg=colors.comment, bg="NONE"})
 sethighlight("LspSagaDiagnosticBorder", {fg=colors.comment, bg="NONE"})
 sethighlight("LspSagaDiagnosticTruncateLine", {fg=colors.comment, bg="NONE"})
-
--- ------------------------------ languages ----------------------------------------
--- ---------------------------------------------------------------------------------
-
--- NOTE: LSP only enabled for types listed here;
-_G.LSP_FILETYPES = {
-    --julia = {},  --FUCK: this still doesn't work that well; will really have to mess with it
-    python = {},
-}
-
--- Julia
-if LSP_FILETYPES["julia"] ~= nil then
-_julia_lsp_cmd = {"julia", "--startup-file=no", "--history-file=no", vim.fn.stdpath("config").."/lsp/lsp.jl"}
-Cfg.julials.setup({
-    cmd = _julia_lsp_cmd,
-    on_new_config = function(cfg, _)
-        cfg.cmd = _julia_lsp_cmd
-    end,
-    filetypes={"julia"},
-})
-end
---vim.lsp.set_log_level("debug")
-
--- Python
-if LSP_FILETYPES["python"] ~= nil then
-Cfg.pyright.setup({})
-end
 

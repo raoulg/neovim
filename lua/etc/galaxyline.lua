@@ -176,9 +176,8 @@ table.insert(Section.right, {
 })
 
 local function lspcondition()
-    if not ENABLE_LSP then return false end
-    if _G.LSP_FILETYPES[vim.bo.filetype] == nil then return false end
-    return true
+    local clients = vim.lsp.get_active_clients()
+    not (next(clients) == nil)
 end
 
 -- returns text listing LSP clients

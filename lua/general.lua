@@ -2,9 +2,6 @@ local indent = 4
 
 vim.cmd("filetype plugin indent on")
 
--- set this to true to disable all LSP related crap
-ENABLE_LSP = false
-
 vim.o.clipboard = "unnamedplus"                    -- have vim use OS clipboard
 vim.o.completeopt = "menuone,noinsert,noselect"    -- autocomplete options
 vim.o.expandtab = true                             -- expand tabs into spaces

@@ -62,9 +62,6 @@ Packer.startup(function()
     use "akinsho/nvim-toggleterm.lua"
     use "hkupty/iron.nvim"
 
-    -- running and compiling
-    use {"michaelb/sniprun", run="bash ./install.sh"}
-
     -- search
     use "nvim-telescope/telescope.nvim"
     use "windwp/nvim-spectre"
@@ -86,12 +83,8 @@ Packer.startup(function()
     use "rmagatti/auto-session"
     use "rmagatti/session-lens"
 
-    -- treesitter
-    --use "nvim-treesitter/nvim-treesitter"
-    --use "nvim-treesitter/playground"
-
     -- LSP
-    --use "neovim/nvim-lspconfig"
-    --use "glepnir/lspsaga.nvim"
+    use "neovim/nvim-lspconfig"
+    use "glepnir/lspsaga.nvim"
 
 end)
