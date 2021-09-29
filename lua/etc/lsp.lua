@@ -14,7 +14,7 @@ local Diagnostic = require("lspsaga/diagnostic")
 lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
     vim.lsp.diagnostic.on_publish_diagnostics, {
         virtual_text = false,
-        signs = false,
+        signs = true,
         underline = false,
         update_in_insert = true,
 })
@@ -49,7 +49,7 @@ Saga.init_lsp_saga({
     definition_preview_icon = "𝔇 ",
     -- "single" "double" "round" "plus"
     border_style = "round",
-    rename_prompt_prefix = "➤",
+    rename_prompt_prefix = "◗ ",
 })
 
 
