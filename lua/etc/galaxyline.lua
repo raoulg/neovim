@@ -175,9 +175,10 @@ table.insert(Section.right, {
     }
 })
 
+-- only show if active client exists
 local function lspcondition()
     local clients = vim.lsp.get_active_clients()
-    not (next(clients) == nil)
+    return next(clients) ~= nil
 end
 
 -- returns text listing LSP clients

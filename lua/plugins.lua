@@ -86,5 +86,6 @@ Packer.startup(function()
     -- LSP
     use "neovim/nvim-lspconfig"
     use "glepnir/lspsaga.nvim"
+    use "jose-elias-alvarez/null-ls.nvim"
 
 end)
