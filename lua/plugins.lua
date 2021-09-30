@@ -87,5 +87,6 @@ Packer.startup(function()
     use "neovim/nvim-lspconfig"
     use "glepnir/lspsaga.nvim"
     use "jose-elias-alvarez/null-ls.nvim"
+    --use {"~/src/JET.nvim", ft={"julia"}}
 
 end)

@@ -8,6 +8,7 @@ local Hover = require("lspsaga/hover")
 local SignatureHelp = require("lspsaga/signaturehelp")
 local Rename = require("lspsaga/rename")
 local Diagnostic = require("lspsaga/diagnostic")
+local NullLs = require("null-ls")
 
 -- TODO: will basically need your own plugin to make these easily toggleable; in the meantime, this
 -- is a reasonable default, see https://github.com/nvim-lua/diagnostic-nvim/issues/73
@@ -52,7 +53,6 @@ Saga.init_lsp_saga({
     rename_prompt_prefix = "◗ ",
 })
 
-
 WhichKey.register({
     ["."] = {
         name = "the infamous LSP",
@@ -82,4 +82,9 @@ sethighlight("LspSagaCodeActionBorder", {fg=colors.pink, bg="NONE"})
 sethighlight("LspSagaAutoPreview", {fg=colors.comment, bg="NONE"})
 sethighlight("LspSagaDiagnosticBorder", {fg=colors.comment, bg="NONE"})
 sethighlight("LspSagaDiagnosticTruncateLine", {fg=colors.comment, bg="NONE"})
+
+-- these are required for null-ls to work
+NullLs.setup()
+--require("jet").setup({})
+Cfg["null-ls"].setup({})
 
