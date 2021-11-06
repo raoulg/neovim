@@ -51,4 +51,6 @@ Cmp.setup({
         }),
         ["<c-e>"] = Cmp.mapping.close(),
     },
+    --TODO: this may be a tmp fix, see https://github.com/hrsh7th/nvim-cmp/issues/475
+    native_menu=true,
 })
