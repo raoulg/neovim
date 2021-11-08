@@ -8,7 +8,12 @@ if fn.empty(fn.glob(install_path)) > 0 then
 end
 
 -- auto compile when there are changes in `plugins.lua`
-vim.cmd("autocmd BufWritePost plugins.lua PackerCompile")
+vim.cmd([[
+    augroup packer_user_config
+        autocmd!
+        autocmd BufWritePost plugins.lua source <afile> | PackerCompile
+    augroup end
+]])
 
 Packer = require("packer")
 
