@@ -41,14 +41,14 @@ Cmp.setup({
         end,
     },
     mapping = {
-        ["<tab>"] = Cmp.mapping.select_next_item(),
-        ["<s-tab>"] = Cmp.mapping.select_prev_item(),
-        ["<cr>"] = Cmp.mapping.confirm({
+        ["<Tab>"] = Cmp.mapping.select_next_item({behavior=Cmp.SelectBehavior.Insert}),
+        ["<S-Tab>"] = Cmp.mapping.select_prev_item({behavior=Cmp.SelectBehavior.Insert}),
+        ["<CR>"] = Cmp.mapping.confirm({
             behavior = Cmp.ConfirmBehavior.Insert,
             --this is important, it prevents <cr> from completing if nothing selected;
             --otherwise it gest really aggravating at the end of a line
             select = false,
         }),
-        ["<c-e>"] = Cmp.mapping.close(),
+        ["<C-e>"] = Cmp.mapping.close(),
     },
 })
