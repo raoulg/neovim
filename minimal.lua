@@ -1,12 +1,13 @@
-vim.o.encoding = "utf-8"
 
--- TODO: supposedly packer silently loads packages so you may have to figure something else out
-
--- no bootstrapping for packer, assumes already installed
-Packer = require("packer")
-Packer.startup(function()
-    -- TEST MODULES HERE
-end)
+function set_packpath()
+    dir = os.getenv("HOME")..".local/share/nvim/site/pack/packer"
+    vim.cmd("set packpath="..dir)
+end
+set_packpath()
 
 
--- TESTING CONFIG HERE
+--TODO: want to be able to add packages this way but it currently doesn't work because of default
+--directory structure
+--vim.cmd("packadd nvim-cmp")
+
+Cmp = require("cmp")
