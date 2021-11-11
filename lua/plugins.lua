@@ -88,6 +88,11 @@ Packer.startup(function()
     use "rmagatti/auto-session"
     use "rmagatti/session-lens"
 
+    -- org mode
+    -- NOTE: haven't explored this yet, wanted reminder
+    --use "nvim-treesitter/nvim-treesitter"
+    --use "kristijanhusak/orgmode.nvim"
+
     -- LSP
     use "neovim/nvim-lspconfig"
     use "glepnir/lspsaga.nvim"
