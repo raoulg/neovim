@@ -32,7 +32,7 @@ sethighlight("Normal", {fg=colors.foreground})
 sethighlight("Identifier", {fg=colors.orange})
 sethighlight("Constant", {fg=colors.red})
 sethighlight("Macro", {fg=colors.green})
-sethighlight("PreProc", {fg=colors.pink})
+sethighlight("PreProc", {fg=colors.green})
 sethighlight("PreCondit", {fg=colors.pink})
 sethighlight("Define", {fg=colors.pink})
 sethighlight("StorageClass", {fg=colors.pink})
@@ -138,3 +138,6 @@ sethighlight("LspDiagnosticsUnderlineWarning", {fg=colors.orange, style="underli
 
 -- no idea why comments are wrong by default in rust, but they are
 sethighlight("rustCommentLineDoc", {fg=colors.comment})
+
+-- this will also make 1-line function defs purple
+sethighlight("juliaFunctionCall", {fg=colors.purple})
