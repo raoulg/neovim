@@ -133,3 +133,8 @@ sethighlight("LspDiagnosticsUnderlineError", {fg=colors.red, style="underline"})
 sethighlight("LspDiagnosticsUnderlineHint", {fg=colors.cyan, style="underline"})
 sethighlight("LspDiagnosticsUnderlineInformation", {fg=colors.cyan, style="underline"})
 sethighlight("LspDiagnosticsUnderlineWarning", {fg=colors.orange, style="underline"})
+
+-- misc
+
+-- no idea why comments are wrong by default in rust, but they are
+sethighlight("rustCommentLineDoc", {fg=colors.comment})
