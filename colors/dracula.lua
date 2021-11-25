@@ -141,3 +141,4 @@ sethighlight("rustCommentLineDoc", {fg=colors.comment})
 
 -- this will also make 1-line function defs purple
 sethighlight("juliaFunctionCall", {fg=colors.purple})
+sethighlight("juliaSemiColon", {fg=colors.pink})
