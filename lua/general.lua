@@ -39,7 +39,7 @@ vim.cmd("autocmd BufRead,BufNewFile *.tex set conceallevel=1")
 -- latex to unicode
 vim.g.latex_to_unicode_auto = 1
 vim.g.latex_to_unicode_tab = 1
-vim.g.latex_to_unicode_file_types = {"julia", "rust", "python"}
+vim.g.latex_to_unicode_file_types = {"julia", "rust", "nim", "python"}
 
 -- default to latex rather than plaintex
 vim.g.tex_flavor = "latex"
