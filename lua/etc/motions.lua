@@ -7,7 +7,7 @@ Lightspeed.setup({
     grey_out_search_area = true,
     match_only_the_start_of_same_char_seqs = true,
     limit_ft_matches = 5,
-    x_mode_prefix_key = "<c-x>",
+    --x_mode_prefix_key = "<c-x>",
     labels = nil,
     cycle_group_fwd_key = nil,
     cycle_group_bwd_key = nil,
