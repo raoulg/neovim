@@ -85,6 +85,4 @@ sethighlight("LspSagaDiagnosticTruncateLine", {fg=colors.comment, bg="NONE"})
 
 -- these are required for null-ls to work
 NullLs.setup()
---require("jet").setup({})
-Cfg["null-ls"].setup({})
 
