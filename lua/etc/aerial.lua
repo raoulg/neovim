@@ -1,7 +1,9 @@
 
 --WARN: this is not nearly done!
 
-vim.g.aerial = {
+local Aerial = require("aerial")
+
+Aerial.setup({
     backends = {"treesitter", "markdown"},
     close_behavior = "auto",
     default_bindings = true,
@@ -17,7 +19,7 @@ vim.g.aerial = {
     },
     highlight_mode = "split_width",
     highlight_on_jump = 300,  -- time in ms to highlight after jumping
-}
+})
 
 WhichKey.register({
     a = {
