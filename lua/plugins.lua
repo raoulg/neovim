@@ -42,6 +42,7 @@ Packer.startup(function()
     use "chrisbra/csv.vim"
     use "khaveesh/vim-fish-syntax"
     use "zah/nim.vim"
+    use "tikhomirov/vim-glsl"
 
     -- statusline
     use "glepnir/galaxyline.nvim"
