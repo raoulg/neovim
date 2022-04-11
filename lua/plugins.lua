@@ -48,7 +48,7 @@ Packer.startup(function()
     use "glepnir/galaxyline.nvim"
 
     -- buffer bar
-    use "akinsho/nvim-bufferline.lua"
+    use "akinsho/bufferline.nvim"
 
     -- file explorer
     use "kyazdani42/nvim-tree.lua"
@@ -66,7 +66,7 @@ Packer.startup(function()
     use "folke/which-key.nvim"
 
     -- terminal
-    use "akinsho/nvim-toggleterm.lua"
+    use "akinsho/toggleterm.nvim"
     use "hkupty/iron.nvim"
 
     -- search

@@ -107,7 +107,7 @@ end
 
 local function open_split_buf(n, vert)
     return function()
-        Bufferline.buf_exec(n, function(buf, all_visible)
+        require("bufferline.commands").exec(n, function(buf, all_visible)
             local str = vert and "vert sbuffer " or "sbuffer "
             vim.cmd(str..buf.id)
         end)
