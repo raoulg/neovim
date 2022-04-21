@@ -26,3 +26,9 @@ WhichKey.register({
     ["<down>"] = {"<cmd>wincmd j<cr>", "window, move down"},
     ["<left>"] = {"<cmd>wincmd h<cr>", "window, move left"},
 })
+
+-- easy scrolling consistent with my terminal setup
+WhichKey.register({
+    ["<C-k>"] = {"<C-y>", "scroll up one line", noremap=true},
+    ["<C-j>"] = {"<C-e>", "scroll down one line", noremap=true},
+})
