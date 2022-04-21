@@ -56,10 +56,10 @@ local function which_key_help()
     return WhichKey.show_command("", vim.fn.mode())
 end
 
--- <C-z> to show which-key help in any relevant mode
+-- <C-y> to show which-key help in any relevant mode
 local _modes = {"n", "i", "t", "v"}
 for m = 1, #_modes do
     WhichKey.register({
-        ["<C-z>"] = {which_key_help, "show which key help", noremap=true},
+        ["<C-y>"] = {which_key_help, "show which key help", noremap=true},
     }, {mode=_modes[m]})
 end
