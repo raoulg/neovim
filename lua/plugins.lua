@@ -90,6 +90,10 @@ Packer.startup(function()
     use "rmagatti/auto-session"
     use "rmagatti/session-lens"
 
+    -- improved commandline
+    use "romgrk/fzy-lua-native"
+    use "gelguy/wilder.nvim"
+
     -- treesitter
     use "nvim-treesitter/nvim-treesitter"
     use "stevearc/aerial.nvim"
