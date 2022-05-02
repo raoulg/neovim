@@ -74,27 +74,21 @@ Bufferline.setup({
         },
         buffer_selected = {
             guifg = colors.cyan,
-            gui = "NONE",
         },
         separator = {
             guifg = colors.purple,
-            guibg = "NONE",
         },
         pick = {
             guifg = colors.purple,
-            guibg = "NONE",
         },
         pick_visible = {
             guifg = colors.purple,
-            guibg = "NONE",
         },
         pick_selected = {
             guifg = colors.green,
-            guibg = "NONE",
         },
         indicator_selected = {
             guifg = colors.green,
-            guibg = "NONE",
         },
     }
 })
