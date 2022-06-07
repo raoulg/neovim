@@ -17,7 +17,6 @@ ToggleTerm.setup({
     open_mapping = "<C-\\>",
     hide_numbers = false,
     shade_terminals = true,
-    shading_factor = "<number>",  -- the degree by which to darken to terminal color
     start_in_insert = true,
     insert_mappings = true,
     persist_size = true,
