@@ -69,26 +69,26 @@ Bufferline.setup({
     },
     highlights = {
         fill = {
-            guibg = colors.bgdark,
-            guifg = colors.bgdark,
+            bg = colors.bgdark,
+            fg = colors.bgdark,
         },
         buffer_selected = {
-            guifg = colors.cyan,
+            fg = colors.cyan,
         },
         separator = {
-            guifg = colors.purple,
+            fg = colors.purple,
         },
         pick = {
-            guifg = colors.purple,
+            fg = colors.purple,
         },
         pick_visible = {
-            guifg = colors.purple,
+            fg = colors.purple,
         },
         pick_selected = {
-            guifg = colors.green,
+            fg = colors.green,
         },
         indicator_selected = {
-            guifg = colors.green,
+            fg = colors.green,
         },
     }
 })
