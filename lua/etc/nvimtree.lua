@@ -19,8 +19,8 @@ WhichKey.register({
     r = {":NvimTreeRefresh<CR>", "refresh NvimTree", noremap=true},
 }, {prefix=","})
 
-sethighlight("NvimTreeWindowPicker", {fg=colors.bgdark, bg=colors.cyan})
-sethighlight("NvimTreeFolderIcon", {fg=colors.purple})
-sethighlight("NvimTreeIndentMarker", {fg=colors.pink})
-sethighlight("NvimTreeExecFile", {fg=colors.green})
-sethighlight("NvimTreeOpenedFile", {fg=colors.orange})
+vim.api.nvim_set_hl(0, "NvimTreeWindowPicker", {fg=colors.bgdark, bg=colors.cyan})
+vim.api.nvim_set_hl(0, "NvimTreeFolderIcon", {fg=colors.purple})
+vim.api.nvim_set_hl(0, "NvimTreeIndentMarker", {fg=colors.pink})
+vim.api.nvim_set_hl(0, "NvimTreeExecFile", {fg=colors.green})
+vim.api.nvim_set_hl(0, "NvimTreeOpenedFile", {fg=colors.orange})

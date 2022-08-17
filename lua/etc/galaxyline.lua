@@ -44,7 +44,7 @@ local function modeprovider()
     if c == nil then
         local c = mode_cfg["unknown"]
     end
-    sethighlightsimple("GalaxyViMode", {fg=c.fg})
+    vim.api.nvim_set_hl(0, "GalaxyViMode", {fg=c.fg, bg=colors.bgdark})
     return "▮"..padtolength(c.name, 10, " ").."▮"
 end
 
@@ -55,14 +55,14 @@ table.insert(Section.left, {
     },
 })
 
-sethighlight("GalaxyViMode", {fg=colors.purple, bg=colors.bgdark})
+vim.api.nvim_set_hl(0, "GalaxyViMode", {fg=colors.purple, bg=colors.bgdark})
 
 table.insert(Section.left, {
     ViMode = {
         provider = modeprovider,
         separator = "◗   ",
         separator_highlight = {colors.purple, colors.bgdark},
-        highlight = {"NONE", colors.bgdark},
+        highlight = {nil, colors.bgdark},
     },
 })
 
@@ -73,7 +73,7 @@ table.insert(Section.left, {
         end,
         condition = Condition.check_git_workspace,
         separator = " ",
-        separator_highlight = {"NONE", colors.bgdark},
+        separator_highlight = {nil, colors.bgdark},
         highlight = {colors.orange, colors.bgdark},
     },
 })
@@ -83,7 +83,7 @@ table.insert(Section.left, {
         provider = "GitBranch",
         condition = Condition.check_git_workspace,
         separator = " ",
-        separator_highlight = {"NONE", colors.bgdark},
+        separator_highlight = {nil, colors.bgdark},
         highlight = {colors.comment, colors.bgdark},
     },
 })
@@ -152,14 +152,14 @@ local function luapad_provider()
     local s = LuapadInfo.status()
     if s == nil then return nil end
     if s == "ok" then
-        sethighlightsimple("GalaxyLuapad", {fg=colors.green})
+        vim.api.nvim_set_hl(0, "GalaxyLuapad", {fg=colors.green})
     else
-        sethighlightsimple("GalaxyLuapad", {fg=colors.orange})
+        vim.api.nvim_set_hl(0, "GalaxyLuapad", {fg=colors.orange})
     end
     return " ⟦ Luapad: "..s.." ⟧ "
 end
 
-sethighlight("GalaxyLuapad", {fg=colors.orange, colors.bgdark})
+vim.api.nvim_set_hl(0, "GalaxyLuapad", {fg=colors.orange, bg=colors.bgdark})
 
 table.insert(Section.right, {
     Luapad = {
@@ -232,16 +232,11 @@ table.insert(Section.right, {
     },
 })
 
---TODO: I would like this element to change colors, but this is too expensive because calls to `hi`
---are so inefficient. not sure what the alternative is...
---issue here: https://github.com/glepnir/galaxyline.nvim/issues/210
 local function modified_buffer_indicator(hl)
     return function()
         if vim.bo.modifiable and vim.bo.modified then
-            --sethighlightsimple(hl, {fg=colors.red})
             return "▮"
         else
-            --sethighlightsimple(hl, {fg=colors.purple})
             return "▯"
         end
     end
@@ -328,7 +323,7 @@ table.insert(Section.right, {
     Scroll = {
         provider = Extension.scrollbar_instance,
         separator = " ",
-        separator_highlight = {"NONE", colors.bgdark},
+        separator_highlight = {nil, colors.bgdark},
         highlight = {colors.pink, colors.bgdark},
     },
 })

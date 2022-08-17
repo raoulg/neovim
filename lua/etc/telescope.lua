@@ -63,7 +63,7 @@ WhichKey.register({
 }, {prefix="\\", noremap=true})
 
 -- appearance
-sethighlight("TelescopeBorder", {fg=colors.pink, bg="NONE"})
-sethighlight("TelescopePromptBorder", {fg=colors.cyan, bg="NONE"})
-sethighlight("TelescopeResultsBorder", {fg=colors.pink, bg="NONE"})
-sethighlight("TelescopePreviewBorder", {fg=colors.purple, bg="NONE"})
+vim.api.nvim_set_hl(0, "TelescopeBorder", {fg=colors.pink, bg=nil})
+vim.api.nvim_set_hl(0, "TelescopePromptBorder", {fg=colors.cyan, bg=nil})
+vim.api.nvim_set_hl(0, "TelescopeResultsBorder", {fg=colors.pink, bg=nil})
+vim.api.nvim_set_hl(0, "TelescopePreviewBorder", {fg=colors.purple, bg=nil})

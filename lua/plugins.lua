@@ -74,7 +74,8 @@ Packer.startup(function()
     use "windwp/nvim-spectre"
 
     -- motions
-    use "ggandor/lightspeed.nvim"
+    --use "ggandor/lightspeed.nvim"
+    use "ggandor/leap.nvim"
 
     -- snippets
     use "L3MON4D3/LuaSnip"

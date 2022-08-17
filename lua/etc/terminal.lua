@@ -9,8 +9,8 @@ local function termsize(term)
     end
 end
 
-sethighlight("ToggleTermBorder", {fg=colors.pink, bg=colorsbgdarker})
-sethighlight("ToggleTermBackground", {fg=colors.bgdark, bg=colors.bgdark})
+vim.api.nvim_set_hl(0, "ToggleTermBorder", {fg=colors.pink, bg=colorsbgdarker})
+vim.api.nvim_set_hl(0, "ToggleTermBackground", {fg=colors.bgdark, bg=colors.bgdark})
 
 ToggleTerm.setup({
     size = termsize,
