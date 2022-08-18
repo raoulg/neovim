@@ -86,7 +86,7 @@ vim.api.nvim_set_hl(0, "PmenuSbar", {bg=colors.bgdark})
 vim.api.nvim_set_hl(0, "PmenuSel", {fg=colors.foreground, bg=colors.selection})
 vim.api.nvim_set_hl(0, "PmenuThumb", {fg=colors.foreground, bg=colors.selection})
 vim.api.nvim_set_hl(0, "Question", {fg=colors.foreground, bold=true})
-vim.api.nvim_set_hl(0, "Seach", {fg=colors.green, standout=true})
+vim.api.nvim_set_hl(0, "Search", {fg=colors.green, standout=true})
 vim.api.nvim_set_hl(0, "SignColumn", {fg=colors.comment})
 vim.api.nvim_set_hl(0, "TabLine", colors.boundary)
 vim.api.nvim_set_hl(0, "TabLineFill", {bg=colors.bgdarker})
@@ -101,7 +101,7 @@ vim.api.nvim_set_hl(0, "LineNr", {fg=colors.subtle})  -- line numbers
 vim.api.nvim_set_hl(0, "EndOfBuffer", {fg=colors.background, bg=nil})  -- tildes past end of buffer; good to disable if using numbers
 vim.api.nvim_set_hl(0, "TabLineFill", {fg=colors.bgdark, bg=colors.bgdark})
 vim.api.nvim_set_hl(0, "StatusLine", {fg=colors.bgdark, bg=colors.bgdark})
-vim.api.nvim_set_hl(0, "StatusLineNC", {fg=colors.bgdark, bg=colors.bgdark})
+--vim.api.nvim_set_hl(0, "StatusLineNC", {fg=colors.bgdark, bg=colors.bgdark})
 vim.api.nvim_set_hl(0, "Conceal", {fg=colors.cyan, bg=nil})  -- for our case, these are abbreviated latex
 vim.api.nvim_set_hl(0, "SpellBad", {fg=colors.orange, underline=true})
 vim.api.nvim_set_hl(0, "DiffAdd", {fg=colors.green, bg=colors.purple})
