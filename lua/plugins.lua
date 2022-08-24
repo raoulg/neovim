@@ -30,7 +30,9 @@ Packer.startup(function()
     use "kyazdani42/nvim-web-devicons"
 
     -- languages and file types
-    use "JuliaEditorSupport/julia-vim"
+    --use "JuliaEditorSupport/julia-vim"
+    --TODO: temporary workaround for https://github.com/JuliaEditorSupport/julia-vim/pull/302
+    use {"ExpandingMan/julia-vim", branch="emfix1"}
     use "rust-lang/rust.vim"
     use "lervag/vimtex"
     use "cespare/vim-toml"
