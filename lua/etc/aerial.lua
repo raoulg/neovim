@@ -5,7 +5,6 @@ local Aerial = require("aerial")
 
 Aerial.setup({
     backends = {"treesitter", "markdown"},
-    close_behavior = "auto",
     default_bindings = true,
     default_direction = "prefer_right",
     filter_kind = {
