@@ -36,7 +36,7 @@ Packer.startup(function()
     use "rust-lang/rust.vim"
     use "lervag/vimtex"
     use "cespare/vim-toml"
-    use "plasticboy/vim-markdown"
+    use "preservim/vim-markdown"
     use "ziglang/zig.vim"
     use "vim-crystal/vim-crystal"
     use "gennaro-tedesco/nvim-jqx"
