@@ -1,5 +1,6 @@
 local ToggleTerm = require("toggleterm")
 local Terminal = require("toggleterm/terminal").Terminal
+local Iron = require("iron.core")
 
 local function termsize(term)
     if term.direction == "horizontal" then
@@ -35,6 +36,32 @@ ToggleTerm.setup({
     },
 })
 
+Iron.setup({
+  config = {
+    -- Whether a repl should be discarded or not
+    scratch_repl = true,
+    -- Your repl definitions come here
+    repl_definition = {
+      sh = {
+        command = {"fish"}
+      }
+    },
+    -- How the repl window will be displayed
+    -- See below for more information
+    repl_open_cmd = require('iron.view').split.vertical("50%")
+  },
+  -- If the highlight is on, you can change how it looks
+  -- this is highlight for last sent block
+  highlight = {
+    italic = true
+  }
+})
+
+local function _iron_send_visual()
+    Iron.mark_visual()
+    Iron.send_mark()
+end
+
 WhichKey.register({
     r = {
         name = "REPL and terminal interaction",
@@ -46,14 +73,12 @@ WhichKey.register({
         z = {"<cmd>vs term://zsh<cr>", "open a zsh terminal in a new vertical split"},
         r = {"<cmd>IronRepl<cr>", "open REPL"},
         R = {"<cmd>IronRestart<cr>", "restart REPL"},
-        l = {"<plug>(iron-send-line)", "send line to REPL"},
-        x = {"<plug>(iron-clear)", "clear REPL"},
-        q = {"<plug>(iron-exit)", "exit REPL"},
+        l = {Iron.send_line, "send line to REPL"},
     },
 }, {prefix="<leader>"})
 
 WhichKey.register({
-    r = {"<plug>(iron-visual-send)", "send selected block to REPL"}
+    r = {_iron_send_visual, "send selected block to REPL"}
 }, {prefix="<leader>", mode="v"})
 
 WhichKey.register({
