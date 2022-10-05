@@ -4,7 +4,7 @@ vim.g.vim_markdown_folding_disabled = 1
 vim.api.nvim_create_autocmd("BufEnter", {
     pattern={"*.qmd"},
     callback=function(arg)
-        vim.api.nvim_buf_set_option(arg.buf, "filetype", "markdown")
+        vim.api.nvim_buf_set_option(arg.buf, "filetype", "rmd")
     end,
 })
 
