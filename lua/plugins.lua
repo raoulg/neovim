@@ -46,6 +46,9 @@ Packer.startup(function()
     use "zah/nim.vim"
     use "tikhomirov/vim-glsl"
 
+    --TODO: check out neorg!
+    --use "nvim-org/neorg"
+
     -- statusline
     use "glepnir/galaxyline.nvim"
 
