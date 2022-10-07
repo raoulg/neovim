@@ -44,6 +44,14 @@ vim.g.latex_to_unicode_file_types = {"julia", "rust", "nim", "python"}
 -- default to latex rather than plaintex
 vim.g.tex_flavor = "latex"
 
+-- autocmd for files that are not automatically recognized as the correct type
+vim.api.nvim_create_autocmd("BufEnter", {
+    pattern={"*.frag", "*.vert", "*.glsl"},
+    callback=function(arg)
+        vim.api.nvim_buf_set_option(arg.buf, "filetype", "glsl")
+    end,
+})
+
 -- an old and crazy hack for finding the highlight group under the cursor, now bound to F10 in all modes
 vim.cmd([[map <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<' . synIDattr(synID(line("."),col("."),0),"name") . "> lo<" . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>]])
 

@@ -57,6 +57,13 @@ vim.api.nvim_set_hl(0, "IncSearch", {underline=true})
 vim.api.nvim_set_hl(0, "CurSearch", {fg=colors.green, bold=true, underline=true})
 vim.api.nvim_set_hl(0, "Todo", colors.todo)
 
+-- treesitter additional
+vim.api.nvim_set_hl(0, "TSParameter", {fg=colors.foreground})
+vim.api.nvim_set_hl(0, "TSVariableBuiltin", {fg=colors.red})
+vim.api.nvim_set_hl(0, "TSConstBuiltin", {fg=colors.red})
+vim.api.nvim_set_hl(0, "TSField", {fg=colors.foreground})
+vim.api.nvim_set_hl(0, "TSConstructor", {fg=colors.pink})
+
 --linkhighlight("Number", "Constant")
 vim.api.nvim_set_hl(0, "Number", {link="Constant"})
 vim.api.nvim_set_hl(0, "Boolean", {link="Constant"})
@@ -140,3 +147,10 @@ vim.api.nvim_set_hl(0, "rustCommentLineDoc", {fg=colors.comment})
 -- this will also make 1-line function defs purple
 vim.api.nvim_set_hl(0, "juliaFunctionCall", {fg=colors.purple})
 vim.api.nvim_set_hl(0, "juliaSemiColon", {fg=colors.pink})
+
+-- some zig stuff because the default highlight groups are wierd
+vim.api.nvim_set_hl(0, "zigVarDecl", {link="Keyword"})
+vim.api.nvim_set_hl(0, "zigExecution", {link="Keyword"})
+
+-- latex
+vim.api.nvim_set_hl(0, "texFilesArg", {fg=colors.foreground})

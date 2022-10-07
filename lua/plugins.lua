@@ -37,14 +37,11 @@ Packer.startup(function()
     use "lervag/vimtex"
     use "cespare/vim-toml"
     use "preservim/vim-markdown"
-    use "ziglang/zig.vim"
     use "vim-crystal/vim-crystal"
     use "gennaro-tedesco/nvim-jqx"
     use "godlygeek/tabular"
     use "chrisbra/csv.vim"
-    use "khaveesh/vim-fish-syntax"
     use "zah/nim.vim"
-    use "tikhomirov/vim-glsl"
 
     --TODO: check out neorg!
     --use "nvim-org/neorg"
@@ -102,6 +99,8 @@ Packer.startup(function()
 
     -- treesitter
     use "nvim-treesitter/nvim-treesitter"
+    -- this is helpfu for diagnostic stuff but may not always need
+    use "nvim-treesitter/playground"
     use "stevearc/aerial.nvim"
 
     -- org mode
