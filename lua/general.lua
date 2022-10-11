@@ -37,8 +37,9 @@ vim.cmd("autocmd bufreadpre *..md setlocal textwidth=90")
 vim.cmd("autocmd BufRead,BufNewFile *.tex set conceallevel=1")
 
 -- latex to unicode
-vim.g.latex_to_unicode_auto = 1
-vim.g.latex_to_unicode_tab = 1
+-- for now this is disabled as we try out improved nvim-cmp behavior
+vim.g.latex_to_unicode_auto = 0
+vim.g.latex_to_unicode_tab = 0
 vim.g.latex_to_unicode_file_types = {"julia", "rust", "nim", "python"}
 
 -- default to latex rather than plaintex

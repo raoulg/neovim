@@ -18,14 +18,54 @@ end
 
 -- this is unnecesary for this config, but useful as reference
 local function tabfunc(fallback)
-    if vim.fn.pumvisible() == 1 then
-        feedkey("<c-n>", "n")
+    if Cmp.visible() then
+        Cmp.select_next_item()
     elseif has_words_before() then
         Cmp.complete()
     else
         fallback()
     end
 end
+
+local function quickconfirm(select)
+    return function(fallback)
+        if Cmp.visible() then
+            Cmp.confirm({behavior=Cmp.ConfirmBehavior.Insert, select=select})
+            Cmp.close()
+        end
+        fallback()
+    end
+end
+
+
+local kind_icons = {
+    Text = "",
+    Method = "",
+    Function = "",
+    Constructor = "",
+    Field = "",
+    Variable = "",
+    Class = "ﴯ",
+    Interface = "",
+    Module = "",
+    Property = "ﰠ",
+    Unit = "",
+    Value = "",
+    Enum = "",
+    Keyword = "",
+    Snippet = "",
+    Color = "",
+    File = "",
+    Reference = "",
+    Folder = "",
+    EnumMember = "",
+    Constant = "",
+    Struct = "",
+    Event = "",
+    Operator = "",
+    TypeParameter = ""
+}
+
 
 Cmp.setup({
     sources = {
@@ -34,6 +74,22 @@ Cmp.setup({
         {name = "path"},
         {name = "luasnip"},
         {name = "buffer"},
+    },
+    window = {
+        documentation = {border="rounded"},
+    },
+    formatting = {
+        format = function(entry, item)
+            item.kind = string.format("%s", kind_icons[item.kind])
+            item.menu = ({
+                nvim_lua = "",
+                buffer = "",
+                latex_symbols = "ﭨ",
+                path = "",
+                luasnip = "✂",
+            })[entry.source.name]
+            return item
+        end,
     },
     snippet = {
         expand = function(args)
@@ -44,11 +100,13 @@ Cmp.setup({
         ["<Tab>"] = Cmp.mapping.select_next_item({behavior=Cmp.SelectBehavior.Insert}),
         ["<S-Tab>"] = Cmp.mapping.select_prev_item({behavior=Cmp.SelectBehavior.Insert}),
         ["<CR>"] = Cmp.mapping.confirm({
-            behavior = Cmp.ConfirmBehavior.Insert,
             --this is important, it prevents <cr> from completing if nothing selected;
             --otherwise it gest really aggravating at the end of a line
             select = false,
         }),
+        ["<Space>"] = quickconfirm(false),
+        ["\\"] = quickconfirm(true),
+        [";"] = quickconfirm(true),
         ["<C-e>"] = Cmp.mapping.close(),
     },
 })

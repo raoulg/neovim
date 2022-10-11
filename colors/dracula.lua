@@ -153,5 +153,12 @@ vim.api.nvim_set_hl(0, "juliaSemiColon", {fg=colors.pink})
 vim.api.nvim_set_hl(0, "zigVarDecl", {link="Keyword"})
 vim.api.nvim_set_hl(0, "zigExecution", {link="Keyword"})
 
+-- nvim-cmp related
+vim.api.nvim_set_hl(0, "CmpItemKind", {fg=colors.cyan})
+vim.api.nvim_set_hl(0, "CmpItemMenu", {fg=colors.orange})
+vim.api.nvim_set_hl(0, "CmpItemAbbrDeprecated", {fg=colors.comment})
+vim.api.nvim_set_hl(0, "CmpItemAbbrMatch", {fg=colors.green})
+vim.api.nvim_set_hl(0, "CmpItemAbbrMatchFuzzy", {fg=colors.yellow})
+
 -- latex
 vim.api.nvim_set_hl(0, "texFilesArg", {fg=colors.foreground})
