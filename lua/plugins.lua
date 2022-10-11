@@ -97,7 +97,7 @@ Packer.startup(function()
 
     -- treesitter
     use "nvim-treesitter/nvim-treesitter"
-    -- this is helpfu for diagnostic stuff but may not always need
+    -- this is helpful for diagnostic stuff but may not always need
     use "nvim-treesitter/playground"
     use "stevearc/aerial.nvim"
 
