@@ -7,7 +7,8 @@ local TSParsers = require("nvim-treesitter.parsers")
 local parser_config = TSParsers.get_parser_configs()
 parser_config.julia = {
     install_info = {
-        url = "https://github.com/savq/tree-sitter-julia/",
+        url = "https://github.com/savq/tree-sitter-julia",
+        files = {"src/parser.c"},
         branch = "dev", 
     },
     filetype = "jl",
