@@ -15,7 +15,7 @@ parser_config.julia = {
 
 
 TSConfig.setup {
-    ensure_installed = {"c", "lua", "rust", "zig", "julia"},
+    ensure_installed = {"c", "lua", "rust", "zig", "fish", "julia"},
     auto_install = true,
     highlight = {
         -- vimtex doesn't like treesitter doing the highlighting
