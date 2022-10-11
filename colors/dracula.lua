@@ -64,6 +64,7 @@ vim.api.nvim_set_hl(0, "TSConstBuiltin", {fg=colors.red})
 vim.api.nvim_set_hl(0, "TSField", {fg=colors.foreground})
 vim.api.nvim_set_hl(0, "TSConstructor", {fg=colors.pink})
 vim.api.nvim_set_hl(0, "TSNamespace", {fg=colors.foreground})
+vim.api.nvim_set_hl(0, "TSFuncBuiltin", {link="Function"})
 
 --linkhighlight("Number", "Constant")
 vim.api.nvim_set_hl(0, "Number", {link="Constant"})
