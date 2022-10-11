@@ -30,7 +30,9 @@ Packer.startup(function()
     use "kyazdani42/nvim-web-devicons"
 
     -- languages and file types
-    use "JuliaEditorSupport/julia-vim"
+    --TODO: this is disabled for now as its worryingly slow,
+    --want to replace with tree-sitter and figure out mechanism for swapping blocks
+    --use "JuliaEditorSupport/julia-vim"
     use "rust-lang/rust.vim"
     use "lervag/vimtex"
     use "cespare/vim-toml"

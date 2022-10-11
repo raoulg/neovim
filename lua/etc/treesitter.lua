@@ -21,7 +21,8 @@ TSConfig.setup {
     highlight = {
         -- vimtex doesn't like treesitter doing the highlighting
         -- the markdown and julia TS grammars both suck
-        disable = {"latex", "markdown"},--, "julia"},
+        -- TODO: sadly, the Julia ts is still a bit wonky
+        disable = {"latex", "markdown", "julia"},
         enable = true,
     },
     additional_vim_regex_highlighting = true,
