@@ -41,9 +41,6 @@ Packer.startup(function()
     use "chrisbra/csv.vim"
     use "zah/nim.vim"
 
-    --TODO: check out neorg!
-    --use "nvim-org/neorg"
-
     -- statusline
     use "glepnir/galaxyline.nvim"
 
@@ -97,6 +94,8 @@ Packer.startup(function()
 
     -- treesitter
     use "nvim-treesitter/nvim-treesitter"
+    --TODO: savq's branch for julia fixes
+    --use "savq/nvim-treesitter"
     -- this is helpful for diagnostic stuff but may not always need
     use "nvim-treesitter/playground"
     use "stevearc/aerial.nvim"
