@@ -105,6 +105,7 @@ Cmp.setup({
             select = false,
         }),
         ["<Space>"] = quickconfirm(false),
+        ["<Right>"] = quickconfirm(true),
         [";"] = quickconfirm(true),
         ["<C-e>"] = Cmp.mapping.close(),
     },
