@@ -58,14 +58,16 @@ vim.api.nvim_set_hl(0, "CurSearch", {fg=colors.green, bold=true, underline=true}
 vim.api.nvim_set_hl(0, "Todo", colors.todo)
 
 -- treesitter additional
-vim.api.nvim_set_hl(0, "TSParameter", {fg=colors.foreground})
-vim.api.nvim_set_hl(0, "TSVariableBuiltin", {fg=colors.red})
-vim.api.nvim_set_hl(0, "TSConstBuiltin", {fg=colors.red})
-vim.api.nvim_set_hl(0, "TSField", {fg=colors.foreground})
-vim.api.nvim_set_hl(0, "TSConstructor", {fg=colors.pink})
-vim.api.nvim_set_hl(0, "TSNamespace", {fg=colors.foreground})
-vim.api.nvim_set_hl(0, "TSLabel", {fg=colors.orange})
-vim.api.nvim_set_hl(0, "TSFuncBuiltin", {link="Function"})
+vim.api.nvim_set_hl(0, "@parameter", {fg=colors.foreground})
+vim.api.nvim_set_hl(0, "@field", {fg=colors.foreground})
+vim.api.nvim_set_hl(0, "@constructor", {fg=colors.pink})
+vim.api.nvim_set_hl(0, "@namespace", {fg=colors.foreground})
+vim.api.nvim_set_hl(0, "@label", {fg=colors.orange})
+
+vim.api.nvim_set_hl(0, "@function.builtin", {link="Function"})
+vim.api.nvim_set_hl(0, "@variable.builtin", {fg=colors.red})
+vim.api.nvim_set_hl(0, "@const.builtin", {fg=colors.red})
+
 
 --linkhighlight("Number", "Constant")
 vim.api.nvim_set_hl(0, "Number", {link="Constant"})
