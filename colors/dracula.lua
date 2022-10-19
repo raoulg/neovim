@@ -66,7 +66,7 @@ vim.api.nvim_set_hl(0, "@label", {fg=colors.orange})
 
 vim.api.nvim_set_hl(0, "@function.builtin", {link="Function"})
 vim.api.nvim_set_hl(0, "@variable.builtin", {fg=colors.red})
-vim.api.nvim_set_hl(0, "@const.builtin", {fg=colors.red})
+vim.api.nvim_set_hl(0, "@constant.builtin", {fg=colors.red})
 
 
 --linkhighlight("Number", "Constant")
