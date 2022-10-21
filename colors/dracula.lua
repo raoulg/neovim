@@ -63,6 +63,7 @@ vim.api.nvim_set_hl(0, "@field", {fg=colors.foreground})
 vim.api.nvim_set_hl(0, "@constructor", {fg=colors.pink})
 vim.api.nvim_set_hl(0, "@namespace", {fg=colors.foreground})
 vim.api.nvim_set_hl(0, "@label", {fg=colors.orange})
+vim.api.nvim_set_hl(0, "@variable", {fg=colors.foreground})
 
 vim.api.nvim_set_hl(0, "@function.builtin", {link="Function"})
 vim.api.nvim_set_hl(0, "@variable.builtin", {fg=colors.red})
