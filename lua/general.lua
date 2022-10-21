@@ -53,6 +53,15 @@ vim.api.nvim_create_autocmd("BufEnter", {
     end,
 })
 
+-- yuck files for eww
+vim.api.nvim_create_autocmd("BufEnter", {
+    pattern={"*.yuck"},
+    callback=function(arg)
+        vim.api.nvim_buf_set_option(arg.buf, "filetype", "clojure")
+    end,
+})
+
+
 -- an old and crazy hack for finding the highlight group under the cursor, now bound to F10 in all modes
 vim.cmd([[map <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<' . synIDattr(synID(line("."),col("."),0),"name") . "> lo<" . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>]])
 
