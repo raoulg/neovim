@@ -27,12 +27,14 @@ local function tabfunc(fallback)
     end
 end
 
-local function quickconfirm(select)
+local function quickconfirm(select, feedspace)
     return function(fallback)
         if Cmp.visible() then
             Cmp.confirm({behavior=Cmp.ConfirmBehavior.Insert, select=select})
             Cmp.close()
-            -- the docs say to call fallback here but if you do it will eat text
+            -- this is *supposed* to be fallback() but annoyingly that will eat inputs
+            -- so this is a rather scary and hackish substitute
+            if feedspace then vim.api.nvim_feedkeys(" ", "i", true) end
         else
             fallback()
         end
@@ -106,8 +108,8 @@ Cmp.setup({
             --otherwise it gest really aggravating at the end of a line
             select = false,
         }),
-        ["<Space>"] = quickconfirm(false),
-        ["<Right>"] = quickconfirm(true),
+        ["<Space>"] = quickconfirm(false, true),
+        ["<Right>"] = quickconfirm(true, true),
         ["<C-e>"] = Cmp.mapping.close(),
     },
 })
