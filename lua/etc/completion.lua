@@ -31,6 +31,7 @@ local function quickconfirm(select)
     return function(fallback)
         if Cmp.visible() then
             Cmp.confirm({behavior=Cmp.ConfirmBehavior.Insert, select=select})
+            Cmp.close()
             -- the docs say to call fallback here but if you do it will eat text
         else
             fallback()
