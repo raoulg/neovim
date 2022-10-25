@@ -4,12 +4,7 @@ vim.g.vim_markdown_frontmatter = 1
 vim.g.vim_markdown_toml_frontmatter = 0
 
 -- display quarto as markdown because don't have highlighting elsewhere
-vim.api.nvim_create_autocmd("BufEnter", {
-    pattern={"*.qmd"},
-    callback=function(arg)
-        vim.api.nvim_buf_set_option(arg.buf, "filetype", "markdown")
-    end,
-})
+set_auto_filetype({"*.qmd"}, "markdown")
 
 -- we have to manually set colors for markdown because the highlight groups are so weird
 -- this is mostly taken from https://github.com/dracula/vim/blob/master/after/syntax/markdown.vim

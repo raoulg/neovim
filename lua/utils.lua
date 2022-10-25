@@ -23,3 +23,13 @@ function reloadconfig()
 
     dofile(vim.env.MYVIMRC)
 end
+
+-- a useful alias so we don't have to keep writing this whole damn thing
+function set_auto_filetype(patterns, ft)
+    vim.api.nvim_create_autocmd("BufEnter", {
+        pattern=patterns,
+        callback=function(arg)
+            vim.api.nvim_buf_set_option(arg.buf, "filetype", ft)
+        end,
+    })
+end
