@@ -16,22 +16,23 @@ Todo.setup({
         PERF = { icon = " ", alt = { "OPTIM", "PERFORMANCE", "OPTIMIZE" } },
         NOTE = { icon = " ", color = "hint", alt = { "INFO" } },
     },
+    gui_style = {fg="NONE", bg="ITALIC"},
     merge_keyword = true,
     highlight = {
         before = "", -- "fg" or "bg" or empty
-        keyword = "wide", -- "fg", "bg", "wide" or empty
-        after = "fg", -- "fg" or "bg" or empty
+        keyword = "bg", -- "fg", "bg", "wide" or empty
+        after = "", -- "fg" or "bg" or empty
         pattern = [[.*<(KEYWORDS)\s*:]], -- pattern used for highlightng (vim regex)
         comments_only = true, -- uses treesitter to match keywords in comments only
         max_line_len = 400, -- ignore lines longer than this
         exclude = {}, -- list of file types to exclude highlighting
     },
     colors = {
-        error = { "LspDiagnosticsDefaultError", "ErrorMsg", "#DC2626" },
-        warning = { "LspDiagnosticsDefaultWarning", "WarningMsg", "#FBBF24" },
-        info = { "LspDiagnosticsDefaultInformation", "#2563EB" },
-        hint = { "LspDiagnosticsDefaultHint", "#10B981" },
-        default = { "Identifier", "#7C3AED" },
+        error = {"LspDiagnosticsDefaultError", "ErrorMsg"},
+        warning = {"LspDiagnosticsDefaultWarning", "WarningMsg"},
+        info = {"LspDiagnosticsDefaultInformation", "#2563EB" },
+        hint = {"LspDiagnosticsDefaultHint"},
+        default = { "Identifier"}
     },
     search = {
         command = "rg",
