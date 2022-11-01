@@ -54,7 +54,7 @@ Bufferline.setup({
                 return true
             end
         end,
-        offsets = {{filetype = "NvimTree", text = "File Explorer", text_align = "left"}},
+        offsets = {{filetype = "NvimTree", text = "()", text_align = "left", highlight="String"}},
         show_buffer_icons = true, -- disable filetype icons for buffers
         show_buffer_close_icons = false,
         show_close_icon = false,
