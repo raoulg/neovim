@@ -26,6 +26,8 @@ local theme = {
     },
 }
 
+local scroll_bar_blocks = { '▁', '▂', '▃', '▄', '▅', '▆', '▇', '█' }
+
 local function leftbrack(col)
     return {
         function()
@@ -54,6 +56,12 @@ local function divider(col)
         color = {fg=col},
         padding = 1,
     }
+end
+
+local function scrollbar()
+    local l = vim.api.nvim_win_get_cursor(0)[1]
+    local n = vim.api.nvim_buf_line_count(0)
+    return scroll_bar_blocks[8 - math.floor(l/n * 7)]
 end
 
 local function special_filetype_icon(default)
@@ -128,6 +136,14 @@ local location_prefix = {
     color = {fg=colors.comment, bg=colors.bgdark},
 }
 
+local scrollbar_component = {
+    "progress",
+    fmt = function(s)
+        return scrollbar()
+    end,
+    color = {fg=colors.pink, bg=colors.bgdark},
+}
+
 local config = {
     options = {
         icons_enabled = true,
@@ -147,7 +163,7 @@ local config = {
         lualine_c = {},
         lualine_x = {leftbrack(colors.purple), filename_icon_componenent, filename_component(colors.cyan)},
         lualine_y = {divider(colors.purple), filetype_component},
-        lualine_z = {divider(colors.purple), location_prefix, "location", "progress", rightbrack(colors.purple)},
+        lualine_z = {divider(colors.purple), location_prefix, "location", scrollbar_component},
     },
     inactive_sections = {
         lualine_a = {
