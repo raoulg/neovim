@@ -13,6 +13,7 @@ pcall(require, "etc/completion")
 pcall(require, "etc/whichkey")
 pcall(require, "etc/misckeybindings")
 pcall(require, "etc/terminal")
+--TODO: get rid of galaxyline, it is causing slowness!!!
 pcall(require, "etc/galaxyline")
 pcall(require, "etc/bufferline")
 pcall(require, "etc/nvimtree")

@@ -41,8 +41,10 @@ Packer.startup(function()
     use "chrisbra/csv.vim"
     use "zah/nim.vim"
 
-    -- statusline
+    -- statusline TODO: get rid of galaxyline!
     use "glepnir/galaxyline.nvim"
+    --use "nvim-lualine/lualine.nvim"
+    --use "feline-nvim/feline.nvim"
 
     -- buffer bar
     use "akinsho/bufferline.nvim"
