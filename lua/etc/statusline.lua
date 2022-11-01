@@ -3,8 +3,8 @@ local Lualine = require("lualine")
 local theme = {
     normal = {
         a = {bg=colors.bgdark, fg=colors.purple},
-        b = {bg=colors.bgdark, fg=colors.comment},
-        c = {bg=colors.bgdark, fg=colors.comment},
+        b = {bg=colors.bgdark, fg=colors.selection},
+        c = {bg=colors.bgdark, fg=colors.selection},
         x = {bg=colors.bgdark, fg=colors.comment},
         y = {bg=colors.bgdark, fg=colors.comment},
         z = {bg=colors.bgdark, fg=colors.comment},
@@ -56,6 +56,17 @@ local function divider(col)
     }
 end
 
+local function special_filetype_icon(default)
+    local ft = vim.bo.filetype
+    if ft == "terminal" or ft == "term" or ft == "toggleterm" then
+        return " "
+    elseif ft == "NvimTree" then
+        return " "
+    else
+        return default
+    end
+end
+
 local mode_component = {
     "mode",
     icons_enabled = true,
@@ -67,7 +78,9 @@ local mode_component = {
 
 local filename_icon_componenent = {
     function()
-        if vim.bo.modified then
+        if special_filetype_icon("") ~= "" then
+            return ""
+        elseif vim.bo.modified then
             return "▮"
         elseif (not vim.bo.modifiable) or vim.bo.readonly then
             return "🔒"
@@ -96,6 +109,9 @@ local function filename_component(col)
             newfile = "✽",
         },
         color = {fg=col, bg=colors.bgdark},
+        fmt = function(o)
+            return special_filetype_icon(o)
+        end,
         padding = 0,
     }
 end
@@ -118,11 +134,12 @@ local config = {
         theme = theme,
         component_separators = "",
         section_separators = "",
-        disabled_filetypes = {
-            statusline = {},
-            winbar = {},
+        ignore_focus = {
+            "term",
+            "terminal",
+            "toggleterm",
+            "NvimTree",
         },
-        ignore_focus = {},
     },
     sections = {
         lualine_a = {leftbrack(colors.purple), mode_component, rightbrack(colors.purple)},
