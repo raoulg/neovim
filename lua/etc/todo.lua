@@ -23,7 +23,9 @@ Todo.setup({
         keyword = "bg", -- "fg", "bg", "wide" or empty
         after = "", -- "fg" or "bg" or empty
         pattern = [[.*<(KEYWORDS)\s*:]], -- pattern used for highlightng (vim regex)
-        comments_only = true, -- uses treesitter to match keywords in comments only
+        -- this used to work for non-treesitter but not anymore...
+        -- therefore keeping it disabled while I don't have Julia treesitter
+        comments_only = false,
         max_line_len = 400, -- ignore lines longer than this
         exclude = {}, -- list of file types to exclude highlighting
     },
