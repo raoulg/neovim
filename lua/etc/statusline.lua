@@ -64,17 +64,23 @@ local function scrollbar()
     return scroll_bar_blocks[8 - math.floor(l/n * 7)]
 end
 
+local special_filetypes = {
+    terminal = " ",
+    term = " ",
+    toggleterm = " ",
+    packer = " 📦",
+    aerial = " ✈",
+    NvimTree = " ",
+}
+
 local function special_filetype_icon(default)
     local ft = vim.bo.filetype
-    if ft == "terminal" or ft == "term" or ft == "toggleterm" then
-        return " "
-    elseif ft == "packer" then
-        return " 📦"
-    elseif ft == "NvimTree" then
-        return " "
-    else
-        return default
+    for k, v in pairs(special_filetypes) do
+        if ft == k then
+            return v
+        end
     end
+    return default
 end
 
 local mode_component = {
@@ -152,13 +158,7 @@ local config = {
         theme = theme,
         component_separators = "",
         section_separators = "",
-        ignore_focus = {
-            "term",
-            "terminal",
-            "toggleterm",
-            "NvimTree",
-            "packer",
-        },
+        ignore_focus = tablekeys(special_filetypes),
     },
     sections = {
         lualine_a = {leftbrack(colors.purple), mode_component, rightbrack(colors.purple)},

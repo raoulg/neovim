@@ -33,3 +33,12 @@ function set_auto_filetype(patterns, ft)
         end,
     })
 end
+
+-- completely insane that this is not in stdlib
+function tablekeys(tab)
+    local o = {}
+    for k, _ in pairs(tab) do
+        table.insert(o, k)        
+    end
+    return o
+end
