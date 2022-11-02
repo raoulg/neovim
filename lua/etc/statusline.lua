@@ -68,6 +68,8 @@ local function special_filetype_icon(default)
     local ft = vim.bo.filetype
     if ft == "terminal" or ft == "term" or ft == "toggleterm" then
         return " "
+    elseif ft == "packer" then
+        return " 📦"
     elseif ft == "NvimTree" then
         return " "
     else
@@ -155,6 +157,7 @@ local config = {
             "terminal",
             "toggleterm",
             "NvimTree",
+            "packer",
         },
     },
     sections = {
