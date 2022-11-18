@@ -28,6 +28,8 @@ Packer.startup(function()
     -- colors and appearance
     use "ryanoasis/vim-devicons"
     use "kyazdani42/nvim-web-devicons"
+    use "mhinz/vim-startify"
+    use "sjl/badwolf"
 
     -- languages and file types
     use "JuliaEditorSupport/julia-vim"
@@ -40,6 +42,9 @@ Packer.startup(function()
     use "godlygeek/tabular"
     use "chrisbra/csv.vim"
     use "zah/nim.vim"
+    use "airblade/vim-gitgutter"
+    use "tpope/vim-fugitive"
+
 
     -- statusline
     use "nvim-lualine/lualine.nvim"

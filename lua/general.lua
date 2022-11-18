@@ -1,4 +1,4 @@
-local indent = 4
+local indent = 2
 
 vim.cmd("filetype plugin indent on")
 

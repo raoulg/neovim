@@ -43,7 +43,7 @@ Iron.setup({
     -- Your repl definitions come here
     repl_definition = {
       sh = {
-        command = {"fish"}
+        command = {"zsh"}
       }
     },
     -- How the repl window will be displayed

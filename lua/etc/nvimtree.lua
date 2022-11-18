@@ -17,6 +17,7 @@ WhichKey.register({
     [","] = {":NvimTreeToggle<CR>", "toggle NvimTree", noremap=true},
     ["/"] = {":NvimTreeFindFile<CR>", "find file with NvimTree", noremap=true},
     r = {":NvimTreeRefresh<CR>", "refresh NvimTree", noremap=true},
+    f = {":NvimTreeFocus<CR>", "focus nvimtree", noremap=true},
 }, {prefix=","})
 
 vim.api.nvim_set_hl(0, "NvimTreeWindowPicker", {fg=colors.bgdark, bg=colors.cyan})
