@@ -43,15 +43,18 @@ require('packer').startup(function(use)
     after = 'nvim-treesitter',
   }
 
-  -- Git related plugins
+  -- New stuff
+  use 'mhinz/vim-startify'
   use 'andreypopp/julia-repl-vim'
-  use 'tpope/vim-fugitive'
   use 'rbong/vim-flog'
+  use 'folke/tokyonight.nvim'
+
+  -- Git related plugins
+  use 'tpope/vim-fugitive'
   use 'tpope/vim-rhubarb'
   use 'lewis6991/gitsigns.nvim'
 
   use 'navarasu/onedark.nvim' -- Theme inspired by Atom
-  use 'folke/tokyonight.nvim'
   use 'nvim-lualine/lualine.nvim' -- Fancier statusline
   use 'lukas-reineke/indent-blankline.nvim' -- Add indentation guides even on blank lines
   use 'numToStr/Comment.nvim' -- "gc" to comment visual regions/lines
@@ -125,6 +128,12 @@ vim.wo.signcolumn = 'yes'
 -- Set colorscheme
 vim.o.termguicolors = true
 vim.cmd [[colorscheme tokyonight]]
+
+-- julia
+vim.g.julia_indent_align_brackets = 1
+vim.g.julia_indent_align_funcargs = 1
+vim.g.latex_to_unicode_tab = "cmd"
+vim.g.latex_to_unicode_auto = 1
 
 -- Set completeopt to have a better completion experience
 vim.o.completeopt = 'menuone,noselect'
