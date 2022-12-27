@@ -230,7 +230,7 @@ require("toggleterm").setup({
     persist_size = true,
     direction = "horizontal",
     close_on_exit = true,
-    shell = vim.o.shell,  -- set the default shell
+    shell = "zsh",  -- set the default shell
     float_opts = {
         border = "curved",  -- can be "double", "shadow", "curved" or "single"
         --width = 80,
@@ -254,7 +254,11 @@ Iron.setup({
     repl_definition = {
       sh = {
         command = {"zsh"}
-      }
+      },
+      python = {
+        command = {"poetry", "run", "ptpython"}
+
+      },
     },
     -- How the repl window will be displayed
     -- See below for more information
@@ -286,6 +290,17 @@ local function _iron_send_visual()
     Iron.mark_visual()
     Iron.send_mark()
 end
+
+local htopterm = Terminal:new({
+    cmd = "htop",
+    direction = "float",
+})
+
+function _htop_term_toggle() return htopterm:toggle() end
+
+WhichKey.register({
+    ["<C-n>"] = {"<cmd>stopinsert!<CR>", "get out of insert mode", noremap=true},
+}, {mode="t"})
 
 WhichKey.register({
     r = {_iron_send_visual, "send selected block to REPL"}
