@@ -7,6 +7,27 @@ if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
   vim.cmd [[packadd packer.nvim]]
 end
 
+local colors = {
+    background = "#282a36",
+    selection = "#44475a",
+    foreground = "#f8f8f2",
+    comment = "#6272a4",
+    cyan = "#8be9fd",
+    green = "#50fa7b",
+    orange = "#ffb86c",
+    blue = "#79cbdc",   -- note this is really close to cyan
+    pink = "#ff79c6",
+    purple = "#bd93f9",
+    red = "#ff5555",
+    yellow = "#f1fa8c",
+    subtle = "#424450",
+    bglight = "#343746",
+    bglighter = "#424450",
+    bgdark = "#21222c",
+    bgdarker = "#191a21",
+    black = "#000000",
+}
+
 require('packer').startup(function(use)
   -- Package manager
   use 'wbthomason/packer.nvim'
@@ -45,14 +66,17 @@ require('packer').startup(function(use)
 
   -- New stuff
   use 'mhinz/vim-startify'
-  use 'andreypopp/julia-repl-vim'
+  -- use 'andreypopp/julia-repl-vim'
   use 'rbong/vim-flog'
   use 'folke/tokyonight.nvim'
-  use 'jpalardy/vim-slime'
-  use 'akinsho/toggleterm.nvim'
+  -- use 'jpalardy/vim-slime'
+  use 'akinsho/toggleterm.nvim'--
+  use 'hkupty/iron.nvim'
+  use 'folke/which-key.nvim'
 
-  -- Git related plugins
-  use 'tpope/vim-fugitive'
+                               --
+  -- Git related plugins       --
+  use 'tpope/vim-fugitive'     --
   use 'tpope/vim-rhubarb'
   use 'lewis6991/gitsigns.nvim'
 
@@ -192,6 +216,9 @@ local function termsize(term)
     end
 end
 
+vim.api.nvim_set_hl(0, "ToggleTermBorder", {fg=colors.pink, bg=colorsbgdarker})
+vim.api.nvim_set_hl(0, "ToggleTermBackground", {fg=colors.bgdark, bg=colors.bgdark})
+
 require("toggleterm").setup({
     size = termsize,
     open_mapping = "<C-\\>",
@@ -208,12 +235,67 @@ require("toggleterm").setup({
         --width = 80,
         --height = 60,
         winblend = 3,
-        --highlights = {
-        --    border = "ToggleTermBorder",
-        --    background = "ToggleTermBackground",
-        --}
+        highlights = {
+            border = "ToggleTermBorder",
+            background = "ToggleTermBackground",
+        }
     },
 })
+
+local Terminal = require("toggleterm/terminal").Terminal
+local Iron = require("iron.core")
+
+Iron.setup({
+  config = {
+    -- Whether a repl should be discarded or not
+    scratch_repl = true,
+    -- Your repl definitions come here
+    repl_definition = {
+      sh = {
+        command = {"zsh"}
+      }
+    },
+    -- How the repl window will be displayed
+    -- See below for more information
+    repl_open_cmd = require('iron.view').split.vertical("50%")
+  },
+  -- If the highlight is on, you can change how it looks
+  -- this is highlight for last sent block
+  highlight = {
+    italic = true
+  }
+})
+
+WhichKey = require("which-key")
+
+WhichKey.register({
+    r = {
+        name = "REPL and terminal interaction",
+        t = {"<cmd>ToggleTerm<CR>", "toggle terminal (can also do <C-\\>)"},
+        h = {"<cmd>lua _htop_term_toggle()<CR>", "show htop in a floating terminal"},
+        j = {"<cmd>lua _julia_term_toggle()<CR>", "toggle a Julia terminal"},
+        f = {"<cmd>vs term://fish<CR>", "open a fish terminal in a new vertical split"},
+        z = {"<cmd>vs term://zsh<cr>", "open a zsh terminal in a new vertical split"},
+        r = {"<cmd>IronRepl<cr>", "open REPL"},
+        R = {"<cmd>IronRestart<cr>", "restart REPL"},
+        l = {Iron.send_line, "send line to REPL"},
+    },
+}, {prefix="<leader>"})
+
+local function _iron_send_visual()
+    Iron.mark_visual()
+    Iron.send_mark()
+end
+
+WhichKey.register({
+    r = {_iron_send_visual, "send selected block to REPL"}
+}, {prefix="<leader>", mode="v"})
+
+local juliaterm = Terminal:new({
+    cmd = "julia",
+    direction = "horizontal",
+})
+function _julia_term_toggle() return juliaterm:toggle() end
 
 -- Set lualine as statusline
 -- See `:help lualine.txt`
