@@ -7,8 +7,6 @@ if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
   vim.cmd [[packadd packer.nvim]]
 end
 
-require("general")
-
 
 
 require('packer').startup(function(use)
@@ -49,10 +47,8 @@ require('packer').startup(function(use)
 
   -- New stuff
   use 'mhinz/vim-startify'
-  -- use 'andreypopp/julia-repl-vim'
   use 'rbong/vim-flog'
   use 'folke/tokyonight.nvim'
-  -- use 'jpalardy/vim-slime'
   use 'akinsho/toggleterm.nvim'--
   use 'hkupty/iron.nvim'
 
@@ -109,119 +105,10 @@ vim.api.nvim_create_autocmd('BufWritePost', {
 })
 
 
--- [[ Highlight on yank ]]
--- See `:help vim.highlight.on_yank()`
-local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })
-vim.api.nvim_create_autocmd('TextYankPost', {
-  callback = function()
-    vim.highlight.on_yank()
-  end,
-  group = highlight_group,
-  pattern = '*',
-})
-
-local function termsize(term)
-    if term.direction == "horizontal" then
-        return 20
-    elseif term.direction == "vertical" then
-        return vim.o.columns * 0.3
-    end
-end
-
-vim.api.nvim_set_hl(0, "ToggleTermBorder", {fg=colors.pink, bg=colorsbgdarker})
-vim.api.nvim_set_hl(0, "ToggleTermBackground", {fg=colors.bgdark, bg=colors.bgdark})
-
-require("toggleterm").setup({
-    size = termsize,
-    open_mapping = "<C-\\>",
-    hide_numbers = false,
-    shade_terminals = true,
-    start_in_insert = true,
-    insert_mappings = true,
-    persist_size = true,
-    direction = "horizontal",
-    close_on_exit = true,
-    shell = "zsh",  -- set the default shell
-    float_opts = {
-        border = "curved",  -- can be "double", "shadow", "curved" or "single"
-        --width = 80,
-        --height = 60,
-        winblend = 3,
-        highlights = {
-            border = "ToggleTermBorder",
-            background = "ToggleTermBackground",
-        }
-    },
-})
-
-local Terminal = require("toggleterm/terminal").Terminal
-local Iron = require("iron.core")
-
-Iron.setup({
-  config = {
-    -- Whether a repl should be discarded or not
-    scratch_repl = true,
-    -- Your repl definitions come here
-    repl_definition = {
-      sh = {
-        command = {"zsh"}
-      },
-      python = {
-        command = {"poetry", "run", "ptpython"}
-
-      },
-    },
-    -- How the repl window will be displayed
-    -- See below for more information
-    repl_open_cmd = require('iron.view').split.vertical("50%")
-  },
-  -- If the highlight is on, you can change how it looks
-  -- this is highlight for last sent block
-  highlight = {
-    italic = true
-  }
-})
-
-WhichKey = require("which-key")
-
-WhichKey.register({
-    r = {
-        name = "REPL and terminal interaction",
-        t = {"<cmd>ToggleTerm<CR>", "toggle terminal (can also do <C-\\>)"},
-        h = {"<cmd>lua _htop_term_toggle()<CR>", "show htop in a floating terminal"},
-        j = {"<cmd>lua _julia_term_toggle()<CR>", "toggle a Julia terminal"},
-        z = {"<cmd>vs term://zsh<cr>", "open a zsh terminal in a new vertical split"},
-        r = {"<cmd>IronRepl<cr>", "open REPL"},
-        R = {"<cmd>IronRestart<cr>", "restart REPL"},
-        l = {Iron.send_line, "send line to REPL"},
-    },
-}, {prefix="<leader>"})
-
-local function _iron_send_visual()
-    Iron.mark_visual()
-    Iron.send_mark()
-end
-
-local htopterm = Terminal:new({
-    cmd = "htop",
-    direction = "float",
-})
-
-function _htop_term_toggle() return htopterm:toggle() end
-
-WhichKey.register({
-    ["<C-n>"] = {"<cmd>stopinsert!<CR>", "get out of insert mode", noremap=true},
-}, {mode="t"})
-
-WhichKey.register({
-    r = {_iron_send_visual, "send selected block to REPL"}
-}, {prefix="<leader>", mode="v"})
-
-local juliaterm = Terminal:new({
-    cmd = "julia",
-    direction = "horizontal",
-})
-function _julia_term_toggle() return juliaterm:toggle() end
+require("general")
+require("julia")
+require("terminal")
+require("findfiles")
 
 -- Set lualine as statusline
 -- See `:help lualine.txt`
@@ -255,40 +142,6 @@ require('gitsigns').setup {
     changedelete = { text = '~' },
   },
 }
-
--- [[ Configure Telescope ]]
--- See `:help telescope` and `:help telescope.setup()`
-require('telescope').setup {
-  defaults = {
-    mappings = {
-      i = {
-        ['<C-u>'] = false,
-        ['<C-d>'] = false,
-      },
-    },
-  },
-}
-
--- Enable telescope fzf native, if installed
-pcall(require('telescope').load_extension, 'fzf')
-
--- See `:help telescope.builtin`
-vim.keymap.set('n', '<leader>?', require('telescope.builtin').oldfiles, { desc = '[?] Find recently opened files' })
-vim.keymap.set('n', '<leader><space>', require('telescope.builtin').buffers, { desc = '[ ] Find existing buffers' })
-vim.keymap.set('n', '<leader>/', function()
-  -- You can pass additional configuration to telescope to change theme, layout, etc.
-  require('telescope.builtin').current_buffer_fuzzy_find(require('telescope.themes').get_dropdown {
-    winblend = 10,
-    previewer = false,
-  })
-end, { desc = '[/] Fuzzily search in current buffer]' })
-
-vim.keymap.set('n', '<leader>sf', require('telescope.builtin').find_files, { desc = '[S]earch [F]iles' })
-vim.keymap.set('n', '<leader>sh', require('telescope.builtin').help_tags, { desc = '[S]earch [H]elp' })
-vim.keymap.set('n', '<leader>sw', require('telescope.builtin').grep_string, { desc = '[S]earch current [W]ord' })
-vim.keymap.set('n', '<leader>sg', require('telescope.builtin').live_grep, { desc = '[S]earch by [G]rep' })
-vim.keymap.set('n', '<leader>sd', require('telescope.builtin').diagnostics, { desc = '[S]earch [D]iagnostics' })
-vim.keymap.set('n', '<leader>sk', require('telescope.builtin').keymaps, { desc = '[S]earch [K]eymaps' })
 
 -- [[ Configure Treesitter ]]
 -- See `:help nvim-treesitter`
@@ -380,11 +233,11 @@ local on_attach = function(_, bufnr)
   nmap('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction')
 
   nmap('gd', vim.lsp.buf.definition, '[G]oto [D]efinition')
-  nmap('gr', require('telescope.builtin').lsp_references, '[G]oto [R]eferences')
   nmap('gI', vim.lsp.buf.implementation, '[G]oto [I]mplementation')
   nmap('<leader>D', vim.lsp.buf.type_definition, 'Type [D]efinition')
-  nmap('<leader>ds', require('telescope.builtin').lsp_document_symbols, '[D]ocument [S]ymbols')
-  nmap('<leader>ws', require('telescope.builtin').lsp_dynamic_workspace_symbols, '[W]orkspace [S]ymbols')
+nmap('gr', require('telescope.builtin').lsp_references, '[G]oto [R]eferences')
+nmap('<leader>ds', require('telescope.builtin').lsp_document_symbols, '[D]ocument [S]ymbols')
+nmap('<leader>ws', require('telescope.builtin').lsp_dynamic_workspace_symbols, '[W]orkspace [S]ymbols')
 
   -- See `:help K` for why this keymap
   nmap('K', vim.lsp.buf.hover, 'Hover Documentation')
