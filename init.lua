@@ -48,6 +48,7 @@ require('packer').startup(function(use)
   use 'andreypopp/julia-repl-vim'
   use 'rbong/vim-flog'
   use 'folke/tokyonight.nvim'
+  use 'jpalardy/vim-slime'
 
   -- Git related plugins
   use 'tpope/vim-fugitive'
@@ -128,6 +129,24 @@ vim.wo.signcolumn = 'yes'
 -- Set colorscheme
 vim.o.termguicolors = true
 vim.cmd [[colorscheme tokyonight]]
+
+vim.g.startify_custom_header = {
+   [[                  _               ]],
+   [[      _       _ _(_)_             ]],
+   [[     (_)     | (_) (_)            ]],
+   [[      _ _   _| |_  __ _           ]],
+   [[     | | | | | | |/ _` |          ]],
+   [[     | | |_| | | | (_| |          ]],
+   [[    _/ |\__'_|_|_|\__'_|          ]],
+   [[   |__/                           ]],
+        [[                                  __                ]],
+        [[     ___     ___    ___   __  __ /\_\    ___ ___    ]],
+        [[    / _ `\  / __`\ / __`\/\ \/\ \\/\ \  / __` __`\  ]],
+        [[   /\ \/\ \/\  __//\ \_\ \ \ \_/ |\ \ \/\ \/\ \/\ \ ]],
+        [[   \ \_\ \_\ \____\ \____/\ \___/  \ \_\ \_\ \_\ \_\]],
+        [[    \/_/\/_/\/____/\/___/  \/__/    \/_/\/_/\/_/\/_/]],
+        [[                                                    ]],
+}
 
 -- julia
 vim.g.julia_indent_align_brackets = 1
