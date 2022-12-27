@@ -72,6 +72,7 @@ require('packer').startup(function(use)
   -- use 'jpalardy/vim-slime'
   use 'akinsho/toggleterm.nvim'--
   use 'hkupty/iron.nvim'
+
   use 'folke/which-key.nvim'
 
                                --
@@ -274,7 +275,6 @@ WhichKey.register({
         t = {"<cmd>ToggleTerm<CR>", "toggle terminal (can also do <C-\\>)"},
         h = {"<cmd>lua _htop_term_toggle()<CR>", "show htop in a floating terminal"},
         j = {"<cmd>lua _julia_term_toggle()<CR>", "toggle a Julia terminal"},
-        f = {"<cmd>vs term://fish<CR>", "open a fish terminal in a new vertical split"},
         z = {"<cmd>vs term://zsh<cr>", "open a zsh terminal in a new vertical split"},
         r = {"<cmd>IronRepl<cr>", "open REPL"},
         R = {"<cmd>IronRestart<cr>", "restart REPL"},
