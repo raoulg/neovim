@@ -54,6 +54,7 @@ require('packer').startup(function(use)
   use 'hkupty/iron.nvim'
 
   use 'folke/which-key.nvim'
+  use 'stevearc/aerial.nvim'
 
                                --
   -- Git related plugins       --
@@ -114,6 +115,7 @@ require("findfiles")
 require("diags")
 require("lline") -- lualine setup
 require("gsigns")
+pcall(require, "lua/aerial")
 
 
 -- Enable Comment.nvim
