@@ -109,13 +109,14 @@ vim.api.nvim_create_autocmd('BufWritePost', {
 
 require("general")
 require("julia")
-require("terminal")
 require("findfiles")
 -- Diagnostic keymaps
 require("diags")
 require("lline") -- lualine setup
 require("gsigns")
-pcall(require, "lua/aerial")
+pcall(require, "etc/terminal")
+pcall(require, "etc/aerial")
+pcall(require, "etc/complete")
 
 
 -- Enable Comment.nvim
@@ -135,7 +136,6 @@ require("lsp")
 -- Turn on lsp status information
 require('fidget').setup()
 
-require("complete")
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et

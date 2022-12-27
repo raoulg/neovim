@@ -66,13 +66,14 @@ WhichKey = require("which-key")
 WhichKey.register({
     r = {
         name = "REPL and terminal interaction",
-        t = {"<cmd>ToggleTerm<CR>", "toggle terminal (can also do <C-\\>)"},
         h = {"<cmd>lua _htop_term_toggle()<CR>", "show htop in a floating terminal"},
         j = {"<cmd>lua _julia_term_toggle()<CR>", "toggle a Julia terminal"},
-        z = {"<cmd>vs term://zsh<cr>", "open a zsh terminal in a new vertical split"},
+        l = {Iron.send_line, "send line to REPL"},
         r = {"<cmd>IronRepl<cr>", "open REPL"},
         R = {"<cmd>IronRestart<cr>", "restart REPL"},
-        l = {Iron.send_line, "send line to REPL"},
+        t = {"<cmd>ToggleTerm direction=vertical<CR>", "vertical terminal (can also do <C-\\>)"},
+        T = {"<cmd>ToggleTerm direction=horizontal<CR>", "horizontal terminal(can also do <C-\\>)"},
+        z = {"<cmd>vs term://zsh<cr>", "open a zsh terminal in a new vertical split"},
     },
 }, {prefix="<leader>"})
 
