@@ -2,7 +2,6 @@ require("packages")
 require("general")
 require("julia")
 pcall(require, "etc/telescope")
-pcall(require, "etc/diagnostics")
 pcall(require, "etc/lualine")
 pcall(require, "etc/git")
 pcall(require, "etc/terminal")
@@ -13,6 +12,7 @@ pcall(require, "etc/leap")
 pcall(require, "etc/wilder")
 pcall(require, "etc/windows")
 pcall(require, "etc/treesitter")
+pcall(require, "etc/debugger")
 
 
 -- Enable Comment.nvim

@@ -50,7 +50,11 @@ require('packer').startup(function(use)
     after = 'nvim-treesitter',
   }
 
-  -- New stuff
+  -- debug
+  use 'mfussenegger/nvim-dap'
+  use { "rcarriga/nvim-dap-ui", requires = {"mfussenegger/nvim-dap"} }
+
+  -- Appearance
   use 'mhinz/vim-startify'
   use 'folke/tokyonight.nvim'
   use 'navarasu/onedark.nvim'
@@ -69,10 +73,10 @@ require('packer').startup(function(use)
   use "rmagatti/session-lens"
 
 
+  -- navigation
   use 'folke/which-key.nvim'
   use 'stevearc/aerial.nvim'
 
-  --
   -- Git related plugins       --
   use 'tpope/vim-fugitive' --
   use 'tpope/vim-rhubarb'
