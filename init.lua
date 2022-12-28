@@ -27,7 +27,6 @@ require('indent_blankline').setup {
 
 require("lsp")
 
-
 -- Turn on lsp status information
 require('fidget').setup()
 
