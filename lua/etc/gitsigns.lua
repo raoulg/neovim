@@ -10,3 +10,13 @@ require('gitsigns').setup {
     changedelete = { text = '~' },
   },
 }
+
+WhichKey = require("which-key")
+
+WhichKey.register({
+    g = {
+        name = "Git",
+        g = {"<cmd>TermExec cmd=\"gitui\" direction=float<CR>", "Open gitui in a floating terminal"},
+    },
+}, {prefix="<leader>"})
+

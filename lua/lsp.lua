@@ -12,11 +12,6 @@ local on_attach = function(_, bufnr)
 
 WhichKey = require("which-key")
 
-WhichKey.register({
-  g = {
-    name = "Goto LSP objects",
-  },
-}, {prefix="<leader>"})
 
 WhichKey.register({
   l = {
