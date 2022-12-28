@@ -11,6 +11,7 @@ pcall(require, "etc/complete")
 pcall(require, "etc/sessions")
 pcall(require, "etc/leap")
 pcall(require, "etc/wilder")
+pcall(require, "etc/windows")
 pcall(require, "etc/treesitter")
 
 

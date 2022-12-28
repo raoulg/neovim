@@ -17,6 +17,8 @@ WhichKey.register({
     g = {
         name = "Git",
         g = {"<cmd>TermExec cmd=\"gitui\" direction=float<CR>", "Open gitui in a floating terminal"},
+        d = {"<cmd>DiffviewOpen<CR>", "Open diffview"},
+
     },
 }, {prefix="<leader>"})
 
