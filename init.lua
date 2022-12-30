@@ -16,6 +16,8 @@ pcall(require, "etc/debugger")
 pcall(require, "etc/bufferline")
 pcall(require, "etc/neotree")
 
+-- require('feline').setup()
+
 -- Enable Comment.nvim
 require('Comment').setup()
 
