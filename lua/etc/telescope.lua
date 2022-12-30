@@ -23,6 +23,8 @@ WhichKey.register({
     name = "Find everything",
     f = {"<cmd>Telescope find_files<CR>", "Find files"},
     r = {"<cmd>Telescope oldfiles<CR>", "Find recent files"},
+    p = {"<cmd>lua require'telescope'.extensions.projects.projects{}<CR>", "List projects"},
+    P = {"<cmd>Telescope repo list<CR>", "fuzzy search project files"},
     b = {"<cmd>Telescope buffers<CR>", "Find recent buffers"},
     h = {"<cmd>Startify<CR>", "Home buffer"},
     t = {"<cmd>TodoTelescope<CR>", "Search todos"},
