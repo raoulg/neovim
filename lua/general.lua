@@ -52,14 +52,6 @@ vim.o.termguicolors = true
 vim.cmd[[colorscheme duskfox]]
 
 vim.g.startify_custom_header = {
-   -- [[                  _               ]],
-   -- [[      _       _ _(_)_             ]],
-   -- [[     (_)     | (_) (_)            ]],
-   -- [[      _ _   _| |_  __ _           ]],
-   -- [[     | | | | | | |/ _` |          ]],
-   -- [[     | | |_| | | | (_| |          ]],
-   -- [[    _/ |\__'_|_|_|\__'_|          ]],
-   -- [[   |__/                           ]],
         [[                                  __                ]],
         [[     ___     ___    ___   __  __ /\_\    ___ ___    ]],
         [[    / _ `\  / __`\ / __`\/\ \/\ \\/\ \  / __` __`\  ]],
@@ -103,9 +95,6 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 WhichKey = require("which-key")
 
 WhichKey.register({
-  i = {
-    name = "source",
-    i = {"<cmd>source $MYVIMRC<CR>", "Source init.lua"},
-  },
+  n = {"<cmd>Neotree<CR>", "Neotree"},
 
 }, {prefix="<leader>"})
