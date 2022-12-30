@@ -1,7 +1,8 @@
+Telescope = require('telescope')
+
 
 -- [[ Configure Telescope ]]
--- See `:help telescope` and `:help telescope.setup()`
-require('telescope').setup {
+Telescope.setup {
   defaults = {
     mappings = {
       i = {
@@ -13,7 +14,7 @@ require('telescope').setup {
 }
 
 -- Enable telescope fzf native, if installed
-pcall(require('telescope').load_extension, 'fzf')
+pcall(Telescope.load_extension, 'fzf')
 
 WhichKey = require("which-key")
 
@@ -55,4 +56,7 @@ WhichKey.register({
         J = {":cd -<CR>:pwd<CR>", "change to previous directory", noremap=true},
     }
 })
+
+-- Telescope.load_extension('projects')
+require("telescope").load_extension "repo"
 

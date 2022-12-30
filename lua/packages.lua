@@ -7,8 +7,7 @@ if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
   vim.cmd([[packadd packer.nvim]])
 end
 
-
-vim.cmd([[ let g:neo_tree_remove_legacy_commands = 1 ]])
+-- vim.cmd([[ let g:neo_tree_remove_legacy_commands = 1 ]])
 
 require('packer').startup(function(use)
   -- Package manager
@@ -17,7 +16,6 @@ require('packer').startup(function(use)
   use { -- LSP Configuration & Plugins
     'neovim/nvim-lspconfig',
     requires = {
-      -- Automatically install LSPs to stdpath for neovim
       'williamboman/mason.nvim',
       'williamboman/mason-lspconfig.nvim',
 
@@ -65,7 +63,6 @@ require('packer').startup(function(use)
   use 'gbprod/nord.nvim'
   use 'Abstract-IDE/Abstract-cs'
   use "EdenEast/nightfox.nvim"
-  -- using packer.nvim
   use { 'akinsho/bufferline.nvim', tag = "v3.*", requires = 'nvim-tree/nvim-web-devicons' }
 
   -- improved commandline
@@ -113,6 +110,7 @@ require('packer').startup(function(use)
   use { 'sindrets/diffview.nvim', requires = 'nvim-lua/plenary.nvim' }
 
   use 'nvim-lualine/lualine.nvim' -- Fancier statusline
+  use 'feline-nvim/feline.nvim'
   use 'lukas-reineke/indent-blankline.nvim' -- Add indentation guides even on blank lines
   use 'numToStr/Comment.nvim' -- "gc" to comment visual regions/lines
   use 'tpope/vim-sleuth' -- Detect tabstop and shiftwidth automatically
@@ -121,15 +119,14 @@ require('packer').startup(function(use)
   use "ggandor/leap.nvim"
 
   use { 'nvim-telescope/telescope.nvim', branch = '0.1.x', requires = { 'nvim-lua/plenary.nvim' } }
-
-  -- Fuzzy Finder Algorithm which requires local dependencies to be built. Only load if `make` is available
-  use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make', cond = vim.fn.executable 'make' == 1 }
-
-  -- Add custom plugins to packer from ~/.config/nvim/lua/custom/plugins.lua
-  local has_plugins, plugins = pcall(require, 'custom.plugins')
-  if has_plugins then
-    plugins(use)
+  use { "ahmedkhalf/project.nvim", config = function()
+    require("project_nvim").setup {
+    }
   end
+  }
+
+  use 'cljoly/telescope-repo.nvim'
+  use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make', cond = vim.fn.executable 'make' == 1 }
 
   if is_bootstrap then
     require('packer').sync()
@@ -138,7 +135,6 @@ end)
 
 -- When we are bootstrapping a configuration, it doesn't
 -- make sense to execute the rest of the init.lua.
---
 -- You'll need to restart nvim, and then it will work.
 if is_bootstrap then
   print '=================================='
@@ -149,10 +145,12 @@ if is_bootstrap then
   return
 end
 
--- Automatically source and re-compile packer whenever you save this init.lua
+-- Automatically source and re-compile packer whenever you save this file
 local packer_group = vim.api.nvim_create_augroup('Packer', { clear = true })
 vim.api.nvim_create_autocmd('BufWritePost', {
   command = 'source <afile> | PackerCompile',
   group = packer_group,
-  pattern = vim.fn.expand '$MYVIMRC',
+  pattern = 'packages.lua',
 })
+
+
