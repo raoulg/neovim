@@ -4,9 +4,11 @@ local is_bootstrap = false
 if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
   is_bootstrap = true
   vim.fn.system { 'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path }
-  vim.cmd [[packadd packer.nvim]]
+  vim.cmd([[packadd packer.nvim]])
 end
 
+
+vim.cmd([[ let g:neo_tree_remove_legacy_commands = 1 ]])
 
 require('packer').startup(function(use)
   -- Package manager
@@ -52,12 +54,19 @@ require('packer').startup(function(use)
 
   -- debug
   use 'mfussenegger/nvim-dap'
-  use { "rcarriga/nvim-dap-ui", requires = {"mfussenegger/nvim-dap"} }
+  use { "rcarriga/nvim-dap-ui", requires = { "mfussenegger/nvim-dap" } }
+  use { "folke/todo-comments.nvim", requires = "nvim-lua/plenary.nvim" }
 
   -- Appearance
   use 'mhinz/vim-startify'
   use 'folke/tokyonight.nvim'
+  use { "catppuccin/nvim", as = "catppuccin" }
   use 'navarasu/onedark.nvim'
+  use 'gbprod/nord.nvim'
+  use 'Abstract-IDE/Abstract-cs'
+  use "EdenEast/nightfox.nvim"
+  -- using packer.nvim
+  use { 'akinsho/bufferline.nvim', tag = "v3.*", requires = 'nvim-tree/nvim-web-devicons' }
 
   -- improved commandline
   use "romgrk/fzy-lua-native"
@@ -76,6 +85,25 @@ require('packer').startup(function(use)
   -- navigation
   use 'folke/which-key.nvim'
   use 'stevearc/aerial.nvim'
+  use {
+    "folke/trouble.nvim",
+    requires = "kyazdani42/nvim-web-devicons",
+    config = function()
+      require("trouble").setup {
+      }
+    end
+  }
+
+
+  use {
+    "nvim-neo-tree/neo-tree.nvim",
+    branch = "v2.x",
+    requires = {
+      "nvim-lua/plenary.nvim",
+      "nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
+      "MunifTanjim/nui.nvim",
+    }
+  }
 
   -- Git related plugins       --
   use 'tpope/vim-fugitive' --
@@ -128,4 +156,3 @@ vim.api.nvim_create_autocmd('BufWritePost', {
   group = packer_group,
   pattern = vim.fn.expand '$MYVIMRC',
 })
-
