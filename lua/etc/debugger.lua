@@ -50,13 +50,16 @@ WhichKey.register({
 WhichKey.register({
   d = {
     name = "debug/diagnostic",
-    t = {"<cmd>lua require'dapui'.toggle()<CR>", "toggle dap"},
+    t = {"<cmd>TroubleToggle<CR>", "toggle trouble"},
+    T = {"<cmd>TodoTrouble<CR>", "toggle todo trouble"},
+    D = {"<cmd>lua require'dapui'.toggle()<CR>", "toggle DAP"},
     b = {"<cmd>lua require'dap'.toggle_breakpoint()<CR>", "set breakpoint"},
     c = {"<cmd>lua require'dap'.continue()<CR>", "continue"},
+    q = {"<cmd>copen<CR>", "Open quicklist"},
     p = {vim.diagnostic.goto_prev, "previous diagnostic"},
     d = {vim.diagnostic.goto_next, "next diagnostics"},
     e = {vim.diagnostic.open_float, "diagnostic open float"},
-    q = {vim.diagnostic.setloclist, "diagnostic set loclist"},
+    l = {vim.diagnostic.setloclist, "diagnostic set loclist"},
   },
 }, {prefix="<leader>"})
 
