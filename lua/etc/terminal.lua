@@ -7,8 +7,8 @@ local function termsize(term)
     end
 end
 
-vim.api.nvim_set_hl(0, "ToggleTermBorder", {fg=COLORS.pink, bg=colorsbgdarker})
-vim.api.nvim_set_hl(0, "ToggleTermBackground", {fg=COLORS.bgdark, bg=COLORS.bgdark})
+-- vim.api.nvim_set_hl(0, "ToggleTermBorder", {fg=COLORS.pink, bg=colorsbgdarker})
+-- vim.api.nvim_set_hl(0, "ToggleTermBackground", {fg=COLORS.bgdark, bg=COLORS.bgdark})
 
 require("toggleterm").setup({
     size = termsize,
@@ -26,10 +26,10 @@ require("toggleterm").setup({
         --width = 80,
         --height = 60,
         winblend = 3,
-        highlights = {
-            border = "ToggleTermBorder",
-            background = "ToggleTermBackground",
-        }
+        -- highlights = {
+        --     border = "ToggleTermBorder",
+        --     background = "ToggleTermBackground",
+        -- }
     },
 })
 
@@ -87,7 +87,7 @@ local htopterm = Terminal:new({
     direction = "float",
 })
 
-function _htop_term_toggle() return htopterm:toggle() end
+local function _htop_term_toggle() return htopterm:toggle() end
 
 WhichKey.register({
     ["<C-n>"] = {"<cmd>stopinsert!<CR>", "get out of insert mode", noremap=true},
