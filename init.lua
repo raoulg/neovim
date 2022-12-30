@@ -14,6 +14,7 @@ pcall(require, "etc/windows")
 pcall(require, "etc/treesitter")
 pcall(require, "etc/debugger")
 pcall(require, "etc/bufferline")
+pcall(require, "etc/neotree")
 
 -- Enable Comment.nvim
 require('Comment').setup()
