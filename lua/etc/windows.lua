@@ -4,6 +4,7 @@ WhichKey.register({
   w = {
     name = "windows",
         w = {"<C-w>w", "other window"},
+        f = {"<C-w>|", "maximize window"},
         d = {"<C-w>c", "delete window"},
         ["-"] = {"<C-w>s", "split window below"},
         ["|"] = {"<C-w>v", "split window right"},
