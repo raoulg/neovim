@@ -1,10 +1,21 @@
 Neotree = require("neo-tree")
 
 Neotree.setup({
-    close_if_last_window = true,
+  close_if_last_window = true,
+  filesystem = {
     hijack_netrw_behavior = "open_default",
-    buffers = {
-          follow_current_file = true,
+    use_libuv_file_watcher = true,
+  },
+  buffers = {
+    follow_current_file = true,
+  },
+  event_handlers = {
+    {
+      event = "neo_tree_buffer_enter",
+      handler = function()
+        vim.cmd 'setlocal relativenumber'
+      end
+    },
   }
 
 })
@@ -12,6 +23,5 @@ Neotree.setup({
 WhichKey = require("which-key")
 
 WhichKey.register({
-  n = {"<cmd>Neotree toggle<CR>", "Neotree"},
-
-}, {prefix="<leader>"})
+  n = { "<cmd>Neotree toggle<CR>", "Neotree" },
+}, { prefix = "<leader>" })
