@@ -3,8 +3,7 @@
 -- See `:help lualine.txt`
 require('lualine').setup {
   options = {
-    icons_enabled = false,
-    theme = 'duskfox',
+    icons_enabled = true,
     component_separators = '|',
     section_separators = '',
   },
