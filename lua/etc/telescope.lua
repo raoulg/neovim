@@ -24,6 +24,7 @@ WhichKey.register({
     r = {"<cmd>Telescope oldfiles<CR>", "Find recent files"},
     b = {"<cmd>Telescope buffers<CR>", "Find recent buffers"},
     h = {"<cmd>Startify<CR>", "Home buffer"},
+    t = {"<cmd>TodoTelescope<CR>", "Search todos"},
     H = {"<cmd>Telescope help_tags<CR>", "Search help"},
     w = {"<cmd>Telescope grep_string<CR>", "Search current word"},
     g = {"<cmd>Telescope live_grep<CR>", "Grep"},
