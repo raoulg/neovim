@@ -14,8 +14,8 @@ Wilder.set_option("pipeline", {
 })
 
 local function makehl()
-    hl1 = Wilder.make_hl("WilderAccent", "Pmenu", {{a=1}, {a=1}, {foreground=colors.purple}})
-    hlb = Wilder.make_hl("WilderBorder", "Pmenu", {{a=1}, {a=1}, {foreground=colors.comment}})
+    hl1 = Wilder.make_hl("WilderAccent", "Pmenu", {{a=1}, {a=1}, {foreground=COLORS.purple}})
+    hlb = Wilder.make_hl("WilderBorder", "Pmenu", {{a=1}, {a=1}, {foreground=COLORS.comment}})
     return {accent = hl1, border = hlb}
 end
 
