@@ -91,7 +91,6 @@ require('packer').startup(function(use)
     end
   }
 
-
   use {
     "nvim-neo-tree/neo-tree.nvim",
     branch = "v2.x",
@@ -152,5 +151,3 @@ vim.api.nvim_create_autocmd('BufWritePost', {
   group = packer_group,
   pattern = 'packages.lua',
 })
-
-

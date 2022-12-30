@@ -11,6 +11,7 @@ require('gitsigns').setup {
   },
 }
 
+
 WhichKey = require("which-key")
 
 WhichKey.register({
@@ -21,4 +22,11 @@ WhichKey.register({
 
     },
 }, {prefix="<leader>"})
+
+WhichKey.register({
+  ["]c"] = {"<cmd>Gitsigns next_hunk<CR>", "next change"},
+  ["[c"] = {"<cmd>Gitsigns prev_hunk<CR>", "previous change"},
+})
+
+
 
