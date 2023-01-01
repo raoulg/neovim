@@ -61,7 +61,6 @@ Iron.setup({
   }
 })
 
-WhichKey = require("which-key")
 
 WhichKey.register({
     r = {

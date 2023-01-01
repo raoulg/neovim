@@ -10,8 +10,6 @@ local on_attach = function(_, bufnr)
   -- for LSP related items. It sets the mode, buffer and description for us each time.
   --
 
-WhichKey = require("which-key")
-
 
 WhichKey.register({
   l = {

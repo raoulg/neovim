@@ -12,7 +12,6 @@ require('gitsigns').setup {
 }
 
 
-WhichKey = require("which-key")
 
 WhichKey.register({
     g = {

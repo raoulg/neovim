@@ -95,6 +95,10 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 WhichKey = require("which-key")
 
 WhichKey.register({
-  n = {"<cmd>Neotree<CR>", "Neotree"},
+  ["[q"] = {"<cmd>cnext<CR>", "Next quicklist item"},
+  ["]q"] = {"<cmd>cprev<CR>", "Previous quicklist item"},
+})
 
+WhichKey.register({
+  n = {"<cmd>Neotree<CR>", "Neotree"},
 }, {prefix="<leader>"})

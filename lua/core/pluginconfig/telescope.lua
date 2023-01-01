@@ -16,7 +16,6 @@ Telescope.setup {
 -- Enable telescope fzf native, if installed
 pcall(Telescope.load_extension, 'fzf')
 
-WhichKey = require("which-key")
 
 WhichKey.register({
   f = {

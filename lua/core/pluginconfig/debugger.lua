@@ -34,7 +34,6 @@ dap.configurations.python = {
 
 require("dapui").setup()
 
-WhichKey = require("which-key")
 
 WhichKey.register({
   ["["] = {

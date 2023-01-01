@@ -7,7 +7,7 @@ Neotree.setup({
     use_libuv_file_watcher = true,
   },
   buffers = {
-    follow_current_file = true,
+    follow_current_file = false,
   },
   event_handlers = {
     {
@@ -19,8 +19,6 @@ Neotree.setup({
   }
 
 })
-
-WhichKey = require("which-key")
 
 WhichKey.register({
   n = { "<cmd>Neotree toggle<CR>", "Neotree" },

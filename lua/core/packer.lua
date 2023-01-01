@@ -7,8 +7,6 @@ if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
   vim.cmd([[packadd packer.nvim]])
 end
 
--- vim.cmd([[ let g:neo_tree_remove_legacy_commands = 1 ]])
-
 require('packer').startup(function(use)
   -- Package manager
   use 'wbthomason/packer.nvim'
@@ -64,6 +62,7 @@ require('packer').startup(function(use)
   use 'Abstract-IDE/Abstract-cs'
   use "EdenEast/nightfox.nvim"
   use { 'akinsho/bufferline.nvim', tag = "v3.*", requires = 'nvim-tree/nvim-web-devicons' }
+  use 'beauwilliams/focus.nvim'
 
   -- improved commandline
   use "romgrk/fzy-lua-native"
@@ -82,14 +81,7 @@ require('packer').startup(function(use)
   -- navigation
   use 'folke/which-key.nvim'
   use 'stevearc/aerial.nvim'
-  use {
-    "folke/trouble.nvim",
-    requires = "kyazdani42/nvim-web-devicons",
-    config = function()
-      require("trouble").setup {
-      }
-    end
-  }
+  use { "folke/trouble.nvim", requires = "kyazdani42/nvim-web-devicons" }
 
   use {
     "nvim-neo-tree/neo-tree.nvim",
@@ -118,11 +110,7 @@ require('packer').startup(function(use)
   use "ggandor/leap.nvim"
 
   use { 'nvim-telescope/telescope.nvim', branch = '0.1.x', requires = { 'nvim-lua/plenary.nvim' } }
-  use { "ahmedkhalf/project.nvim", config = function()
-    require("project_nvim").setup {
-    }
-  end
-  }
+  use "ahmedkhalf/project.nvim"
 
   use 'cljoly/telescope-repo.nvim'
   use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make', cond = vim.fn.executable 'make' == 1 }
