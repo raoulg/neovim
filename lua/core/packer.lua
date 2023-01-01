@@ -54,20 +54,25 @@ require('packer').startup(function(use)
   use { "folke/todo-comments.nvim", requires = "nvim-lua/plenary.nvim" }
 
   -- Appearance
-  use 'mhinz/vim-startify'
+  -- themes
   use 'folke/tokyonight.nvim'
   use { "catppuccin/nvim", as = "catppuccin" }
   use 'navarasu/onedark.nvim'
   use 'gbprod/nord.nvim'
   use 'Abstract-IDE/Abstract-cs'
   use "EdenEast/nightfox.nvim"
+  use "ellisonleao/gruvbox.nvim" 
+  -- buffers
   use { 'akinsho/bufferline.nvim', tag = "v3.*", requires = 'nvim-tree/nvim-web-devicons' }
+  use 'mhinz/vim-startify'
   use 'beauwilliams/focus.nvim'
+  -- statuslines
+  use 'nvim-lualine/lualine.nvim' -- Fancier statusline
+  use 'feline-nvim/feline.nvim'
 
   -- improved commandline
   use "romgrk/fzy-lua-native"
   use "gelguy/wilder.nvim"
-
 
   -- terminal and repl
   use 'akinsho/toggleterm.nvim' --
@@ -77,12 +82,10 @@ require('packer').startup(function(use)
   use "rmagatti/auto-session"
   use "rmagatti/session-lens"
 
-
   -- navigation
   use 'folke/which-key.nvim'
   use 'stevearc/aerial.nvim'
   use { "folke/trouble.nvim", requires = "kyazdani42/nvim-web-devicons" }
-
   use {
     "nvim-neo-tree/neo-tree.nvim",
     branch = "v2.x",
@@ -92,16 +95,15 @@ require('packer').startup(function(use)
       "MunifTanjim/nui.nvim",
     }
   }
+  use { 'ThePrimeagen/harpoon', requires = "nvim-lua/plenary.nvim" }
 
-  -- Git related plugins       --
+  -- Git --
   use 'tpope/vim-fugitive' --
   use 'tpope/vim-rhubarb'
   use 'lewis6991/gitsigns.nvim'
   use 'rbong/vim-flog'
   use { 'sindrets/diffview.nvim', requires = 'nvim-lua/plenary.nvim' }
 
-  use 'nvim-lualine/lualine.nvim' -- Fancier statusline
-  use 'feline-nvim/feline.nvim'
   use 'lukas-reineke/indent-blankline.nvim' -- Add indentation guides even on blank lines
   use 'numToStr/Comment.nvim' -- "gc" to comment visual regions/lines
   use 'tpope/vim-sleuth' -- Detect tabstop and shiftwidth automatically
