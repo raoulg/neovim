@@ -73,4 +73,8 @@ WhichKey.register({
     ["v8"] = { open_split_buf(8, true), "open buffer 8 in new vertical split" },
     ["v9"] = { open_split_buf(9, true), "open buffer 9 in new vertical split" },
     ["v10"] = { open_split_buf(10, true), "open buffer 10 in new vertical split" },
+    h = "delete hidden buffers",
 }, { prefix = ";" })
+
+
+vim.keymap.set({ 'n' }, ';h', ':up | %bd | e#<CR>', { silent = true })
