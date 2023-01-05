@@ -49,7 +49,7 @@ vim.wo.signcolumn = 'yes'
 
 -- Set colorscheme
 vim.o.termguicolors = true
-vim.cmd[[colorscheme duskfox]]
+vim.cmd[[colorscheme gruvbox]]
 
 vim.g.startify_custom_header = {
         [[                                  __                ]],
@@ -95,8 +95,8 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 WhichKey = require("which-key")
 
 WhichKey.register({
-  ["[q"] = {"<cmd>cnext<CR>", "Next quicklist item"},
-  ["]q"] = {"<cmd>cprev<CR>", "Previous quicklist item"},
+  ["]q"] = {"<cmd>cnext<CR>", "Next quicklist item"},
+  ["[q"] = {"<cmd>cprev<CR>", "Previous quicklist item"},
 })
 
 WhichKey.register({
