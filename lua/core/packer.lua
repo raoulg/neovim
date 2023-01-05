@@ -7,11 +7,27 @@ if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
   vim.cmd([[packadd packer.nvim]])
 end
 
+
+-- LSP
+-- Autocompletion
+-- treesitter
+-- debugger
+-- Appearance
+-- themes
+-- buffers
+-- statuslines
+-- improved-commandline
+-- terminal-and-repl
+-- sessionmanagement
+-- navigation/jumping
+-- Git --
+-- Fuzzy-Finder (files, lsp, etc)
+-- spotify
 require('packer').startup(function(use)
   -- Package manager
   use 'wbthomason/packer.nvim'
 
-  use { -- LSP Configuration & Plugins
+  use {
     'neovim/nvim-lspconfig',
     requires = {
       'williamboman/mason.nvim',
@@ -25,7 +41,8 @@ require('packer').startup(function(use)
     },
   }
 
-  use { -- Autocompletion
+  -- Autocompletion
+  use {
     'hrsh7th/nvim-cmp',
     requires = {
       'hrsh7th/cmp-nvim-lsp',
@@ -36,19 +53,20 @@ require('packer').startup(function(use)
     },
   }
 
-  use { -- Highlight, edit, and navigate code
+  -- treesitter
+  use {
     'nvim-treesitter/nvim-treesitter',
     run = function()
       pcall(require('nvim-treesitter.install').update { with_sync = true })
     end,
   }
-
-  use { -- Additional text objects via treesitter
+  -- Additional text objects via treesitter
+  use {
     'nvim-treesitter/nvim-treesitter-textobjects',
     after = 'nvim-treesitter',
   }
 
-  -- debug
+  -- debugger
   use 'mfussenegger/nvim-dap'
   use { "rcarriga/nvim-dap-ui", requires = { "mfussenegger/nvim-dap" } }
   use { "folke/todo-comments.nvim", requires = "nvim-lua/plenary.nvim" }
@@ -61,28 +79,39 @@ require('packer').startup(function(use)
   use 'gbprod/nord.nvim'
   use 'Abstract-IDE/Abstract-cs'
   use "EdenEast/nightfox.nvim"
-  use "ellisonleao/gruvbox.nvim" 
+  use "ellisonleao/gruvbox.nvim"
+  use({
+    "iamcco/markdown-preview.nvim",
+    run = function() vim.fn["mkdp#util#install"]() end,
+  })
+
   -- buffers
   use { 'akinsho/bufferline.nvim', tag = "v3.*", requires = 'nvim-tree/nvim-web-devicons' }
   use 'mhinz/vim-startify'
   use 'beauwilliams/focus.nvim'
+
   -- statuslines
   use 'nvim-lualine/lualine.nvim' -- Fancier statusline
   use 'feline-nvim/feline.nvim'
 
-  -- improved commandline
+  -- improved-commandline
   use "romgrk/fzy-lua-native"
   use "gelguy/wilder.nvim"
 
-  -- terminal and repl
+  -- terminal-and-repl
   use 'akinsho/toggleterm.nvim' --
   use 'hkupty/iron.nvim'
 
-  -- sessions
-  use "rmagatti/auto-session"
-  use "rmagatti/session-lens"
+  -- sessionmanagement
+  -- use "rmagatti/auto-session"
+  -- use "rmagatti/session-lens"
+  -- use "olimorris/persisted.nvim"
+  use {
+    'jedrzejboczar/possession.nvim',
+    requires = { 'nvim-lua/plenary.nvim' },
+  }
 
-  -- navigation
+  -- navigation/jumping
   use 'folke/which-key.nvim'
   use 'stevearc/aerial.nvim'
   use { "folke/trouble.nvim", requires = "kyazdani42/nvim-web-devicons" }
@@ -108,14 +137,15 @@ require('packer').startup(function(use)
   use 'numToStr/Comment.nvim' -- "gc" to comment visual regions/lines
   use 'tpope/vim-sleuth' -- Detect tabstop and shiftwidth automatically
 
-  -- Fuzzy Finder (files, lsp, etc)
+  -- Fuzzy-Finder (files, lsp, etc)
   use "ggandor/leap.nvim"
-
   use { 'nvim-telescope/telescope.nvim', branch = '0.1.x', requires = { 'nvim-lua/plenary.nvim' } }
   use "ahmedkhalf/project.nvim"
-
   use 'cljoly/telescope-repo.nvim'
   use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make', cond = vim.fn.executable 'make' == 1 }
+
+  -- spotify
+  use 'srishanbhattarai/neovim-spotify'
 
   if is_bootstrap then
     require('packer').sync()
