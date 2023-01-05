@@ -15,6 +15,7 @@ Telescope.setup {
 
 -- Enable telescope fzf native, if installed
 pcall(Telescope.load_extension, 'fzf')
+Telescope.load_extension('harpoon')
 
 
 WhichKey.register({
