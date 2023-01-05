@@ -10,7 +10,7 @@ require("core.pluginconfig.leap")
 require("core.pluginconfig.lsp")
 require("core.pluginconfig.lualine")
 require("core.pluginconfig.neotree")
-require("core.pluginconfig.sessions")
+require("core.pluginconfig.spotify")
 require("core.pluginconfig.telescope")
 require("core.pluginconfig.terminal")
 require("core.pluginconfig.treesitter")
@@ -21,6 +21,7 @@ require("core.pluginconfig.windows")
 require('project_nvim').setup()
 require('Comment').setup()
 require("trouble").setup()
+
 
 -- See `:help indent_blankline.txt`
 require('indent_blankline').setup {
