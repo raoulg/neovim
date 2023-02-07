@@ -5,19 +5,20 @@ require("core.pluginconfig.debugger")
 require("core.pluginconfig.focus")
 require("core.pluginconfig.harpoon")
 require("core.pluginconfig.git")
+require("core.pluginconfig.glow")
 require("core.pluginconfig.julia")
 require("core.pluginconfig.leap")
 require("core.pluginconfig.lsp")
 require("core.pluginconfig.lualine")
 require("core.pluginconfig.neotree")
+require("core.pluginconfig.orgmode")
 require("core.pluginconfig.spotify")
 require("core.pluginconfig.telescope")
 require("core.pluginconfig.terminal")
 require("core.pluginconfig.treesitter")
 require("core.pluginconfig.wilder")
 require("core.pluginconfig.windows")
-
--- require('feline').setup()
+require("core.pluginconfig.zettelkasten")
 require('project_nvim').setup()
 require('Comment').setup()
 require("trouble").setup()
@@ -31,6 +32,7 @@ require('indent_blankline').setup {
 require('fidget').setup()
 require("todo-comments").setup()
 
+-- require('feline').setup()
 -- https://github.com/folke/noice.nvim
 -- Highly experimental plugin that completely replaces the UI for messages, cmdline and the popupmenu
 -- https://github.com/chipsenkbeil/distant.nvim

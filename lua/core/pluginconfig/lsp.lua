@@ -28,6 +28,7 @@ WhichKey.register({
     vim.keymap.set('n', keys, func, { buffer = bufnr, desc = desc })
   end
 
+  nmap('<leader>lf', ':Format<CR>', 'Format')
   nmap('<leader>lar', vim.lsp.buf.rename, '[R]e[n]ame')
   nmap('<leader>lac', vim.lsp.buf.code_action, '[C]ode [A]ction')
 
