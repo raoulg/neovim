@@ -6,7 +6,7 @@ local function get_env()
     if env then
         return env .. '/bin/python'
     else
-        local home = os.getenv('HOME') .. '/.pyenv/versions/3.9.13/bin/python'
+        local home = os.getenv('HOME') .. '/.pyenv/versions/3.9.16/bin/python'
         return home
     end
 end
@@ -15,7 +15,7 @@ end
 
 dap.adapters.python = {
   type = 'executable';
-  command = os.getenv('HOME') .. '/.pyenv/versions/3.9.13/bin/python';
+  command = os.getenv('HOME') .. '/.pyenv/versions/3.9.16/bin/python';
   args = { '-m', 'debugpy.adapter' };
 }
 
@@ -52,6 +52,7 @@ WhichKey.register({
     t = {"<cmd>TroubleToggle<CR>", "toggle trouble"},
     T = {"<cmd>TodoTrouble<CR>", "toggle todo trouble"},
     D = {"<cmd>lua require'dapui'.toggle()<CR>", "toggle DAP UI"},
+    s = {"<cmd>lua require'dapui'.close()<CR>", "stop DAP UI"},
     b = {"<cmd>lua require'dap'.toggle_breakpoint()<CR>", "set breakpoint"},
     c = {"<cmd>lua require'dap'.continue()<CR>", "continue"},
     o = {"<cmd>lua require'dap'.step_over()<CR>", "step over"},
