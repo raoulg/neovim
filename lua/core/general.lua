@@ -36,6 +36,11 @@ vim.o.mouse = 'a'
 -- Enable break indent
 vim.o.breakindent = true
 
+vim.opt.tabstop = 4
+vim.opt.softtabstop = 4
+vim.opt.shiftwidth = 4
+
+
 -- Save undo history
 vim.o.undofile = true
 
@@ -99,6 +104,13 @@ WhichKey.register({
   ["[q"] = {"<cmd>cprev<CR>", "Previous quicklist item"},
 })
 
+
 WhichKey.register({
   n = {"<cmd>Neotree<CR>", "Neotree"},
+  t = {name = "toggle",
+    b = {"<cmd>let &background = ( &background == 'dark' ? 'light' : 'dark' )<CR>", "toggle background"},
+    r = {"<cmd>setl rnu!<CR>", "relative line numbers"},
+    n = {"<cmd>setl nu!<CR>", "line numbers"},
+  },
 }, {prefix="<leader>"})
+
