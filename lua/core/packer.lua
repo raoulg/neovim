@@ -84,6 +84,10 @@ require('packer').startup(function(use)
     "iamcco/markdown-preview.nvim",
     run = function() vim.fn["mkdp#util#install"]() end,
   })
+  use 'mzlogin/vim-markdown-toc'
+  -- use 'ellisonleao/glow.nvim'
+  use {"ellisonleao/glow.nvim", config = function() require("glow").setup() end}
+
 
   -- buffers
   use { 'akinsho/bufferline.nvim', tag = "v3.*", requires = 'nvim-tree/nvim-web-devicons' }
@@ -143,9 +147,14 @@ require('packer').startup(function(use)
   use "ahmedkhalf/project.nvim"
   use 'cljoly/telescope-repo.nvim'
   use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make', cond = vim.fn.executable 'make' == 1 }
+  use { 'renerocksai/telekasten.nvim', requires = 'renerocksai/calendar-vim' }
+  use {'nvim-orgmode/orgmode', config = function()
+      require('orgmode').setup{}
+    end
+  }
 
   -- spotify
-  use 'srishanbhattarai/neovim-spotify'
+  -- use 'srishanbhattarai/neovim-spotify'
 
   if is_bootstrap then
     require('packer').sync()
