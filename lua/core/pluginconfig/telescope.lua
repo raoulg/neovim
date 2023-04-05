@@ -4,6 +4,7 @@ Telescope = require('telescope')
 -- [[ Configure Telescope ]]
 Telescope.setup {
   defaults = {
+    path_display={"smart"},
     mappings = {
       i = {
         ['<C-u>'] = false,
