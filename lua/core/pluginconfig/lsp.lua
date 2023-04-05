@@ -65,19 +65,19 @@ end
 local servers = {
   -- clangd = {},
   -- gopls = {},
-  -- pyright = {},
+  pyright = {},
   -- rust_analyzer = {},
   -- tsserver = {},
 
-  sumneko_lua = {
-    Lua = {
-      workspace = { checkThirdParty = false },
-      telemetry = { enable = false },
-      diagnostics = {
-                globals = { 'vim' , 'require', 'pcall', 'print'}
-            }
-    },
-  },
+  -- sumneko_lua = {
+  --   Lua = {
+  --     workspace = { checkThirdParty = false },
+  --     telemetry = { enable = false },
+  --     diagnostics = {
+  --               globals = { 'vim' , 'require', 'pcall', 'print'}
+  --           }
+  --   },
+  -- },
 }
 
 -- Setup neovim lua configuration
