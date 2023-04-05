@@ -4,8 +4,7 @@ local is_bootstrap = false
 if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
   is_bootstrap = true
   vim.fn.system { 'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path }
-  vim.cmd([[packadd packer.nvim]])
-end
+  vim.cmd([[packadd packer.nvim]]) end
 
 
 -- LSP
@@ -66,6 +65,9 @@ require('packer').startup(function(use)
     after = 'nvim-treesitter',
   }
 
+  -- languages
+  use "lervag/vimtex"
+
   -- debugger
   use 'mfussenegger/nvim-dap'
   use { "rcarriga/nvim-dap-ui", requires = { "mfussenegger/nvim-dap" } }
@@ -85,8 +87,9 @@ require('packer').startup(function(use)
     run = function() vim.fn["mkdp#util#install"]() end,
   })
   use 'mzlogin/vim-markdown-toc'
-  -- use 'ellisonleao/glow.nvim'
-  use {"ellisonleao/glow.nvim", config = function() require("glow").setup() end}
+  use 'ellisonleao/glow.nvim'
+  use 'folke/zen-mode.nvim'
+
 
 
   -- buffers
@@ -119,15 +122,23 @@ require('packer').startup(function(use)
   use 'folke/which-key.nvim'
   use 'stevearc/aerial.nvim'
   use { "folke/trouble.nvim", requires = "kyazdani42/nvim-web-devicons" }
-  use {
-    "nvim-neo-tree/neo-tree.nvim",
-    branch = "v2.x",
+  -- use {
+  --   "nvim-neo-tree/neo-tree.nvim",
+  --   branch = "v2.x",
+  --   requires = {
+  --     "nvim-lua/plenary.nvim",
+  --     "nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
+  --     "MunifTanjim/nui.nvim",
+  --   }
+  -- }
+  -- use {'ms-jpq/chadtree', branch = 'chad', run = 'python -m chadtree deps' }
+  -- use {'TimUntersberger/neofs.lua', requires = 'kyazdani42/nvim-web-devicons' }
+  use { 'nvim-tree/nvim-tree.lua',
     requires = {
-      "nvim-lua/plenary.nvim",
-      "nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
-      "MunifTanjim/nui.nvim",
-    }
+      'nvim-tree/nvim-web-devicons', -- optional
+    },
   }
+
   use { 'ThePrimeagen/harpoon', requires = "nvim-lua/plenary.nvim" }
 
   -- Git --
