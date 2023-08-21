@@ -52,6 +52,8 @@ require('packer').startup(function(use)
     },
   }
 
+  use {'github/copilot.vim', branch = 'release' }
+
   -- treesitter
   use {
     'nvim-treesitter/nvim-treesitter',
