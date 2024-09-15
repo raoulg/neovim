@@ -41,11 +41,11 @@ return {
 			require("sidebar-nvim").setup({
 				open = true,
 				side = "right",
-				sections = { "datetime", "git", "diagnostics", "todos" },
+				sections = { "datetime", "git", "diagnostics", "files", "todos" },
 				todos = {
 					icon = "",
-					ignored_paths = { "~" }, -- ignore certain paths, this will prevent huge folders like $HOME to hog Neovim with TODO searching
-					initially_closed = false, -- whether the groups should be initially closed on start. You can manually open/close groups later.
+					ignored_paths = { "~" }, -- ignore certain paths
+					initially_closed = false, -- whether the groups should be initially closed on start.
 				},
 			})
 		end,
@@ -70,6 +70,15 @@ return {
 		cmd = { "Flog", "Flogsplit", "Floggit" },
 		dependencies = {
 			"tpope/vim-fugitive",
+		},
+	},
+	{
+		"folke/todo-comments.nvim",
+		dependencies = { "nvim-lua/plenary.nvim" },
+		opts = {
+			-- your configuration comes here
+			-- or leave it empty to use the default settings
+			-- refer to the configuration section below
 		},
 	},
 }
