@@ -26,6 +26,7 @@
   "sidebar.nvim": { "branch": "main", "commit": "5695712eef6288fff667343c4ae77c54911bdb1b" },
   "telescope-themes": { "branch": "main", "commit": "f005622f066cc0cdbaf9bb44c48edbec67985501" },
   "telescope.nvim": { "branch": "master", "commit": "927c10f748e49c543b2d544c321a1245302ff324" },
+  "todo-comments.nvim": { "branch": "main", "commit": "319c01b99b7a8c9ac2066bf0efd4d6ec68fef444" },
   "toggleterm.nvim": { "branch": "main", "commit": "137d06fb103952a0fb567882bb8527e2f92d327d" },
   "tokyonight.nvim": { "branch": "main", "commit": "4b386e66a9599057587c30538d5e6192e3d1c181" },
   "vim-flog": { "branch": "master", "commit": "03f6e39050c2a32deca6964291005c6c5c4c73cf" },
