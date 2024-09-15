@@ -47,7 +47,7 @@ wk.add({
 	{ "<leader>fs", "<cmd>Telescope possession list<CR>", desc = "Search sessions" },
 })
 
-vim.keymap.set("n", "<leader>ft", ":Telescope themes<CR>", { noremap = true, silent = true, desc = "Theme Switcher" })
+vim.keymap.set("n", "<leader>fT", ":Telescope themes<CR>", { noremap = true, silent = true, desc = "Theme Switcher" })
 
 -- See `:help telescope.builtin`
 vim.keymap.set("n", "<leader>f/", function()
@@ -101,6 +101,7 @@ wk.add({
 	{ "<leader>lw", group = "LSP", desc = "LSP [W]orkspaces" },
 })
 
+-- TODO: clean this up
 local nmap = function(keys, func, desc)
 	if desc then
 		desc = "LSP: " .. desc
@@ -141,6 +142,7 @@ wk.add({
 	{ "gs", "<cmd>lua require('telescope.builtin').lsp_document_symbols<CR>", desc = "[D]ocument [S]ymbols" },
 	{ "gS", "<cmd>lua require('telescope.builtin').lsp_dynamic_workspace_symbols<CR>", desc = "[W]orkspace [S]ymbols" },
 	{ "gD", vim.lsp.buf.declaration, desc = "[G]oto [D]eclaration" },
+	{ "gd", ":Dashboard<CR>", desc = "[G]oto [D]ashboard" },
 })
 
 -- bufferline
@@ -228,6 +230,7 @@ wk.add({
 	{ "<leader>tt", "<cmd>ToggleTerm direction=vertical<CR>", desc = "vertical [t]erminal (can also do <C-\\>)" },
 	{ "<leader>th", "<cmd>ToggleTerm direction=horizontal<CR>", desc = "Open [t]erminal horizontal" },
 	{ "<leader>tz", "<cmd>vs term://zsh<cr>", desc = "open a [z]sh [t]erminal in a new vertical split" },
+	{ "<C-n>", "<cmd>stopinsert!<CR>", desc = "get out insert mode", noremap = true, mode = "t" },
 })
 
 -- Possession session management
@@ -237,8 +240,8 @@ vim.keymap.set({ "n" }, "<leader>sf", ":Telescope possession list<CR>", { silent
 
 wk.add({
 	{ "<leader>s", group = "[s]ession management" },
-	{ "<leader>sS", ":PossesionSave ", desc = "name [S]ession" },
-	{ "<leader>ss", ":PossesionSave<CR>", desc = "[S]ession [s]ave" },
+	{ "<leader>sS", ":PossessionSave ", desc = "name [S]ession" },
+	{ "<leader>ss", ":PossessionSave<CR>", desc = "[S]ession [s]ave" },
 })
 
 -- sidebar.nvim
@@ -265,4 +268,18 @@ wk.add({
 wk.add({
 	{ "]c", "<cmd>Gitsigns next_hunk<CR>", desc = "next change" },
 	{ "[c", "<cmd>Gitsigns prev_hunk<CR>", desc = "previous change" },
+})
+
+-- todo-comments
+vim.keymap.set("n", "]t", function()
+	require("todo-comments").jump_next()
+end, { desc = "Next todo comment" })
+
+vim.keymap.set("n", "[t", function()
+	require("todo-comments").jump_prev()
+end, { desc = "Previous todo comment" })
+
+wk.add({
+	{ "<leader>fc", "<cmd>TodoTelescope<CR>", desc = "[f]ind all project todo [c]omments" },
+	{ "<leader>ft", "<cmd>TodoTelescope<CR>", desc = "Search [t]odo comments" },
 })
