@@ -228,6 +228,7 @@ wk.add({
 wk.add({
 	{ "<leader>t", group = "[T]erminal" },
 	{ "<leader>tt", "<cmd>ToggleTerm direction=vertical<CR>", desc = "vertical [t]erminal (can also do <C-\\>)" },
+	{ "<leader>tf", "<cmd>ToggleTerm direction=float<CR>", desc = "vertical [t]erminal (can also do <C-\\>)" },
 	{ "<leader>th", "<cmd>ToggleTerm direction=horizontal<CR>", desc = "Open [t]erminal horizontal" },
 	{ "<leader>tz", "<cmd>vs term://zsh<cr>", desc = "open a [z]sh [t]erminal in a new vertical split" },
 	{ "<C-n>", "<cmd>stopinsert!<CR>", desc = "get out insert mode", noremap = true, mode = "t" },
