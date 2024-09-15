@@ -44,7 +44,7 @@ wk.add({
 	{ "<leader>fg", "<cmd>Telescope live_grep<CR>", desc = "Grep" },
 	{ "<leader>fd", "<cmd>Telescope diagnostics<CR>", desc = "Search diagnostics" },
 	{ "<leader>fk", "<cmd>Telescope keymaps<CR>", desc = "Search keymaps" },
-	{ "<leader>fs", "<cmd>Telescope session-lens search_session<CR>", desc = "Search sessions" },
+	{ "<leader>fs", "<cmd>Telescope possession list<CR>", desc = "Search sessions" },
 })
 
 vim.keymap.set("n", "<leader>ft", ":Telescope themes<CR>", { noremap = true, silent = true, desc = "Theme Switcher" })
@@ -231,12 +231,12 @@ wk.add({
 })
 
 -- Possession session management
-vim.keymap.set({ "n" }, "<leader>ss", ":PossessionSave<CR>", { silent = false })
-vim.keymap.set({ "n" }, "<leader>sS", ":PossessionSave ", { silent = false })
 vim.keymap.set({ "n" }, "<leader>sl", ":PossessionLoad<CR>", { silent = false })
 vim.keymap.set({ "n" }, "<leader>sd", ":PossessionDelete<CR>", { silent = false })
 vim.keymap.set({ "n" }, "<leader>sf", ":Telescope possession list<CR>", { silent = false })
 
 wk.add({
 	{ "<leader>s", group = "[s]ession management" },
+	{ "<leader>sS", ":PossesionSave ", desc = "name [S]ession" },
+	{ "<leader>ss", ":PossesionSave<CR>", desc = "[S]ession [s]ave" },
 })
