@@ -12,7 +12,7 @@ return {
 					on_load = true,
 					on_quit = true,
 				},
-				autoload = last, -- or 'last' or 'auto_cwd' or 'last_cwd' or fun(): string
+				autoload = "last", -- or 'last' or 'auto_cwd' or 'last_cwd' or fun(): string
 			})
 			require("telescope").load_extension("possession")
 		end,
