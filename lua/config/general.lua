@@ -1,4 +1,3 @@
-
 COLORS = {
     background = "#282a36",
     selection = "#44475a",
@@ -19,6 +18,12 @@ COLORS = {
     bgdarker = "#191a21",
     black = "#000000",
 }
+
+-- Make sure to setup `mapleader` and `maplocalleader` before
+-- loading lazy.nvim so that mappings are correct.
+-- This is also a good place to setup other settings (vim.opt)
+vim.g.mapleader = " "
+vim.g.maplocalleader = "\\"
 
 -- [[ Setting options ]]
 -- See `:help vim.o`
@@ -60,35 +65,10 @@ vim.wo.signcolumn = 'yes'
 
 -- Set colorscheme
 vim.o.termguicolors = true
-vim.cmd[[colorscheme gruvbox]]
-
-vim.g.startify_custom_header = {
-        [[                                  __                ]],
-        [[     ___     ___    ___   __  __ /\_\    ___ ___    ]],
-        [[    / _ `\  / __`\ / __`\/\ \/\ \\/\ \  / __` __`\  ]],
-        [[   /\ \/\ \/\  __//\ \_\ \ \ \_/ |\ \ \/\ \/\ \/\ \ ]],
-        [[   \ \_\ \_\ \____\ \____/\ \___/  \ \_\ \_\ \_\ \_\]],
-        [[    \/_/\/_/\/____/\/___/  \/__/    \/_/\/_/\/_/\/_/]],
-        [[                                                    ]],
-}
+-- vim.cmd[[colorscheme gruvbox]]
 
 -- Set completeopt to have a better completion experience
 vim.o.completeopt = 'menuone,noselect'
-
--- [[ Basic Keymaps ]]
--- Set <space> as the leader key
--- See `:help mapleader`
---  NOTE: Must happen before plugins are required (otherwise wrong leader will be used)
-vim.g.mapleader = ' '
-vim.g.maplocalleader = ' '
-
--- Keymaps for better default experience
--- See `:help vim.keymap.set()`
-vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
-
--- Remap for dealing with word wrap
-vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
-vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 
 
 -- [[ Highlight on yank ]]
@@ -102,21 +82,4 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   pattern = '*',
 })
 
-
-WhichKey = require("which-key")
-
-WhichKey.register({
-  ["]q"] = {"<cmd>cnext<CR>", "Next quicklist item"},
-  ["[q"] = {"<cmd>cprev<CR>", "Previous quicklist item"},
-})
-
-
-WhichKey.register({
-  n = {"<cmd>Neotree<CR>", "Neotree"},
-  t = {name = "toggle",
-    b = {"<cmd>let &background = ( &background == 'dark' ? 'light' : 'dark' )<CR>", "toggle background"},
-    r = {"<cmd>setl rnu!<CR>", "relative line numbers"},
-    n = {"<cmd>setl nu!<CR>", "line numbers"},
-  },
-}, {prefix="<leader>"})
 

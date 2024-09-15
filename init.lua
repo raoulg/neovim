@@ -1,3 +1,4 @@
-require("core.packer")
-require("core.general")
-require("core.pluginconfig")
+require("config.general")
+require("config.lazy")
+require("config.keymaps")
+-- require("core.pluginconfig")

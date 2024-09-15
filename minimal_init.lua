@@ -12,7 +12,6 @@ local function load_plugins()
     {
       'wbthomason/packer.nvim',
       { 'nvim-treesitter/nvim-treesitter' },
-      { 'kristijanhusak/orgmode.nvim', branch = 'master' },
     },
     config = {
       package_root = package_root,
@@ -22,7 +21,6 @@ local function load_plugins()
 end
 
 _G.load_config = function()
-  require('orgmode').setup_ts_grammar()
   require('nvim-treesitter.configs').setup({
     highlight = {
       enable = true,
@@ -39,7 +37,6 @@ _G.load_config = function()
     vim.api.nvim_win_close(0, true)
   end
 
-  require('orgmode').setup()
 
   -- Reload current file if it's org file to reload tree-sitter
   if vim.bo.filetype == 'org' then
