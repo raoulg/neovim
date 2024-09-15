@@ -240,3 +240,20 @@ wk.add({
 	{ "<leader>sS", ":PossesionSave ", desc = "name [S]ession" },
 	{ "<leader>ss", ":PossesionSave<CR>", desc = "[S]ession [s]ave" },
 })
+
+-- sidebar.nvim
+wk.add({
+	{ "<leader>ts", ":SidebarNvimToggle<CR>", desc = "[t]oggle [s]idebar" },
+})
+
+-- git
+wk.add({
+	{ "<leader>g", group = "[G]it" },
+	{ "<leader>gg", '<cmd>TermExec cmd="gitui" direction=float<CR>', desc = "Open gitui in a floating terminal" },
+	{ "<leader>gd", "<cmd>DiffviewOpen<CR>", desc = "Open diffview" },
+})
+
+wk.add({
+	{ "]c", "<cmd>Gitsigns next_hunk<CR>", desc = "next change" },
+	{ "[c", "<cmd>Gitsigns prev_hunk<CR>", desc = "previous change" },
+})

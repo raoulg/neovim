@@ -29,10 +29,39 @@ return {
 	{
 		"ahmedkhalf/project.nvim",
 		config = function()
-			require("project_nvim").setup {
+			require("project_nvim").setup({
 				detection_methods = { "pattern" },
 				patterns = { ".git", ".venv", "src" },
-			}
-		end
+			})
+		end,
+	},
+	{
+		"sidebar-nvim/sidebar.nvim",
+		config = function()
+			require("sidebar-nvim").setup({
+				open = true,
+				side = "right",
+				sections = { "datetime", "git", "diagnostics", "todos" },
+				todos = {
+					icon = "",
+					ignored_paths = { "~" }, -- ignore certain paths, this will prevent huge folders like $HOME to hog Neovim with TODO searching
+					initially_closed = false, -- whether the groups should be initially closed on start. You can manually open/close groups later.
+				},
+			})
+		end,
+	},
+	{
+		"lewis6991/gitsigns.nvim",
+		config = function()
+			require("gitsigns").setup({
+				signs = {
+					add = { text = "+" },
+					change = { text = "~" },
+					delete = { text = "_" },
+					topdelete = { text = "‾" },
+					changedelete = { text = "~" },
+				},
+			})
+		end,
 	},
 }
