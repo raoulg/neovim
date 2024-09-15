@@ -246,11 +246,13 @@ wk.add({
 	{ "<leader>ts", ":SidebarNvimToggle<CR>", desc = "[t]oggle [s]idebar" },
 })
 
--- git
+-- git flog
+-- fugitive
 wk.add({
 	{ "<leader>g", group = "[G]it" },
 	{ "<leader>gg", '<cmd>TermExec cmd="gitui" direction=float<CR>', desc = "Open gitui in a floating terminal" },
 	{ "<leader>gd", "<cmd>DiffviewOpen<CR>", desc = "Open diffview" },
+	{ "<leader>gf", ":Flog<CR>", desc = "[G]it [F]log graph" },
 })
 
 wk.add({
