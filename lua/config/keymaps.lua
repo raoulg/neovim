@@ -253,6 +253,13 @@ wk.add({
 	{ "<leader>gg", '<cmd>TermExec cmd="gitui" direction=float<CR>', desc = "Open gitui in a floating terminal" },
 	{ "<leader>gd", "<cmd>DiffviewOpen<CR>", desc = "Open diffview" },
 	{ "<leader>gf", ":Flog<CR>", desc = "[G]it [F]log graph" },
+	{ "<leader>gs", "<cmd>Git<CR>", desc = "Git status" },
+	{ "<leader>ga", "<cmd>Git add %<CR>", desc = "Git add current file" },
+	{ "<leader>gc", "<cmd>Git commit<CR>", desc = "Git commit" },
+	{ "<leader>gp", "<cmd>Git push<CR>", desc = "Git push" },
+	{ "<leader>gP", "<cmd>Git pull<CR>", desc = "Git pull" },
+	{ "<leader>gl", "<cmd>Git log<CR>", desc = "Git log" },
+	{ "<leader>gS", "<cmd>Git stash<CR>", desc = "Git stash" },
 })
 
 wk.add({
