@@ -267,11 +267,11 @@ wk.add({
 	{ "<leader>gf", ":Flog<CR>", desc = "[G]it [F]log graph" },
 	{ "<leader>gs", "<cmd>Git<CR>", desc = "Git status" },
 	{ "<leader>ga", "<cmd>Git add %<CR>", desc = "Git add current file" },
-	{ "<leader>gc", "<cmd>Git commit<CR>", desc = "Git commit" },
-	{ "<leader>gp", "<cmd>Git push<CR>", desc = "Git push" },
-	{ "<leader>gP", "<cmd>Git pull<CR>", desc = "Git pull" },
-	{ "<leader>gl", "<cmd>Git log<CR>", desc = "Git log" },
-	{ "<leader>gS", "<cmd>Git stash<CR>", desc = "Git stash" },
+	{ "<leader>gc", "<cmd>Git commit<CR>", desc = "Git [c]ommit" },
+	{ "<leader>gp", "<cmd>Git push<CR>", desc = "Git [p]ush" },
+	{ "<leader>gP", "<cmd>Git pull<CR>", desc = "Git [P]ull" },
+	{ "<leader>gL", "<cmd>Git log<CR>", desc = "Git [L]og" },
+	{ "<leader>gS", "<cmd>Git stash<CR>", desc = "Git [S]ash" },
 })
 
 wk.add({
@@ -290,7 +290,6 @@ end, { desc = "Previous todo comment" })
 
 wk.add({
 	{ "<leader>fc", "<cmd>TodoTelescope<CR>", desc = "[f]ind all project todo [c]omments" },
-	-- { "<leader>ft", "<cmd>TodoTelescope<CR>", desc = "Search [t]odo comments" },
 })
 
 -- code companion
