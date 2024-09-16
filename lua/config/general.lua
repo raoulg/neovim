@@ -1,22 +1,22 @@
 COLORS = {
-    background = "#282a36",
-    selection = "#44475a",
-    foreground = "#f8f8f2",
-    comment = "#6272a4",
-    cyan = "#8be9fd",
-    green = "#50fa7b",
-    orange = "#ffb86c",
-    blue = "#79cbdc",   -- note this is really close to cyan
-    pink = "#ff79c6",
-    purple = "#bd93f9",
-    red = "#ff5555",
-    yellow = "#f1fa8c",
-    subtle = "#424450",
-    bglight = "#343746",
-    bglighter = "#424450",
-    bgdark = "#21222c",
-    bgdarker = "#191a21",
-    black = "#000000",
+	background = "#282a36",
+	selection = "#44475a",
+	foreground = "#f8f8f2",
+	comment = "#6272a4",
+	cyan = "#8be9fd",
+	green = "#50fa7b",
+	orange = "#ffb86c",
+	blue = "#79cbdc", -- note this is really close to cyan
+	pink = "#ff79c6",
+	purple = "#bd93f9",
+	red = "#ff5555",
+	yellow = "#f1fa8c",
+	subtle = "#424450",
+	bglight = "#343746",
+	bglighter = "#424450",
+	bgdark = "#21222c",
+	bgdarker = "#191a21",
+	black = "#000000",
 }
 
 -- Make sure to setup `mapleader` and `maplocalleader` before
@@ -31,18 +31,14 @@ vim.g.maplocalleader = "\\"
 -- Set highlight on search
 vim.o.hlsearch = false
 
--- settings for nvim-tree
-vim.g.loaded_netrw = 1
-vim.g.loaded_netrwPlugin = 1
 vim.opt.termguicolors = true
-
 
 -- Make line numbers default
 vim.wo.number = true
 vim.o.rnu = true
 
 -- Enable mouse mode
-vim.o.mouse = 'a'
+vim.o.mouse = "a"
 
 -- Enable break indent
 vim.o.breakindent = true
@@ -50,7 +46,6 @@ vim.o.breakindent = true
 vim.opt.tabstop = 4
 vim.opt.softtabstop = 4
 vim.opt.shiftwidth = 4
-
 
 -- Save undo history
 vim.o.undofile = true
@@ -61,25 +56,22 @@ vim.o.smartcase = true
 
 -- Decrease update time
 vim.o.updatetime = 250
-vim.wo.signcolumn = 'yes'
+vim.wo.signcolumn = "yes"
 
 -- Set colorscheme
 vim.o.termguicolors = true
 -- vim.cmd[[colorscheme gruvbox]]
 
 -- Set completeopt to have a better completion experience
-vim.o.completeopt = 'menuone,noselect'
-
+vim.o.completeopt = "menuone,noselect"
 
 -- [[ Highlight on yank ]]
 -- See `:help vim.highlight.on_yank()`
-local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })
-vim.api.nvim_create_autocmd('TextYankPost', {
-  callback = function()
-    vim.highlight.on_yank()
-  end,
-  group = highlight_group,
-  pattern = '*',
+local highlight_group = vim.api.nvim_create_augroup("YankHighlight", { clear = true })
+vim.api.nvim_create_autocmd("TextYankPost", {
+	callback = function()
+		vim.highlight.on_yank()
+	end,
+	group = highlight_group,
+	pattern = "*",
 })
-
-

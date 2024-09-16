@@ -1,5 +1,14 @@
 return {
-	{ "ellisonleao/gruvbox.nvim" },
+	{
+		"ellisonleao/gruvbox.nvim",
+
+		lazy = false, -- make sure we load this during startup if it is your main colorscheme
+		priority = 1000, -- make sure to load this before all the other start plugins
+		config = function()
+			-- load the colorscheme here
+			vim.cmd([[colorscheme gruvbox]])
+		end,
+	},
 	{ "folke/tokyonight.nvim" },
 	{ "catppuccin/nvim", as = "catppuccin" },
 	{ "navarasu/onedark.nvim" },
@@ -31,31 +40,18 @@ return {
 		end,
 		dependencies = { { "nvim-tree/nvim-web-devicons" } },
 	},
-	-- {
-	-- 	"goolord/alpha-nvim",
-	-- 	dependencies = {
-	-- 		"echasnovski/mini.icons",
-	-- 		"nvim-lua/plenary.nvim",
-	-- 	},
-	-- 	config = function()
-	-- 		local alpha = require("alpha")
-	-- 		local theta = require("alpha.themes.theta")
-	-- 		local dashboard = require("alpha.themes.dashboard")
-	-- 		theta.buttons = {
-	-- 			type = "group",
-	-- 			val = {
-	-- 				{ type = "text", val = "Quick links", opts = { hl = "SpecialComment", position = "center" } },
-	-- 				{ type = "padding", val = 1 },
-	-- 				dashboard.button("e", "  New file", "<cmd>ene<CR>"),
-	-- 				dashboard.button("SPC f f", "󰈞  Find da file"),
-	-- 				dashboard.button("SPC f g", "󰊄  Live grep"),
-	-- 				dashboard.button("c", "  Configuration", "<cmd>cd stdpath('config')<CR>"),
-	-- 				dashboard.button("u", "  Update plugins", "<cmd>Lazy sync<CR>"),
-	-- 				dashboard.button("q", "󰅚  Quit", "<cmd>wqa<CR>"),
-	-- 			},
-	-- 			position = "center",
-	-- 		}
-	-- 		alpha.setup(theta.config)
-	-- 	end,
-	-- },
+	{
+		"nvim-lualine/lualine.nvim",
+		dependencies = { "nvim-tree/nvim-web-devicons" },
+		opts = {},
+	},
+	{
+		"lukas-reineke/indent-blankline.nvim",
+		main = "ibl",
+		---@module "ibl"
+		---@type ibl.config
+		opts = {
+			scope = { enabled = true },
+		},
+	},
 }

@@ -1,5 +1,8 @@
 local wk = require("which-key")
 
+-- set keymap for :w to save current buffer
+vim.keymap.set("n", ",,", "<cmd>w<CR>", { noremap = true, silent = true, desc = "Save current buffer" })
+
 -- See `:help vim.keymap.set()`
 vim.keymap.set({ "n", "v" }, "<Space>", "<Nop>", { silent = true })
 
@@ -15,16 +18,16 @@ wk.add({
 
 -- toggles
 wk.add({
-	{ "<leader>t", group = "[T]oggle" },
+	{ "<leader>T", group = "[T]oggle" },
 	{
-		"<leader>tb",
+		"<leader>Tb",
 		"<cmd>let &background = ( &background == 'dark' ? 'light' : 'dark' )<CR>",
 		desc = "toggle background",
 	},
-	{ "<leader>tn", "<cmd>setl nu!<CR>", desc = "line numbers" },
-	{ "<leader>tr", "<cmd>setl rnu!<CR>", desc = "relative line numbers" },
+	{ "<leader>Tn", "<cmd>setl nu!<CR>", desc = "line numbers" },
+	{ "<leader>Tr", "<cmd>setl rnu!<CR>", desc = "relative line numbers" },
 	{ "<leader>y", group = "yank" },
-	{ "<leader>yF", '<cmd>let @+ = expand("%")<CR>', desc = "yank current filename to system clipboard" },
+	{ "<leader>yy", '<cmd>let @+ = expand("%")<CR>', desc = "yank current filename to system clipboard" },
 	{ "<leader>yP", '<cmd>let @+ = expand("%:p")<CR>', desc = "yank full path to system clipboard" },
 	{ "<leader>yf", '<cmd>let @" = expand("%")<CR>', desc = "yank current filename" },
 	{ "<leader>yp", '<cmd>let @" = expand("%:p")<CR>', desc = "yank full path" },
@@ -45,6 +48,8 @@ wk.add({
 	{ "<leader>fd", "<cmd>Telescope diagnostics<CR>", desc = "Search diagnostics" },
 	{ "<leader>fk", "<cmd>Telescope keymaps<CR>", desc = "Search keymaps" },
 	{ "<leader>fs", "<cmd>Telescope possession list<CR>", desc = "Search sessions" },
+	{ "<leader>ft", "<cmd>lua require('telescope.builtin').treesitter{}<CR>", desc = "[f]ind [t]reesitter objects" },
+	{ "<leader>fj", "<cmd>lua require('telescope.builtin').jumplist{}<CR>", desc = "[f]ind [j]umplist" },
 })
 
 vim.keymap.set("n", "<leader>fT", ":Telescope themes<CR>", { noremap = true, silent = true, desc = "Theme Switcher" })
@@ -142,7 +147,7 @@ wk.add({
 	{ "gs", "<cmd>lua require('telescope.builtin').lsp_document_symbols<CR>", desc = "[D]ocument [S]ymbols" },
 	{ "gS", "<cmd>lua require('telescope.builtin').lsp_dynamic_workspace_symbols<CR>", desc = "[W]orkspace [S]ymbols" },
 	{ "gD", vim.lsp.buf.declaration, desc = "[G]oto [D]eclaration" },
-	{ "gd", ":Dashboard<CR>", desc = "[G]oto [D]ashboard" },
+	{ "gh", ":Dashboard<CR>", desc = "[G]oto [h]ome Dashboard" },
 })
 
 -- bufferline
@@ -200,6 +205,8 @@ wk.add({
 		end,
 		desc = "delete hidden buffers",
 	},
+	{ ";p", ":BufferLinePick<CR>", desc = "pick buffer to goto" },
+	{ ";c", ":BufferLinePickClose<CR>", desc = "pick and close buffer" },
 	{ ";s", group = "Open buffer in new split" },
 	{ ";s1", open_split_buf(1, false), desc = "open buffer 1 in new split" },
 	{ ";s2", open_split_buf(2, false), desc = "open buffer 2 in new split" },
@@ -232,6 +239,7 @@ wk.add({
 	{ "<leader>th", "<cmd>ToggleTerm direction=horizontal<CR>", desc = "Open [t]erminal horizontal" },
 	{ "<leader>tz", "<cmd>vs term://zsh<cr>", desc = "open a [z]sh [t]erminal in a new vertical split" },
 	{ "<C-n>", "<cmd>stopinsert!<CR>", desc = "get out insert mode", noremap = true, mode = "t" },
+	{ "jj", "<cmd>stopinsert!<CR>", desc = "get out insert mode", noremap = true, mode = "t" },
 })
 
 -- Possession session management
@@ -282,5 +290,16 @@ end, { desc = "Previous todo comment" })
 
 wk.add({
 	{ "<leader>fc", "<cmd>TodoTelescope<CR>", desc = "[f]ind all project todo [c]omments" },
-	{ "<leader>ft", "<cmd>TodoTelescope<CR>", desc = "Search [t]odo comments" },
+	-- { "<leader>ft", "<cmd>TodoTelescope<CR>", desc = "Search [t]odo comments" },
+})
+
+-- code companion
+wk.add({
+	{ "<leader>c", group = "[c]ode companion LLM" },
+	{ "<leader>ca", "<cmd>CodeCompanionActions<CR>", desc = "Show [c]ode LLM [a]ctions", mode = "n" },
+	{ "<leader>ca", "<cmd>CodeCompanionActions<CR>", desc = "Show [c]ode LLM [a]ctions", mode = "v" },
+	{ "<leader>cc", "<cmd>CodeCompanionToggle<CR>", desc = "[c]ode LLM [t]oggle", mode = "n" },
+	{ "<leader>cc", "<cmd>CodeCompanionToggle<CR>", desc = "[c]ode LLM [t]oggle", mode = "v" },
+	{ "<leader>cd", "<cmd>CodeCompanionAdd<CR>", desc = "[c]ode LLM a[d]d" },
+	{ "<leader>ci", "<cmd>CodeCompanion<CR>", desc = "[c]ode LLM [i]nline chat" },
 })
