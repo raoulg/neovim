@@ -1,12 +1,39 @@
 return {
 	{ "wakatime/vim-wakatime", lazy = false },
 	{
+		"ActivityWatch/aw-watcher-vim",
+	},
+	-- {
+	-- 	"lincore81/eigenzeit.nvim",
+	-- 	config = function()
+	-- 		require("eigenzeit").setup({})
+	-- 	end,
+	-- },
+	{
 		"quentingruber/timespent.nvim",
+		lazy = true,
+		event = "VeryLazy",
 		keys = {
 			{ "<leader>tT", "<cmd>:ShowTimeSpent<cr>", mode = { "n" }, desc = "Show time spent" },
 		},
 	},
-	{ "github/copilot.vim" },
+	{
+		"zbirenbaum/copilot.lua",
+		lazy = true,
+		cmd = "Copilot",
+		event = "InsertEnter",
+		config = function()
+			require("copilot").setup({
+				suggestion = { enabled = false },
+				panel = { enabled = true },
+			})
+		end,
+	},
+	{
+		"zbirenbaum/copilot-cmp",
+		lazy = true,
+		opts = {},
+	},
 	{
 		"olimorris/codecompanion.nvim",
 		dependencies = {
@@ -50,10 +77,13 @@ return {
 		"GCBallesteros/jupytext.nvim",
 		config = true,
 		lazy = false,
+		event = "VeryLazy",
 	},
 	-- nvim v0.8.0
 	{
 		"kdheepak/lazygit.nvim",
+		lazy = true,
+		event = "VeryLazy",
 		cmd = {
 			"LazyGit",
 			"LazyGitConfig",
