@@ -1,6 +1,7 @@
 return {
 	{
 		"jedrzejboczar/possession.nvim",
+		lazy = true,
 		dependencies = { "nvim-lua/plenary.nvim" },
 		config = function()
 			require("possession").setup({
