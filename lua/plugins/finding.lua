@@ -1,7 +1,7 @@
 -- require'telescope'.load_extension('project')
 
 return {
-	"folke/which-key.nvim",
+	{ "folke/which-key.nvim", lazy = true },
 	{ "nvim-telescope/telescope.nvim", dependencies = { "nvim-lua/plenary.nvim" } },
 	{
 		"stevearc/oil.nvim",
@@ -28,6 +28,7 @@ return {
 	},
 	{
 		"ahmedkhalf/project.nvim",
+		lazy = true,
 		config = function()
 			require("project_nvim").setup({
 				detection_methods = { "pattern" },
@@ -38,8 +39,11 @@ return {
 	{
 		"sidebar-nvim/sidebar.nvim",
 		config = function()
+			local width = vim.api.nvim_win_get_width(0)
+
 			require("sidebar-nvim").setup({
-				open = true,
+				open = width > 150,
+				-- open = true,
 				side = "right",
 				sections = { "datetime", "git", "diagnostics", "files", "todos" },
 				todos = {
