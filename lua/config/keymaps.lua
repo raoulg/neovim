@@ -9,11 +9,16 @@ vim.keymap.set({ "n", "v" }, "<Space>", "<Nop>", { silent = true })
 -- Remap for dealing with word wrap
 vim.keymap.set("n", "k", "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
 vim.keymap.set("n", "j", "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
+vim.keymap.set("v", "yY", '"+y', { noremap = true, silent = true })
 
 -- quicklist
 wk.add({
 	{ "[q", "<cmd>cprev<CR>", desc = "Previous quicklist item" },
 	{ "]q", "<cmd>cnext<CR>", desc = "Next quicklist item" },
+	{ "]Q", "<cmd>cfirst<CR>", desc = "First quicklist item" },
+	{ "[Q", "<cmd>clast<CR>", desc = "Last quicklist item" },
+	{ "[C", "<cmd>cclose<CR>", desc = "Close quicklist" },
+	{ "]C", "<cmd>cclose<CR>", desc = "Close quicklist" },
 })
 
 -- toggles
@@ -98,55 +103,52 @@ wk.add({
 	{ "<leader>w=", "<C-w>=", desc = "balance windows" },
 })
 
--- LSP
+-- LSP legacy keymaps
+-- wk.add({
+-- 	{ "<leader>l", group = "LSP" },
+-- 	{ "<leader>la", group = "LSP", desc = "LSP [A]ctions" },
+-- 	{ "<leader>lg", group = "LSP", desc = "LSP [G]oto" },
+-- 	{ "<leader>lw", group = "LSP", desc = "LSP [W]orkspaces" },
+-- })
+-- nmap("<leader>lar", vim.lsp.buf.rename, "[A]ction [R]ename")
+-- nmap("<leader>laf", "<cmd>lua require('conform').format({ async = true })<CR>", "[A]ction [F]ormat")
+-- nmap("<leader>lac", vim.lsp.buf.code_action, "[C]ode [A]ction")
+-- nmap("<leader>lgd", vim.lsp.buf.definition, "[G]oto [D]efinition")
+-- nmap("<leader>lgI", vim.lsp.buf.implementation, "[G]oto [I]mplementation")
+-- nmap("<leader>lgD", vim.lsp.buf.type_definition, "Type [D]efinition")
+-- nmap("<leader>lgr", require("telescope.builtin").lsp_references, "[G]oto [R]eferences")
+-- nmap("<leader>lgs", require("telescope.builtin").lsp_document_symbols, "[G]oto Document [s]ymbols")
+-- nmap("<leader>lgS", require("telescope.builtin").lsp_dynamic_workspace_symbols, "[G]oto Workspace [S]ymbols")
+-- nmap("<leader>lgD", vim.lsp.buf.declaration, "[G]oto [D]eclaration")
+--
+-- -- See `:help K` for why this keymap
+-- nmap("K", vim.lsp.buf.hover, "Hover Documentation")
+-- nmap("<leader>lK", vim.lsp.buf.hover, "Hover Documentation")
+-- nmap("<C-k>", vim.lsp.buf.signature_help, "Signature Documentation")
+--
+-- -- Lesser used LSP functionality
+-- nmap("<leader>lwa", vim.lsp.buf.add_workspace_folder, "[W]orkspace [A]dd Folder")
+-- nmap("<leader>lwr", vim.lsp.buf.remove_workspace_folder, "[W]orkspace [R]emove Folder")
+-- nmap("<leader>lwl", function()
+-- 	print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
+-- end, "[W]orkspace [L]ist Folders")
+
+-- LSP Telescope keymaps
 wk.add({
-	{ "<leader>l", group = "LSP" },
-	{ "<leader>la", group = "LSP", desc = "LSP [A]ctions" },
-	{ "<leader>lg", group = "LSP", desc = "LSP [G]oto" },
-	{ "<leader>lw", group = "LSP", desc = "LSP [W]orkspaces" },
+	{ "<leader>fl", group = "[f]ind [l]sp" },
+	{ "<leader>fls", require("telescope.builtin").lsp_document_symbols, desc = "[L]SP document [s]ymbols" },
+	{ "<leader>flS", require("telescope.builtin").lsp_dynamic_workspace_symbols, desc = "[L]SP workspace [S]ymbols" },
+	{ "<leader>flr", require("telescope.builtin").lsp_references, desc = "[L]SP [r]eferences" },
+	{ "<leader>fli", require("telescope.builtin").lsp_implementations, desc = "[L]SP [i]mplementations" },
+	{ "<leader>fld", require("telescope.builtin").lsp_definitions, desc = "[L]SP [d]efinitions" },
+	{ "<leader>flt", require("telescope.builtin").lsp_type_definitions, desc = "[L]SP type [d]efinitions" },
+	{ "<leader>flI", require("telescope.builtin").lsp_incoming_calls, desc = "[L]SP incoming [c]alls" },
+	{ "<leader>flo", require("telescope.builtin").lsp_outgoing_calls, desc = "[L]SP outgoing [c]alls" },
+	{ "<leader>flds", require("telescope.builtin").diagnostics, desc = "[L]SP [d]iagnostics" },
 })
 
--- TODO: clean this up
-local nmap = function(keys, func, desc)
-	if desc then
-		desc = "LSP: " .. desc
-	end
-
-	vim.keymap.set("n", keys, func, { buffer = bufnr, desc = desc })
-end
-
-nmap("<leader>lar", vim.lsp.buf.rename, "[A]ction [R]ename")
-nmap("<leader>laf", "<cmd>lua require('conform').format({ async = true })<CR>", "[A]ction [F]ormat")
-nmap("<leader>lac", vim.lsp.buf.code_action, "[C]ode [A]ction")
-nmap("<leader>lgd", vim.lsp.buf.definition, "[G]oto [D]efinition")
-nmap("<leader>lgI", vim.lsp.buf.implementation, "[G]oto [I]mplementation")
-nmap("<leader>lgD", vim.lsp.buf.type_definition, "Type [D]efinition")
-nmap("<leader>lgr", require("telescope.builtin").lsp_references, "[G]oto [R]eferences")
-nmap("<leader>lgs", require("telescope.builtin").lsp_document_symbols, "[G]oto Document [s]ymbols")
-nmap("<leader>lgS", require("telescope.builtin").lsp_dynamic_workspace_symbols, "[G]oto Workspace [S]ymbols")
-nmap("<leader>lgD", vim.lsp.buf.declaration, "[G]oto [D]eclaration")
-
--- See `:help K` for why this keymap
-nmap("K", vim.lsp.buf.hover, "Hover Documentation")
-nmap("<leader>lK", vim.lsp.buf.hover, "Hover Documentation")
-nmap("<C-k>", vim.lsp.buf.signature_help, "Signature Documentation")
-
--- Lesser used LSP functionality
-nmap("<leader>lwa", vim.lsp.buf.add_workspace_folder, "[W]orkspace [A]dd Folder")
-nmap("<leader>lwr", vim.lsp.buf.remove_workspace_folder, "[W]orkspace [R]emove Folder")
-nmap("<leader>lwl", function()
-	print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-end, "[W]orkspace [L]ist Folders")
-
+-- dashboard
 wk.add({
-	{ "g", group = "LSP [G]oto" },
-	{ "gd", vim.lsp.buf.definition, desc = "[G]oto [D]efinition" },
-	{ "gI", vim.lsp.buf.implementation, desc = "[G]oto [I]mplementation" },
-	{ "gD", vim.lsp.buf.type_definition, desc = "Type [D]efinition" },
-	{ "gr", "<cmd>lua require('telescope.builtin').lsp_references<CR>", desc = "[G]oto [R]eferences" },
-	{ "gs", "<cmd>lua require('telescope.builtin').lsp_document_symbols<CR>", desc = "[D]ocument [S]ymbols" },
-	{ "gS", "<cmd>lua require('telescope.builtin').lsp_dynamic_workspace_symbols<CR>", desc = "[W]orkspace [S]ymbols" },
-	{ "gD", vim.lsp.buf.declaration, desc = "[G]oto [D]eclaration" },
 	{ "gh", ":Dashboard<CR>", desc = "[G]oto [h]ome Dashboard" },
 })
 
@@ -255,7 +257,7 @@ wk.add({
 
 -- sidebar.nvim
 wk.add({
-	{ "<leader>ts", ":SidebarNvimToggle<CR>", desc = "[t]oggle [s]idebar" },
+	{ "<leader>Ts", ":SidebarNvimToggle<CR>", desc = "[t]oggle [s]idebar" },
 })
 
 -- git flog
