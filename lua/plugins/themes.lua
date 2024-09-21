@@ -9,14 +9,16 @@ return {
 			vim.cmd([[colorscheme gruvbox]])
 		end,
 	},
-	{ "folke/tokyonight.nvim" },
-	{ "catppuccin/nvim", as = "catppuccin" },
-	{ "navarasu/onedark.nvim" },
-	{ "gbprod/nord.nvim" },
-	{ "Abstract-IDE/Abstract-cs" },
-	{ "EdenEast/nightfox.nvim" },
+	{ "folke/tokyonight.nvim", lazy = false },
+	{ "catppuccin/nvim", as = "catppuccin", lazy = true },
+	{ "navarasu/onedark.nvim", lazy = true },
+	{ "gbprod/nord.nvim", lazy = false },
+	{ "Abstract-IDE/Abstract-cs", lazy = true },
+	{ "EdenEast/nightfox.nvim", lazy = false },
 	{
 		"andrew-george/telescope-themes",
+		lazy = true,
+		event = "VeryLazy",
 		config = function()
 			require("telescope").load_extension("themes")
 		end,
@@ -53,5 +55,20 @@ return {
 		opts = {
 			scope = { enabled = true },
 		},
+	},
+	-- {
+	-- 	"adelarsq/image_preview.nvim",
+	-- 	event = "VeryLazy",
+	-- 	config = function()
+	-- 		require("image_preview").setup()
+	-- 	end,
+	-- },
+	{
+		"nvim-telescope/telescope-media-files.nvim",
+		dependencies = { "nvim-telescope/telescope.nvim", "nvim-lua/popup.nvim", "nvim-lua/plenary.nvim" },
+		event = "VeryLazy",
+		config = function()
+			require("telescope").load_extension("media_files")
+		end,
 	},
 }
