@@ -53,8 +53,14 @@ wk.add({
 	{ "<leader>fd", "<cmd>Telescope diagnostics<CR>", desc = "Search diagnostics" },
 	{ "<leader>fk", "<cmd>Telescope keymaps<CR>", desc = "Search keymaps" },
 	{ "<leader>fs", "<cmd>Telescope possession list<CR>", desc = "Search sessions" },
-	{ "<leader>ft", "<cmd>lua require('telescope.builtin').treesitter{}<CR>", desc = "[f]ind [t]reesitter objects" },
 	{ "<leader>fj", "<cmd>lua require('telescope.builtin').jumplist{}<CR>", desc = "[f]ind [j]umplist" },
+})
+
+wk.add({
+	{"<leader>ft", group = "[F]ind [T]reesitter objects"},
+	{ "<leader>fto", "<cmd>lua require('telescope.builtin').treesitter{}<CR>", desc = "[f]ind default [t]reesitter [o]bjects" },
+	{"<leader>ftf", "<cmd>Telescope agrolens query=functions<CR>", desc = "[T]reesitter [f]unctions"},
+	{"<leader>ftF", "<cmd>Telescope agrolens query=functions buffers=all<CR>", desc = "[T]reesitter [F]unctions in all buffers"},
 })
 
 vim.keymap.set("n", "<leader>fT", ":Telescope themes<CR>", { noremap = true, silent = true, desc = "Theme Switcher" })

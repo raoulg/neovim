@@ -11,6 +11,22 @@ return {
 		-- Optional dependencies
 		dependencies = { { "echasnovski/mini.icons", opts = {} } },
 	},
+	{ "desdic/agrolens.nvim",
+		lazy = true,
+		config = function ()
+			require("telescope").extensions = {
+				agrolens = {
+					debug = false,
+					same_type = true,
+					include_hidden_buffers = false,
+					disable_indentation = false,
+					aliases = {},
+				}
+			}
+		
+			
+		end
+	},
 	{
 		"akinsho/bufferline.nvim",
 		version = "*",
