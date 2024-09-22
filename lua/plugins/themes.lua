@@ -3,13 +3,14 @@ return {
 		"ellisonleao/gruvbox.nvim",
 		lazy = false,
 	},
-	{ "folke/tokyonight.nvim", lazy = false,
+	{
+		"folke/tokyonight.nvim",
+		lazy = false,
 		priority = 1000,
 		config = function()
 			-- load the colorscheme here
 			vim.cmd([[colorscheme tokyonight]])
 		end,
-
 	},
 	{ "catppuccin/nvim", as = "catppuccin", lazy = true },
 	{ "navarasu/onedark.nvim", lazy = true },
@@ -49,13 +50,12 @@ return {
 		opts = {},
 	},
 	{
-		"lukas-reineke/indent-blankline.nvim",
-		main = "ibl",
-		---@module "ibl"
-		---@type ibl.config
-		opts = {
-			scope = { enabled = true },
-		},
+		"nvimdev/indentmini.nvim",
+		config = function()
+			require("indentmini").setup({
+				exclude = {},
+			})
+		end,
 	},
 	{
 		"adelarsq/image_preview.nvim",

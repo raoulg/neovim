@@ -23,10 +23,15 @@ return {
 					aliases = {},
 				}
 			}
-		
-			
 		end
 	},
+	{
+    'Bekaboo/dropbar.nvim',
+    -- optional, but required for fuzzy finder support
+    dependencies = {
+		  'nvim-telescope/telescope-fzf-native.nvim'
+		}
+    },
 	{
 		"akinsho/bufferline.nvim",
 		version = "*",
@@ -44,7 +49,7 @@ return {
 	},
 	{
 		"ahmedkhalf/project.nvim",
-		lazy = true,
+		lazy = false,
 		config = function()
 			require("project_nvim").setup({
 				detection_methods = { "pattern" },
