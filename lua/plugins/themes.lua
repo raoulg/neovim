@@ -1,15 +1,16 @@
 return {
 	{
 		"ellisonleao/gruvbox.nvim",
-
-		lazy = false, -- make sure we load this during startup if it is your main colorscheme
-		priority = 1000, -- make sure to load this before all the other start plugins
+		lazy = false,
+	},
+	{ "folke/tokyonight.nvim", lazy = false,
+		priority = 1000,
 		config = function()
 			-- load the colorscheme here
-			vim.cmd([[colorscheme gruvbox]])
+			vim.cmd([[colorscheme tokyonight]])
 		end,
+
 	},
-	{ "folke/tokyonight.nvim", lazy = false },
 	{ "catppuccin/nvim", as = "catppuccin", lazy = true },
 	{ "navarasu/onedark.nvim", lazy = true },
 	{ "gbprod/nord.nvim", lazy = false },
@@ -56,19 +57,11 @@ return {
 			scope = { enabled = true },
 		},
 	},
-	-- {
-	-- 	"adelarsq/image_preview.nvim",
-	-- 	event = "VeryLazy",
-	-- 	config = function()
-	-- 		require("image_preview").setup()
-	-- 	end,
-	-- },
 	{
-		"nvim-telescope/telescope-media-files.nvim",
-		dependencies = { "nvim-telescope/telescope.nvim", "nvim-lua/popup.nvim", "nvim-lua/plenary.nvim" },
+		"adelarsq/image_preview.nvim",
 		event = "VeryLazy",
 		config = function()
-			require("telescope").load_extension("media_files")
+			require("image_preview").setup()
 		end,
 	},
 }
