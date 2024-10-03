@@ -16,8 +16,14 @@ return {
 		"hrsh7th/nvim-cmp",
 		event = "InsertEnter",
 		dependencies = {
-			{ "L3MON4D3/LuaSnip" },
-		},
+				{ "L3MON4D3/LuaSnip",
+					"kdheepak/cmp-latex-symbols",
+					"micangl/cmp-vimtex",
+					"hrsh7th/cmp-path",
+					"hrsh7th/cmp-buffer",
+					"saadparwaiz1/cmp_luasnip",
+				},
+			},
 		config = function()
 			local cmp = require("cmp")
 
@@ -25,6 +31,13 @@ return {
 				sources = {
 					{ name = "copilot" },
 					{ name = "nvim_lsp" },
+					{ name = "vimtext" },
+					{ name = "path" },
+					{ name = "luasnip" },
+					{ name = "buffer" },
+					{ name = "latex_symbols", option = {
+						strategy = 0,
+					} },
 				},
 				mapping = cmp.mapping.preset.insert({
 					["<CR>"] = cmp.mapping.confirm({
@@ -39,7 +52,9 @@ return {
 				}),
 				snippet = {
 					expand = function(args)
+						require("luasnip").lsp_expand(args.body)
 						vim.snippet.expand(args.body)
+
 					end,
 				},
 			})

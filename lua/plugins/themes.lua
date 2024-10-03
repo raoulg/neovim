@@ -1,22 +1,30 @@
 return {
 	{
 		"ellisonleao/gruvbox.nvim",
-		lazy = false,
+		lazy = true,
+		event = "VeryLazy",
 	},
 	{
 		"folke/tokyonight.nvim",
 		lazy = false,
 		priority = 1000,
 		config = function()
-			-- load the colorscheme here
-			vim.cmd([[colorscheme tokyonight]])
+			-- Only load the theme if the file exists
+			local theme_file = vim.fn.stdpath("config") .. "/lua/current-theme.lua"
+			if vim.fn.filereadable(theme_file) == 1 then
+				dofile(theme_file)
+			end
 		end,
+		-- config = function()
+		-- 	-- load the colorscheme here
+		-- 	vim.cmd([[colorscheme tokyonight]])
+		-- end,
 	},
-	{ "catppuccin/nvim", as = "catppuccin", lazy = true },
-	{ "navarasu/onedark.nvim", lazy = true },
-	{ "gbprod/nord.nvim", lazy = false },
-	{ "Abstract-IDE/Abstract-cs", lazy = true },
-	{ "EdenEast/nightfox.nvim", lazy = false },
+	{ "catppuccin/nvim", as = "catppuccin", lazy = true, event = "VeryLazy" },
+	{ "navarasu/onedark.nvim", lazy = true, event = "VeryLazy" },
+	{ "gbprod/nord.nvim", lazy = true, event = "VeryLazy" },
+	{ "Abstract-IDE/Abstract-cs", lazy = true, event = "VeryLazy" },
+	{ "EdenEast/nightfox.nvim", lazy = true, event = "VeryLazy" },
 	{
 		"andrew-george/telescope-themes",
 		lazy = true,
@@ -47,7 +55,13 @@ return {
 	{
 		"nvim-lualine/lualine.nvim",
 		dependencies = { "nvim-tree/nvim-web-devicons" },
-		opts = {},
+		config = function()
+			require("lualine").setup({
+				sections = {
+					lualine_x = { "aerial" },
+				},
+			})
+		end,
 	},
 	{
 		"nvimdev/indentmini.nvim",

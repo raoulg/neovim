@@ -3,22 +3,35 @@ local wk = require("which-key")
 -- set keymap for :w to save current buffer
 vim.keymap.set("n", ",,", "<cmd>w<CR>", { noremap = true, silent = true, desc = "Save current buffer" })
 
+wk.add({
+	{ "<leader>U", "<cmd>Lazy<CR>", desc = "[U]pdate via Lazy" },
+})
+
 -- See `:help vim.keymap.set()`
 vim.keymap.set({ "n", "v" }, "<Space>", "<Nop>", { silent = true })
 
 -- Remap for dealing with word wrap
 vim.keymap.set("n", "k", "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
 vim.keymap.set("n", "j", "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
-vim.keymap.set("v", "yY", '"+y', { noremap = true, silent = true })
 
 -- quicklist
 wk.add({
 	{ "[q", "<cmd>cprev<CR>", desc = "Previous quicklist item" },
 	{ "]q", "<cmd>cnext<CR>", desc = "Next quicklist item" },
-	{ "]Q", "<cmd>cfirst<CR>", desc = "First quicklist item" },
-	{ "[Q", "<cmd>clast<CR>", desc = "Last quicklist item" },
-	{ "[C", "<cmd>cclose<CR>", desc = "Close quicklist" },
+	{ "[Q", "<cmd>cfirst<CR>", desc = "First quicklist item" },
+	{ "]Q", "<cmd>clast<CR>", desc = "Last quicklist item" },
 	{ "]C", "<cmd>cclose<CR>", desc = "Close quicklist" },
+	{ "]C", "<cmd>cclose<CR>", desc = "Close quicklist" },
+})
+vim.keymap.set("n", "<leader>q", function()
+	require("quicker").toggle()
+end, {
+	desc = "Toggle quickfix",
+})
+vim.keymap.set("n", "<leader>L", function()
+	require("quicker").toggle({ loclist = true })
+end, {
+	desc = "Toggle loclist",
 })
 
 -- toggles
@@ -32,10 +45,11 @@ wk.add({
 	{ "<leader>Tn", "<cmd>setl nu!<CR>", desc = "line numbers" },
 	{ "<leader>Tr", "<cmd>setl rnu!<CR>", desc = "relative line numbers" },
 	{ "<leader>y", group = "yank" },
-	{ "<leader>yy", '<cmd>let @+ = expand("%")<CR>', desc = "yank current filename to system clipboard" },
-	{ "<leader>yP", '<cmd>let @+ = expand("%:p")<CR>', desc = "yank full path to system clipboard" },
-	{ "<leader>yf", '<cmd>let @" = expand("%")<CR>', desc = "yank current filename" },
-	{ "<leader>yp", '<cmd>let @" = expand("%:p")<CR>', desc = "yank full path" },
+	{ "<leader>yf", '<cmd>let @+ = expand("%")<CR>', desc = "[y]ank current [f]ilename to system clipboard" },
+	{ "<leader>yP", '<cmd>let @+ = expand("%:p")<CR>', desc = "[y]ank full [p]ath to system clipboard" },
+	{ "<leader>yp", '<cmd>let @" = expand("%:p")<CR>', desc = "[y]ank full [p]ath" },
+	{ "<leader>yf", '<cmd>let @" = expand("%")<CR>', desc = "[y]ank current [F]ilename" },
+	{ "<leader>y", '"+y', desc = "[y]ank to system clipboard", mode = "v" },
 })
 
 vim.keymap.set({ "n", "v" }, "gx", ":execute '!open ' . shellescape(expand('<cfile>'), 1)<CR>")
@@ -44,6 +58,7 @@ vim.keymap.set({ "n", "v" }, "gx", ":execute '!open ' . shellescape(expand('<cfi
 wk.add({
 	{ "<leader>f", "Find everything" },
 	{ "<leader>ff", "<cmd>Telescope find_files<CR>", desc = "Find files" },
+	{ "<leader>fF", ":Telescope frecency<CR>", desc = "[F]ind [F]requency based items" },
 	{ "<leader>fr", "<cmd>Telescope oldfiles<CR>", desc = "Find recent files" },
 	{ "<leader>fp", "<cmd>lua require'telescope'.extensions.projects.projects{}<CR>", desc = "List projects" },
 	{ "<leader>fb", "<cmd>Telescope buffers<CR>", desc = "Find recent buffers" },
@@ -57,10 +72,18 @@ wk.add({
 })
 
 wk.add({
-	{"<leader>ft", group = "[F]ind [T]reesitter objects"},
-	{ "<leader>fto", "<cmd>lua require('telescope.builtin').treesitter{}<CR>", desc = "[f]ind default [t]reesitter [o]bjects" },
-	{"<leader>ftf", "<cmd>Telescope agrolens query=functions<CR>", desc = "[T]reesitter [f]unctions"},
-	{"<leader>ftF", "<cmd>Telescope agrolens query=functions buffers=all<CR>", desc = "[T]reesitter [F]unctions in all buffers"},
+	{ "<leader>ft", group = "[F]ind [T]reesitter objects" },
+	{
+		"<leader>fto",
+		"<cmd>lua require('telescope.builtin').treesitter{}<CR>",
+		desc = "[f]ind default [t]reesitter [o]bjects",
+	},
+	{ "<leader>ftf", "<cmd>Telescope agrolens query=functions<CR>", desc = "[T]reesitter [f]unctions" },
+	{
+		"<leader>ftF",
+		"<cmd>Telescope agrolens query=functions buffers=all<CR>",
+		desc = "[T]reesitter [F]unctions in all buffers",
+	},
 })
 
 vim.keymap.set("n", "<leader>fT", ":Telescope themes<CR>", { noremap = true, silent = true, desc = "Theme Switcher" })
@@ -305,8 +328,37 @@ wk.add({
 	{ "<leader>c", group = "[c]ode companion LLM" },
 	{ "<leader>ca", "<cmd>CodeCompanionActions<CR>", desc = "Show [c]ode LLM [a]ctions", mode = "n" },
 	{ "<leader>ca", "<cmd>CodeCompanionActions<CR>", desc = "Show [c]ode LLM [a]ctions", mode = "v" },
-	{ "<leader>cc", "<cmd>CodeCompanionToggle<CR>", desc = "[c]ode LLM [t]oggle", mode = "n" },
-	{ "<leader>cc", "<cmd>CodeCompanionToggle<CR>", desc = "[c]ode LLM [t]oggle", mode = "v" },
-	{ "<leader>cd", "<cmd>CodeCompanionAdd<CR>", desc = "[c]ode LLM a[d]d" },
+	{ "<leader>cc", "<cmd>CodeCompanionChat Toggle<CR>", desc = "[c]ode LLM [t]oggle", mode = "n" },
+	{ "<leader>cc", "<cmd>CodeCompanionChat Toggle<CR>", desc = "[c]ode LLM [t]oggle", mode = "v" },
+	{ "<leader>cd", "<cmd>CodeCompanion Add<CR>", desc = "[c]ode LLM a[d]d" },
 	{ "<leader>ci", "<cmd>CodeCompanion<CR>", desc = "[c]ode LLM [i]nline chat" },
+})
+
+-- latex
+
+wk.add({
+	{ "<leader>l", group = "LaTeX commands" },
+	{ "<leader>li", "<cmd>VimtexInfo<CR>", desc = "show latex info", noremap = true },
+	{ "<leader>lI", "<cmd>VimtexInfoFull<CR>", desc = "show full latex info", noremap = true },
+	{ "<leader>lt", "<cmd>VimtexTocOpen<CR>", desc = "open latex table of contents", noremap = true },
+	{ "<leader>lT", "<cmd>VimtexTocToggle<CR>", desc = "toggle latex table of contents", noremap = true },
+	{ "<leader>lq", "<cmd>VimtexLog<CR>", desc = "show latex compiler log", noremap = true },
+	{ "<leader>lv", "<cmd>VimtexView<CR>", desc = "view latex output", noremap = true },
+	{ "<leader>ll", "<cmd>VimtexCompile<CR>", desc = "start latex compilation", noremap = true },
+	{ "<leader>lL", "<cmd>VimtexCompileSelected<CR>", desc = "start latex compilation for selection", noremap = true },
+	{ "<leader>lk", "<cmd>VimtexStop<CR>", desc = "stop latex compilation", noremap = true },
+	{ "<leader>lK", "<cmd>VimtexStopAll<CR>", desc = "stop all latex compilation", noremap = true },
+	{ "<leader>le", "<cmd>VimtexErrors<CR>", desc = "show latex compilation errors", noremap = true },
+	{ "<leader>lo", "<cmd>VimtexCompileOutput<CR>", desc = "open file where compiler is redirected", noremap = true },
+	{ "<leader>lg", "<cmd>VimtexStatus<CR>", desc = "show latex compiler status", noremap = true },
+	{ "<leader>lG", "<cmd>VimtexStatusAll<CR>", desc = "show latex compiler status for all", noremap = true },
+	{ "<leader>lc", "<cmd>VimtexClean<CR>", desc = "clean latex output", noremap = true },
+	{ "<leader>lC", "<cmd>VimtexCleanAll<CR>", desc = "clean all latex output", noremap = true },
+	{ "<leader>lx", "<cmd>VimtexReload<CR>", desc = "reload vimtex", noremap = true },
+	{ "<leader>la", "<cmd>VimtexContextMenu<CR>", desc = "open latex context menu", noremap = true },
+	{ "<leader>lu", ":call LaTeXtoUnicode#Toggle()<CR>", desc = "toggle latex-to-unicode", noremap = true },
+})
+
+wk.add({
+	{ "<leader>x", group = "Trouble" },
 })

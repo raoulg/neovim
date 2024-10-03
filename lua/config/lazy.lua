@@ -14,6 +14,11 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
 	end
 end
 vim.opt.rtp:prepend(lazypath)
+vim.api.nvim_create_autocmd("VimEnter", {
+	callback = function()
+		require("lazy").update({ show = false })
+	end,
+})
 
 -- Setup lazy.nvim
 require("lazy").setup({
