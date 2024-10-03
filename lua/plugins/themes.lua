@@ -25,6 +25,7 @@ return {
 	{ "gbprod/nord.nvim", lazy = true, event = "VeryLazy" },
 	{ "Abstract-IDE/Abstract-cs", lazy = true, event = "VeryLazy" },
 	{ "EdenEast/nightfox.nvim", lazy = true, event = "VeryLazy" },
+	{ "marko-cerovac/material.nvim", lazy = true, event = "VeryLazy" },
 	{
 		"andrew-george/telescope-themes",
 		lazy = true,
