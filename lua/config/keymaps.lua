@@ -43,6 +43,7 @@ wk.add({
 		desc = "toggle background",
 	},
 	{ "<leader>Tn", "<cmd>setl nu!<CR>", desc = "line numbers" },
+	{ "<leader>Tm", "<cmd>lua require('render-markdown').toggle()<CR>", desc = "Toggle Markdown" },
 	{ "<leader>Tr", "<cmd>setl rnu!<CR>", desc = "relative line numbers" },
 	{ "<leader>y", group = "yank" },
 	{ "<leader>yf", '<cmd>let @+ = expand("%")<CR>', desc = "[y]ank current [f]ilename to system clipboard" },
@@ -57,8 +58,14 @@ vim.keymap.set({ "n", "v" }, "gx", ":execute '!open ' . shellescape(expand('<cfi
 -- telescope
 wk.add({
 	{ "<leader>f", "Find everything" },
-	{ "<leader>ff", "<cmd>Telescope find_files<CR>", desc = "Find files" },
-	{ "<leader>fF", ":Telescope frecency<CR>", desc = "[F]ind [F]requency based items" },
+	{ "<leader>fC", "<cmd>TodoTelescope<CR>", desc = "[f]ind all project todo [C]omments" },
+	{ "<leader>fF", "<cmd>Telescope find_files<CR>", desc = "Find files" },
+	{ "<leader>ff", "<cmd>Telescope smart_open<CR>", desc = "[F]ind [F]requency based items" },
+	{
+		"<leader>fP",
+		"<cmd>lua require('telescope').extensions.smart_open.smart_open {cwd_only = true}<CR>",
+		desc = "Find files in [P]resent working dir",
+	},
 	{ "<leader>fr", "<cmd>Telescope oldfiles<CR>", desc = "Find recent files" },
 	{ "<leader>fp", "<cmd>lua require'telescope'.extensions.projects.projects{}<CR>", desc = "List projects" },
 	{ "<leader>fb", "<cmd>Telescope buffers<CR>", desc = "Find recent buffers" },
@@ -319,10 +326,6 @@ vim.keymap.set("n", "[t", function()
 	require("todo-comments").jump_prev()
 end, { desc = "Previous todo comment" })
 
-wk.add({
-	{ "<leader>fc", "<cmd>TodoTelescope<CR>", desc = "[f]ind all project todo [c]omments" },
-})
-
 -- code companion
 wk.add({
 	{ "<leader>c", group = "[c]ode companion LLM" },
@@ -335,7 +338,6 @@ wk.add({
 })
 
 -- latex
-
 wk.add({
 	{ "<leader>l", group = "LaTeX commands" },
 	{ "<leader>li", "<cmd>VimtexInfo<CR>", desc = "show latex info", noremap = true },
@@ -361,4 +363,17 @@ wk.add({
 
 wk.add({
 	{ "<leader>x", group = "Trouble" },
+	{ "<leader>z", "<cmd>ZenMode<CR>", desc = "Zenmode" },
 })
+
+wk.add({
+	{ "<leader>b", group = "Colorpicker" },
+	{ "<leader>bh", "<cmd>lua require('minty.huefy').open()<CR>", desc = "Minty huefy" },
+	{ "<leader>bs", "<cmd>lua require('minty.shades').open()<CR>", desc = "Minty shades" },
+})
+
+-- smart split resize
+vim.keymap.set("n", "<C-h>", require("smart-splits").resize_left)
+vim.keymap.set("n", "<C-j>", require("smart-splits").resize_down)
+vim.keymap.set("n", "<C-k>", require("smart-splits").resize_up)
+vim.keymap.set("n", "<C-l>", require("smart-splits").resize_right)
