@@ -1,4 +1,111 @@
 return {
+	{
+		"ziontee113/color-picker.nvim",
+		config = function()
+			require("color-picker")
+		end,
+	},
+	{ "nvchad/minty", lazy = true, dependencies = { "nvchad/volt" } },
+	{
+		"neph-iap/easycolor.nvim",
+		dependencies = { "stevearc/dressing.nvim" }, -- Optional, but provides better UI for editing the formatting template
+		opts = {},
+		keys = { { "<leader>B", "<cmd>EasyColor<cr>", desc = "Color Picker" } },
+		config = function()
+			require("easycolor").setup({
+				color_format = "hex",
+				ui = {
+					mappings = {
+						q = "close_window", -- The action when q is pressed, close window by default.
+						j = "move_cursor_down", -- The action when j is pressed, move cursor down by default.
+						k = "move_cursor_up", -- The action when k is pressed, move cursor up by default.
+						h = "move_cursor_left", -- The action when h is pressed, move cursor left by default.
+						l = "move_cursor_right", -- The action when l is pressed, move cursor right by default.
+						["J"] = "hue_down", -- The action when <Down> is pressed, hue down by default.
+						["K"] = "hue_up", -- The action when <Up> is pressed, hue up by default.
+						["<Enter>"] = "insert_color", -- The action when <Enter> is pressed, insert color by default.
+						t = "edit_formatting_template", -- The action when t is pressed, edit formatting template by default.
+					},
+				},
+			})
+		end,
+	},
+	{
+		"NyxVim/nvim-colorizer.lua",
+		config = function()
+			require("colorizer").setup({
+				filetypes = {
+					"css",
+					"scss",
+					"javascript",
+					html = { mode = "foreground" },
+				},
+			})
+		end,
+	},
+	{
+		"roobert/tailwindcss-colorizer-cmp.nvim",
+		-- optionally, override the default options:
+		config = function()
+			require("tailwindcss-colorizer-cmp").setup({
+				color_square_width = 2,
+			})
+			require("cmp").config.formatting = {
+				format = require("tailwindcss-colorizer-cmp").formatter,
+			}
+		end,
+	},
+	{
+		"nvim-orgmode/orgmode",
+		event = "VeryLazy",
+		ft = { "org" },
+		config = function()
+			-- Setup orgmode
+			require("orgmode").setup({
+				org_agenda_files = "~/code/org/**/*",
+				org_default_notes_file = "~/code/org/refile.org",
+				mappings = {
+					global = {
+						org_agenda = { "gA", "<Leader>Oa" },
+						org_capture = { "gC", "<Leader>Oc" },
+					},
+				},
+			})
+
+			-- NOTE: If you are using nvim-treesitter with ~ensure_installed = "all"~ option
+			-- add ~org~ to ignore_install
+			-- require('nvim-treesitter.configs').setup({
+			--   ensure_installed = 'all',
+			--   ignore_install = { 'org' },
+			-- })
+		end,
+	},
+	{
+		"alexpasmantier/pymple.nvim",
+		dependencies = {
+			"nvim-lua/plenary.nvim",
+			"MunifTanjim/nui.nvim",
+			-- optional (nicer ui)
+			"stevearc/dressing.nvim",
+			"nvim-tree/nvim-web-devicons",
+		},
+		build = ":PympleBuild",
+		config = function()
+			require("pymple").setup({
+				keymaps = {
+					-- Resolves import for symbol under cursor.
+					-- This will automatically find and add the corresponding import to
+					-- the top of the file (below any existing doctsring)
+					resolve_import_under_cursor = {
+						desc = "Resolve import under cursor",
+						keys = ",i", -- feel free to change this to whatever you like
+					},
+				},
+				-- automatically register the following keymaps on plugin setup
+			})
+		end,
+	},
+
 	{ "wakatime/vim-wakatime", lazy = false },
 	{
 		"ActivityWatch/aw-watcher-vim",
