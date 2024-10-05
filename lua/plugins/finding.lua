@@ -1,7 +1,22 @@
 -- require'telescope'.load_extension('project')
 
 return {
-
+	{
+		"danielfalk/smart-open.nvim",
+		branch = "0.2.x",
+		config = function()
+			require("telescope").load_extension("smart_open")
+		end,
+		dependencies = {
+			"kkharji/sqlite.lua",
+		},
+	},
+	{
+		"nvim-telescope/telescope-frecency.nvim",
+		config = function()
+			require("telescope").load_extension("frecency")
+		end,
+	},
 	{ "folke/which-key.nvim", lazy = true },
 	{
 		"folke/flash.nvim",
@@ -18,12 +33,6 @@ return {
 		  },
 	},
 	{ "nvim-telescope/telescope.nvim", dependencies = { "nvim-lua/plenary.nvim" } },
-	{
-		"nvim-telescope/telescope-frecency.nvim",
-		config = function()
-			require("telescope").load_extension("frecency")
-		end,
-	},
 	{
 		"stevearc/oil.nvim",
 		---@module 'oil'
