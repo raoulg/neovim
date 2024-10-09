@@ -69,6 +69,7 @@ wk.add({
 	{ "<leader>fr", "<cmd>Telescope oldfiles<CR>", desc = "Find recent files" },
 	{ "<leader>fp", "<cmd>lua require'telescope'.extensions.projects.projects{}<CR>", desc = "List projects" },
 	{ "<leader>fb", "<cmd>Telescope buffers<CR>", desc = "Find recent buffers" },
+	{ "<leader>fm", "<cmd>Telescope marks<CR>", desc = "Find marks" },
 	{ "<leader>fH", "<cmd>Telescope help_tags<CR>", desc = "Search help" },
 	{ "<leader>fw", "<cmd>Telescope grep_string<CR>", desc = "Search current word" },
 	{ "<leader>fg", "<cmd>Telescope live_grep<CR>", desc = "Grep" },
@@ -76,6 +77,7 @@ wk.add({
 	{ "<leader>fk", "<cmd>Telescope keymaps<CR>", desc = "Search keymaps" },
 	{ "<leader>fs", "<cmd>Telescope possession list<CR>", desc = "Search sessions" },
 	{ "<leader>fj", "<cmd>lua require('telescope.builtin').jumplist{}<CR>", desc = "[f]ind [j]umplist" },
+	{ "<leader>fL", "<cmd>Telescope lazy<CR>", desc = "Telescope Lazy plugins" }, -- <C-o> open in brower
 })
 
 wk.add({
@@ -280,15 +282,29 @@ wk.add({
 	{ "jj", "<cmd>stopinsert!<CR>", desc = "get out insert mode", noremap = true, mode = "t" },
 })
 
+-- yarepl
+wk.add({
+	{ "<leader>s", group = "send to repl" },
+	{ "<leader>ss", "<Plug>(REPLStart)", desc = "[S]tart REPL" },
+	{ "<leader>st", "<Plug>(REPLHideOrFocus)", desc = "REPL [t]oggle" },
+	{ "<leader>sf", "<Plug>(REPLFocus)", desc = "REPL [F]ocus" },
+	{ "<leader>sh", "<Plug>(REPLHide)", desc = "REPL [H]ide" },
+	{ "<leader>sc", "<Plug>(REPLClose)", desc = "REPL [C]lose" },
+	{ "<leader>sl", "<Plug>(REPLSendVisual)", desc = "REPL Send Visual [l]ines", mode = "v" },
+	{ "<leader>sl", "<Plug>(REPLSendLine)", desc = "REPL Send [l]ine", mode = "n" },
+	{ "<leader>sb", "<cmd>REPLAttachBufferToREPL<CR>", desc = "Attach current [b]uffer" },
+	{ "<leader>sB", "<cmd>REPLDetachBufferToREPL<CR>", desc = "Detach current [B]uffer" },
+})
+
 -- Possession session management
-vim.keymap.set({ "n" }, "<leader>sl", ":PossessionLoad<CR>", { silent = false })
-vim.keymap.set({ "n" }, "<leader>sd", ":PossessionDelete<CR>", { silent = false })
-vim.keymap.set({ "n" }, "<leader>sf", ":Telescope possession list<CR>", { silent = false })
+vim.keymap.set({ "n" }, "<leader>Sl", ":PossessionLoad<CR>", { silent = false })
+vim.keymap.set({ "n" }, "<leader>Sd", ":PossessionDelete<CR>", { silent = false })
+vim.keymap.set({ "n" }, "<leader>Sf", ":Telescope possession list<CR>", { silent = false })
 
 wk.add({
-	{ "<leader>s", group = "[s]ession management" },
-	{ "<leader>sS", ":PossessionSave ", desc = "name [S]ession" },
-	{ "<leader>ss", ":PossessionSave<CR>", desc = "[S]ession [s]ave" },
+	{ "<leader>S", group = "[s]ession management" },
+	{ "<leader>SS", ":PossessionSave ", desc = "name [S]ession" },
+	{ "<leader>Ss", ":PossessionSave<CR>", desc = "[S]ession [s]ave" },
 })
 
 -- sidebar.nvim
@@ -377,3 +393,16 @@ vim.keymap.set("n", "<C-h>", require("smart-splits").resize_left)
 vim.keymap.set("n", "<C-j>", require("smart-splits").resize_down)
 vim.keymap.set("n", "<C-k>", require("smart-splits").resize_up)
 vim.keymap.set("n", "<C-l>", require("smart-splits").resize_right)
+
+-- Docstrings
+wk.add({
+	{ "<leader>D", group = "[D]ocstrings" },
+	{ "<leader>DD", "<cmd>lua require('neogen').generate()<CR>", desc = "Generate [D]ocstring" },
+	{
+		"<leader>Dc",
+		"<cmd>lua require('neogen').generate({type = 'class'})<CR>",
+		desc = "Generate [D]ocstring [c]lass",
+	},
+	{ "<leader>Db", "<cmd>CBclbox<CR>", desc = "Generate [b]ox", mode = { "n", "v" } },
+	{ "<leader>Dt", "<Cmd>CBllline<CR>", desc = "[b]ox [t]itled Line", mode = { "n", "v" } },
+})
