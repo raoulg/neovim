@@ -1,5 +1,26 @@
 return {
 	{
+		"milanglacier/yarepl.nvim",
+		config = function()
+			yarepl = require("yarepl")
+			yarepl.setup({
+				-- wincmd = "belowright 15 split",
+				wincmd = "vertical 50 split",
+				-- The available REPL palattes that `yarepl` can create REPL based on
+				metas = {
+					python = { cmd = "python", formatter = yarepl.formatter.trim_empty_lines },
+					aichat = { cmd = "aichat", formatter = yarepl.formatter.bracketed_pasting },
+					radian = { cmd = "radian", formatter = yarepl.formatter.bracketed_pasting },
+					ipython = { cmd = "ipython", formatter = yarepl.formatter.bracketed_pasting },
+					bpython = { cmd = "bpython", formatter = yarepl.formatter.trim_empty_lines },
+					R = { cmd = "R", formatter = yarepl.formatter.trim_empty_lines },
+					bash = { cmd = "bash", formatter = yarepl.formatter.trim_empty_lines },
+					zsh = { cmd = "zsh", formatter = yarepl.formatter.bracketed_pasting },
+				},
+			})
+		end,
+	},
+	{
 		"akinsho/toggleterm.nvim",
 		lazy = false,
 		config = function()
