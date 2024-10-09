@@ -10,19 +10,23 @@ return {
 		lazy = false,
 		config = true,
 	},
-
 	-- Autocompletion
 	{
-		"hrsh7th/nvim-cmp",
+		-- "hrsh7th/nvim-cmp",
+		"iguanacucumber/magazine.nvim", -- maintained fork from hrsh7th
+		name = "nvim-cmp", -- Otherwise highlighting gets messed up
 		event = "InsertEnter",
+		enabled = true,
 		dependencies = {
 			{
 				"L3MON4D3/LuaSnip",
+				"saadparwaiz1/cmp_luasnip",
 				"kdheepak/cmp-latex-symbols",
 				"micangl/cmp-vimtex",
 				"hrsh7th/cmp-path",
+				"hrsh7th/cmp-cmdline",
 				"hrsh7th/cmp-buffer",
-				"saadparwaiz1/cmp_luasnip",
+				"hrsh7th/cmp-emoji",
 			},
 		},
 		config = function()
@@ -37,6 +41,8 @@ return {
 					{ name = "luasnip" },
 					{ name = "buffer" },
 					{ name = "orgmode" },
+					{ name = "emoji" },
+					{ name = "luasnip" },
 					{ name = "latex_symbols", option = {
 						strategy = 0,
 					} },
