@@ -4,19 +4,23 @@ return {
 	{
 		"danielfalk/smart-open.nvim",
 		branch = "0.2.x",
+		opts = {
+			match_algoritm = "fzy",
+		},
 		config = function()
 			require("telescope").load_extension("smart_open")
 		end,
 		dependencies = {
 			"kkharji/sqlite.lua",
+			"nvim-telescope/telescope-fzy-native.nvim",
 		},
 	},
-	{
-		"nvim-telescope/telescope-frecency.nvim",
-		config = function()
-			require("telescope").load_extension("frecency")
-		end,
-	},
+	-- {
+	-- 	"nvim-telescope/telescope-frecency.nvim",
+	-- 	config = function()
+	-- 		require("telescope").load_extension("frecency")
+	-- 	end,
+	-- },
 	{ "folke/which-key.nvim", lazy = true },
 	{
 		"folke/flash.nvim",
@@ -33,6 +37,7 @@ return {
 		  },
 	},
 	{ "nvim-telescope/telescope.nvim", dependencies = { "nvim-lua/plenary.nvim" } },
+	{ "tsakirist/telescope-lazy.nvim" },
 	{
 		"stevearc/oil.nvim",
 		---@module 'oil'
@@ -58,10 +63,6 @@ return {
 	},
 	{
 		"Bekaboo/dropbar.nvim",
-		-- optional, but required for fuzzy finder support
-		dependencies = {
-			"nvim-telescope/telescope-fzf-native.nvim",
-		},
 	},
 	{
 		"akinsho/bufferline.nvim",
