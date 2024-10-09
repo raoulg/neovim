@@ -1,5 +1,29 @@
 return {
 	{
+		"danymat/neogen",
+		-- config = true,
+		config = function()
+			require("neogen").setup({
+				languages = {
+					python = {
+						template = {
+							annotation_convention = "numpydoc",
+						},
+					},
+				},
+			})
+		end,
+	},
+	{ "LudoPinelli/comment-box.nvim" },
+	{
+		"rbong/vim-flog",
+		lazy = true,
+		cmd = { "Flog", "Flogsplit", "Floggit" },
+		dependencies = {
+			"tpope/vim-fugitive",
+		},
+	},
+	{
 		"ziontee113/color-picker.nvim",
 		config = function()
 			require("color-picker")
@@ -154,6 +178,7 @@ return {
 			require("copilot").setup({
 				suggestion = { enabled = true },
 				panel = { enabled = true },
+				filetypes = { markdown = true },
 			})
 		end,
 	},
