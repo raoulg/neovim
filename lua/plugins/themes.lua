@@ -1,4 +1,36 @@
+local header = {
+	[[.......................                        ...    .'::cccc,....,,'..  ...  ..  ...   ...         ..   ...  ..    ...   .',,'...':ccc::,.    ..                       .......................]],
+	[[.......................                         ......,;::::ccc:,.':lc,..      ..     ...................  .   ..  .     ..':lc;',::ccc::::,......                       .......................]],
+	[[.......................                    .   .';:,.,::::;:::ccc;,:cc::,...        ...',:codxkkkkkkxdol:,'...        ...,:::cc;;ccc:::;;:::;..;;,.   ..                 .......................]],
+	[[.......................                   ...  .;::,',:::;::::cc:,'',:ccccc,.  . ..,;lxO0XNWWWWWWWWWWWWWNKOxo:,'.    .'cccccc;'',;:c::::;;::;'';;;'.  ..                 .......................]],
+	[[.......................                        ...,;,,''',,,,,''''',;:ccccc:,...':lx0XWWWWWWWWWWWWWWWWWWWWWWN0xoc;...,:ccccc:;,'''''',,,,,'',,;,'...                     .......................]],
+	[[.......................                   ....   ...............';c::ccc:cc:'..:oxKNWWWWNNWWWWWWWWWWWWWWWWWWWWWKxol;.';cc:ccc::::'............'...   ...                 .......................]],
+	[[.......................                  .;c:'.................,;::;;;;;;::'..ldONNNWWNNWWWWWWWWWWWWWWWWWWWWWWWWXOoo:..;::;;;;;::;,..................;cc'.               .......................]],
+	[[.......................                 .;lc;,,::;,'............''...........cdONNNWWNNWWWWWWWWWWWWWWWWWWWWWWWWWWXOoo:..........'''...........'';::,,;:lc.               .......................]],
+	[[.......................                .':c:,,:lcc:;,'............',,'.... .:oxXWNWWNNWWWWWWWWWWWWWWWWWWWWWWWWWWWWKkll, .....,,'............'';:cllc;,;c:,.              .......................]],
+	[[.......................                .,;::;:cc:;;,,'............';::,,,...clkWWWWNNWWWWWWWWWWWWWWWWWWWWWWWWWWWWWN0lc:..',,;c:,............'',;;;:c:;:::,..             .......................]],
+	[[.......................                 ..;:,'''''...................',,,'.,::OWWWWNNWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWXd::'.,,,''..................''''',;:'.               .......................]],
+	[[.......................                 .;:;,,'........... ...............'::l0WWWWNWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWNklc................  ...........',;:;'.              .......................]],
+	[[.......................                ..;;,''......... ............    .;lddxKWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWOddc'..    .....''.... .........'',;;'.              .......................]],
+	[[.......................                ................ .....'....      'lkOkkKWN0xxk0NWWWWWWWNK000XWWWWWWWWXOxxkKNW0xxkxc.    .. ..''.... ................              .......................]],
+	[[.......................                   .............  .,oxkxdc'..... .l0KOkKOc....'l0WWWWNk:''',;l0WWWWNk;....,lKKkkOKo.       ..''.    .............                 .......................]],
+	[[.......................                          .........,ccccc;'..''. .;d0O00:.......cXWWWx'.......,0WWW0;.......lKOOOk:.  ...'',,,;ll:........                        .......................]],
+	[[.......................                       .,'.  ...;oxxl'..         ..;dKXKl. ... .lXWWWx. ..... ,OWWW0;. .....o000d;.  .ckOOkkxl::cc;...    .:,.                    .......................]],
+	[[.......................                       ...,col,.,lc;.'colllc;.......';lOKo;,',;dXWWWWXd;....':kNWWWW0l;'',;oOkc,..   ..,,;:c;....''..,ll:',c,.                    .......................]],
+	[[.......................                         'okdc'......'okkOOOx:':xkkxo:';okkOO0XNWWWWWWWX0OOOKNWWWWWWWNKOkkkkd:,:loo:.  ..'::'..:xOOkdooodl.                       .......................]],
+	[[.......................                       ......:odxdc'..,:,':dkkxxo;;::;....,:lxOK00KKKKXXXXXXXKKKK00OOkkxxdl;:d00Oxl;...:xO0ko'..;:::c;.......                     .......................]],
+	[[.......................                     ..;c,..,dxdl:,,:;co,',;ccc:;..         ..,cloxkkkkkkkOOOOOkxdolcc:;,.';;,,'.'.,lc;,;::;,'.',......  .,c;...                  .......................]],
+	[[.......................                   .,:c::;,'..... .lo,;dc:;,,,,'..    .'.  .'''''':lllllllllllllll;'''... .,'   ....'',;.';,'.,:,.',....',;::c:;..                .......................]],
+	[[.......................                  .'::;,,,;;'...'.'oxc:ddl,.;l:.     .....'lxxdl:,ckOOkxdddddxkOOxc;coxo,.   .... ..,:'..:xxc;c;''..  .,;;,,,;;:'.                .......................]],
+	[[.......................                   .,,'....... ....,oxdddl,'c:. .   ...  .lKNX0kdc,:odkOOOOOOkxol:;cok0Xx,.   .'.  .'c:'ckOkdl;,'..   ........,,.                 .......................]],
+	[[.......................                   .,'....  .....  .'cooooc;:'.',.      .,x0o;;;,'.....,;;;;,'.....',,,:l:....      .':cdkkxl,...  .....  ....''..                .......................]],
+	[[.......................                    .................,lllllcc:;c:..    ..,xd........................'...':'..... ....,codooo:.. ................                  .......................]],
+	[[.......................                        ....... ....';:::;;:::cc:'.   .',;xo..,::;,;;;;;;:::;;;;;,,;::'.'c,. ....'llcc:cc:::;'..............                      .......................]],
+	[[.......................                   ............';;;:llc:;,;'',,,,'..   ..:kl..,c:'....''',,,''.....'c:'.'l;...  'x0Odl:::::;,,;,..',,...........                  .......................]],
+	[[.......................                 .............,clllllc:;;;;,,,''''.......:xl..............''............'c;.....;kkdoc;;;:::;;;;,;cll;.............               .......................]],
+}
 return {
+	{ "LudoPinelli/comment-box.nvim", opts = {} },
 	{
 		"folke/noice.nvim",
 		event = "VeryLazy",
@@ -19,7 +51,16 @@ return {
 				inc_rename = false, -- enables an input dialog for inc-rename.nvim
 				lsp_doc_border = false, -- add a border to hover docs and signature help
 			},
-			-- add any options here
+			messages = {
+				-- NOTE: If you enable messages, then the cmdline is enabled automatically.
+				-- This is a current Neovim limitation.
+				enabled = true, -- enables the Noice messages UI
+				view = "notify", -- default view for messages
+				view_error = "notify", -- view for errors
+				view_warn = "mini", -- view for warnings
+				view_history = "messages", -- view for :messages
+				view_search = "virtualtext", -- view for search count messages. Set to `false` to disable
+			},
 		},
 		dependencies = {
 			-- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
@@ -81,8 +122,9 @@ return {
 					shortcut = {
 						{ desc = "Raoul Grouls", group = "DashboardShortCut" },
 					},
+					header = header,
 					week_header = {
-						enable = true,
+						enable = false,
 					},
 					project = {
 						enable = true,
