@@ -36,7 +36,7 @@ end, {
 
 -- toggles
 wk.add({
-	{ "<leader>T", group = "[T]oggle" },
+	{ "<leader>T", group = "toggle" },
 	{
 		"<leader>Tb",
 		"<cmd>let &background = ( &background == 'dark' ? 'light' : 'dark' )<CR>",
@@ -71,8 +71,6 @@ wk.add({
 	{ "<leader>fb", "<cmd>Telescope buffers<CR>", desc = "Find recent buffers" },
 	{ "<leader>fm", "<cmd>Telescope marks<CR>", desc = "Find marks" },
 	{ "<leader>fH", "<cmd>Telescope help_tags<CR>", desc = "Search help" },
-	{ "<leader>fw", "<cmd>Telescope grep_string<CR>", desc = "Search current word" },
-	{ "<leader>fg", "<cmd>Telescope live_grep<CR>", desc = "Grep" },
 	{ "<leader>fd", "<cmd>Telescope diagnostics<CR>", desc = "Search diagnostics" },
 	{ "<leader>fk", "<cmd>Telescope keymaps<CR>", desc = "Search keymaps" },
 	{ "<leader>fs", "<cmd>Telescope possession list<CR>", desc = "Search sessions" },
@@ -273,7 +271,7 @@ wk.add({
 
 -- Terminal
 wk.add({
-	{ "<leader>t", group = "[T]erminal" },
+	{ "<leader>t", group = "Terminal" },
 	{ "<leader>tt", "<cmd>ToggleTerm direction=vertical<CR>", desc = "vertical [t]erminal (can also do <C-\\>)" },
 	{ "<leader>tf", "<cmd>ToggleTerm direction=float<CR>", desc = "vertical [t]erminal (can also do <C-\\>)" },
 	{ "<leader>th", "<cmd>ToggleTerm direction=horizontal<CR>", desc = "Open [t]erminal horizontal" },
@@ -405,4 +403,15 @@ wk.add({
 	},
 	{ "<leader>Db", "<cmd>CBclbox<CR>", desc = "Generate [b]ox", mode = { "n", "v" } },
 	{ "<leader>Dt", "<Cmd>CBllline<CR>", desc = "[b]ox [t]itled Line", mode = { "n", "v" } },
+})
+
+-- debug
+wk.add({
+	{ "<leader>d", group = "Debug" },
+	{ "<leader>db", "<cmd>lua require'dap'.toggle_breakpoint()<CR>", desc = "breakpoint" },
+	{ "<leader>dc", "<cmd>lua require'dap'.continue()<CR>", desc = "continue" },
+	{ "<leader>do", "<cmd>lua require'dap'.step_over()<CR>", desc = "step over" },
+	{ "<leader>di", "<cmd>lua require'dap'.step_into()<CR>", desc = "step into" },
+	{ "<leader>dt", "<cmd>lua require'dapui'.toggle()<CR>", desc = "toggle ui" },
+	{ "<leader>dr", "<cmd>lua require'dapui'.open({ reset = true })<CR>", desc = "reset ui" },
 })
