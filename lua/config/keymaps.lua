@@ -66,7 +66,7 @@ wk.add({
 		"<cmd>lua require('telescope').extensions.smart_open.smart_open {cwd_only = true}<CR>",
 		desc = "Find files in [P]resent working dir",
 	},
-	{ "<leader>fr", "<cmd>Telescope oldfiles<CR>", desc = "Find recent files" },
+	{ "<leader>fg", "<cmd>Telescope live_grep<CR>", desc = "Grep pwd" },
 	{ "<leader>fp", "<cmd>lua require'telescope'.extensions.projects.projects{}<CR>", desc = "List projects" },
 	{ "<leader>fb", "<cmd>Telescope buffers<CR>", desc = "Find recent buffers" },
 	{ "<leader>fm", "<cmd>Telescope marks<CR>", desc = "Find marks" },
@@ -412,6 +412,7 @@ wk.add({
 	{ "<leader>dc", "<cmd>lua require'dap'.continue()<CR>", desc = "continue" },
 	{ "<leader>do", "<cmd>lua require'dap'.step_over()<CR>", desc = "step over" },
 	{ "<leader>di", "<cmd>lua require'dap'.step_into()<CR>", desc = "step into" },
+	{ "<leader>dI", "<cmd>lua require('dap').step_out()<CR>", desc = "step out" },
 	{ "<leader>dt", "<cmd>lua require'dapui'.toggle()<CR>", desc = "toggle ui" },
 	{ "<leader>dr", "<cmd>lua require'dapui'.open({ reset = true })<CR>", desc = "reset ui" },
 })
