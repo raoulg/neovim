@@ -25,6 +25,7 @@ return {
 			vim.g.barbar_auto_setup = false
 		end,
 		opts = {
+			exclude_ft = { "REPL" },
 			icons = {
 				-- Configure the base icons on the bufferline.
 				-- Valid options to display the buffer index and -number are `true`, 'superscript' and 'subscript'
@@ -81,6 +82,10 @@ return {
 		"folke/noice.nvim",
 		event = "VeryLazy",
 		opts = {
+			notify = {
+				enabled = true,
+				view = "notify",
+			},
 			lsp = {
 				-- override markdown rendering so that **cmp** and other plugins use **Treesitter**
 				override = {
@@ -101,9 +106,9 @@ return {
 				-- NOTE: If you enable messages, then the cmdline is enabled automatically.
 				-- This is a current Neovim limitation.
 				enabled = true, -- enables the Noice messages UI
-				view = "notify", -- default view for messages
-				view_error = "notify", -- view for errors
-				view_warn = "mini", -- view for warnings
+				view = "mini", -- default view for messages
+				view_error = "split", -- view for errors
+				view_warn = "split", -- view for warnings
 				view_history = "messages", -- view for :messages
 				view_search = "virtualtext", -- view for search count messages. Set to `false` to disable
 			},
