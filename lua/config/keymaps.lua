@@ -58,7 +58,7 @@ vim.keymap.set({ "n", "v" }, "gx", ":execute '!open ' . shellescape(expand('<cfi
 -- telescope
 wk.add({
 	{ "<leader>f", "Find everything" },
-	{ "<leader>fC", "<cmd>TodoTelescope<CR>", desc = "[f]ind all project todo [C]omments" },
+	{ "<leader>ft", "<cmd>TodoTelescope<CR>", desc = "[f]ind all project [t]odo comments" },
 	{ "<leader>fF", "<cmd>Telescope find_files<CR>", desc = "Find files" },
 	{ "<leader>ff", "<cmd>Telescope smart_open<CR>", desc = "[F]ind [F]requency based items" },
 	{
@@ -79,15 +79,15 @@ wk.add({
 })
 
 wk.add({
-	{ "<leader>ft", group = "[F]ind [T]reesitter objects" },
+	{ "<leader>fx", group = "[F]ind [T]reesitter objects" },
 	{
-		"<leader>fto",
+		"<leader>fxo",
 		"<cmd>lua require('telescope.builtin').treesitter{}<CR>",
 		desc = "[f]ind default [t]reesitter [o]bjects",
 	},
-	{ "<leader>ftf", "<cmd>Telescope agrolens query=functions<CR>", desc = "[T]reesitter [f]unctions" },
+	{ "<leader>fxf", "<cmd>Telescope agrolens query=functions<CR>", desc = "[T]reesitter [f]unctions" },
 	{
-		"<leader>ftF",
+		"<leader>fxF",
 		"<cmd>Telescope agrolens query=functions buffers=all<CR>",
 		desc = "[T]reesitter [F]unctions in all buffers",
 	},
@@ -126,6 +126,7 @@ wk.add({
 	{ "<leader>ww", "<C-w>w", desc = "other window" },
 	{ "<leader>wf", "<C-w>|", desc = "maximize window" },
 	{ "<leader>wd", "<C-w>c", desc = "delete window" },
+	{ "<leader>wD", "<C-w>o", desc = "delete all other windows" },
 	{ "<leader>w-", "<C-w>s", desc = "split window below" },
 	{ "<leader>w|", "<C-w>v", desc = "split window right" },
 	{ "<leader>wh", "<C-w>h", desc = "window left" },
@@ -137,37 +138,8 @@ wk.add({
 	{ "<leader>wl", "<C-w>l", desc = "window right" },
 	{ "<leader>wL", "<C-w>10<", desc = "expand window left" },
 	{ "<leader>w=", "<C-w>=", desc = "balance windows" },
+	{ "<leader>ws", "<C-w>x", desc = "swap windows" },
 })
-
--- LSP legacy keymaps
--- wk.add({
--- 	{ "<leader>l", group = "LSP" },
--- 	{ "<leader>la", group = "LSP", desc = "LSP [A]ctions" },
--- 	{ "<leader>lg", group = "LSP", desc = "LSP [G]oto" },
--- 	{ "<leader>lw", group = "LSP", desc = "LSP [W]orkspaces" },
--- })
--- nmap("<leader>lar", vim.lsp.buf.rename, "[A]ction [R]ename")
--- nmap("<leader>laf", "<cmd>lua require('conform').format({ async = true })<CR>", "[A]ction [F]ormat")
--- nmap("<leader>lac", vim.lsp.buf.code_action, "[C]ode [A]ction")
--- nmap("<leader>lgd", vim.lsp.buf.definition, "[G]oto [D]efinition")
--- nmap("<leader>lgI", vim.lsp.buf.implementation, "[G]oto [I]mplementation")
--- nmap("<leader>lgD", vim.lsp.buf.type_definition, "Type [D]efinition")
--- nmap("<leader>lgr", require("telescope.builtin").lsp_references, "[G]oto [R]eferences")
--- nmap("<leader>lgs", require("telescope.builtin").lsp_document_symbols, "[G]oto Document [s]ymbols")
--- nmap("<leader>lgS", require("telescope.builtin").lsp_dynamic_workspace_symbols, "[G]oto Workspace [S]ymbols")
--- nmap("<leader>lgD", vim.lsp.buf.declaration, "[G]oto [D]eclaration")
---
--- -- See `:help K` for why this keymap
--- nmap("K", vim.lsp.buf.hover, "Hover Documentation")
--- nmap("<leader>lK", vim.lsp.buf.hover, "Hover Documentation")
--- nmap("<C-k>", vim.lsp.buf.signature_help, "Signature Documentation")
---
--- -- Lesser used LSP functionality
--- nmap("<leader>lwa", vim.lsp.buf.add_workspace_folder, "[W]orkspace [A]dd Folder")
--- nmap("<leader>lwr", vim.lsp.buf.remove_workspace_folder, "[W]orkspace [R]emove Folder")
--- nmap("<leader>lwl", function()
--- 	print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
--- end, "[W]orkspace [L]ist Folders")
 
 -- LSP Telescope keymaps
 wk.add({
@@ -331,7 +303,7 @@ wk.add({
 	{ "[c", "<cmd>Gitsigns prev_hunk<CR>", desc = "previous change" },
 })
 
--- todo-comments
+-- odyycomments
 vim.keymap.set("n", "]t", function()
 	require("todo-comments").jump_next()
 end, { desc = "Next todo comment" })
@@ -415,4 +387,94 @@ wk.add({
 	{ "<leader>dI", "<cmd>lua require('dap').step_out()<CR>", desc = "step out" },
 	{ "<leader>dt", "<cmd>lua require'dapui'.toggle()<CR>", desc = "toggle ui" },
 	{ "<leader>dr", "<cmd>lua require'dapui'.open({ reset = true })<CR>", desc = "reset ui" },
+})
+
+-- harpoon , marks
+local harpoon = require("harpoon")
+harpoon:setup()
+local conf = require("telescope.config").values
+local function toggle_telescope(harpoon_files)
+	local file_paths = {}
+	for _, item in ipairs(harpoon_files.items) do
+		table.insert(file_paths, item.value)
+	end
+
+	require("telescope.pickers")
+		.new({}, {
+			prompt_title = "Harpoon",
+			finder = require("telescope.finders").new_table({
+				results = file_paths,
+			}),
+			previewer = conf.file_previewer({}),
+			sorter = conf.generic_sorter({}),
+		})
+		:find()
+end
+
+wk.add({
+	{ "<leader>m", group = "Harpoon marks" },
+	{
+		"<leader>fh",
+		function()
+			toggle_telescope(harpoon:list())
+		end,
+		desc = "find harpoon",
+	},
+
+	{
+		"<leader>ma",
+		function()
+			harpoon:list():add()
+		end,
+		desc = "add to list",
+	},
+	{
+		"<leader>mt",
+		function()
+			harpoon.ui:toggle_quick_menu(harpoon:list())
+		end,
+		desc = "toggle quick menu",
+	},
+	{
+		"<leader>ms",
+		function()
+			harpoon:list():select(1)
+		end,
+		desc = "goto 1",
+	},
+	{
+		"<leader>md",
+		function()
+			harpoon:list():select(2)
+		end,
+		desc = "goto 2",
+	},
+	{
+		"<leader>mj",
+		function()
+			harpoon:list():select(3)
+		end,
+		desc = "goto 3",
+	},
+	{
+		"<leader>mk",
+		function()
+			harpoon:list():select(4)
+		end,
+		desc = "goto 4",
+	},
+	{
+		"<leader>mp",
+		function()
+			harpoon:list():prev()
+		end,
+		desc = "previous buffer",
+	},
+	{
+		"<leader>mn",
+		function()
+			harpoon:list():next()
+		end,
+		desc = "next buffer",
+	},
 })

@@ -1,5 +1,10 @@
 return {
 	{
+		"ThePrimeagen/harpoon",
+		branch = "harpoon2",
+		dependencies = { "nvim-lua/plenary.nvim" },
+	},
+	{
 		"ggandor/leap.nvim",
 		config = function()
 			require("leap").create_default_mappings()

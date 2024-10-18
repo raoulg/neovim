@@ -51,7 +51,7 @@ vim.opt.shiftwidth = 4
 vim.o.undofile = true
 
 -- Case insensitive searching UNLESS /C or capital in search
-vim.o.ignorecase = true
+vim.o.ignorecase = false
 vim.o.smartcase = true
 
 -- Decrease update time
