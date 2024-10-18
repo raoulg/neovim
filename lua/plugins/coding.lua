@@ -1,5 +1,61 @@
 return {
 	{
+		"jedrzejboczar/possession.nvim",
+		lazy = true,
+		event = "VeryLazy",
+		dependencies = { "nvim-lua/plenary.nvim" },
+		config = function()
+			require("possession").setup({
+				autosave = {
+					current = true, -- or fun(name): boolean
+					cwd = true, -- or fun(): boolean
+					tmp = false, -- or fun(): boolean
+					tmp_name = "tmp", -- or fun(): string
+					on_load = true,
+					on_quit = true,
+				},
+				autoload = true, -- or 'last' or 'auto_cwd' or 'last_cwd' or fun(): string
+				commands = {
+					save = "PossessionSave",
+					load = "PossessionLoad",
+					save_cwd = "PossessionSaveCwd",
+					load_cwd = "PossessionLoadCwd",
+					rename = "PossessionRename",
+					close = "PossessionClose",
+					delete = "PossessionDelete",
+					show = "PossessionShow",
+					list = "PossessionList",
+					list_cwd = "PossessionListCwd",
+					migrate = "PossessionMigrate",
+				},
+				-- autoload = "auto_cwd", -- or 'last' or 'auto_cwd' or 'last_cwd' or fun(): string
+			})
+			require("telescope").load_extension("possession")
+		end,
+	},
+	{
+		"linux-cultist/venv-selector.nvim",
+		dependencies = {
+			"neovim/nvim-lspconfig",
+			"mfussenegger/nvim-dap",
+			"mfussenegger/nvim-dap-python", --optional
+			-- { "nvim-telescope/telescope.nvim", branch = "0.1.x", dependencies = { "nvim-lua/plenary.nvim" } },
+		},
+		lazy = false,
+		branch = "regexp", -- This is the regexp branch, use this for the new version
+		config = function()
+			require("venv-selector").setup()
+		end,
+		keys = {
+			{ "<leader>v", "<cmd>VenvSelect<cr>" },
+		},
+	},
+	{
+		"Chaitanyabsprip/fastaction.nvim",
+		---@type FastActionConfig
+		opts = {},
+	},
+	{
 		"danymat/neogen",
 		-- config = true,
 		config = function()
