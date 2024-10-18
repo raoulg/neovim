@@ -16,6 +16,62 @@ local header = {
 }
 return {
 	{
+		"romgrk/barbar.nvim",
+		dependencies = {
+			"lewis6991/gitsigns.nvim", -- OPTIONAL: for git status
+			"nvim-tree/nvim-web-devicons", -- OPTIONAL: for file icons
+		},
+		init = function()
+			vim.g.barbar_auto_setup = false
+		end,
+		opts = {
+			icons = {
+				-- Configure the base icons on the bufferline.
+				-- Valid options to display the buffer index and -number are `true`, 'superscript' and 'subscript'
+				buffer_index = false,
+				buffer_number = false,
+				gitsigns = {
+					added = { enabled = true, icon = "+" },
+					changed = { enabled = true, icon = "~" },
+					deleted = { enabled = true, icon = "-" },
+				},
+			},
+		},
+
+		version = "^1.0.0", -- optional: only update when a new 1.x version is released
+	},
+	{
+		"tomiis4/BufferTabs.nvim",
+		enabled = false,
+		dependencies = {
+			"nvim-tree/nvim-web-devicons", -- optional
+		},
+		lazy = false,
+		config = function()
+			require("buffertabs").setup({
+				show_single_buffer = false,
+				horizontal = "right",
+				-- config
+			})
+		end,
+	},
+	-- {
+	-- 	"akinsho/bufferline.nvim",
+	-- 	enable = false,
+	-- 	version = "*",
+	-- 	dependencies = "nvim-tree/nvim-web-devicons",
+	-- 	config = function()
+	-- 		local function print_numbers(opts)
+	-- 			return string.format("%s", opts.raise(opts.ordinal), opts.raise(opts.id))
+	-- 		end
+	-- 		require("bufferline").setup({
+	-- 			options = {
+	-- 				numbers = print_numbers,
+	-- 			},
+	-- 		})
+	-- 	end,
+	-- },
+	{
 		"chentoast/marks.nvim",
 		event = "VeryLazy",
 		opts = {},
@@ -104,6 +160,7 @@ return {
 	},
 	{
 		"nvimdev/dashboard-nvim",
+		enabled = true,
 		event = "VimEnter",
 		config = function()
 			require("dashboard").setup({

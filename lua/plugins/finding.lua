@@ -54,21 +54,6 @@ return {
 		"Bekaboo/dropbar.nvim",
 	},
 	{
-		"akinsho/bufferline.nvim",
-		version = "*",
-		dependencies = "nvim-tree/nvim-web-devicons",
-		config = function()
-			local function print_numbers(opts)
-				return string.format("%s", opts.raise(opts.ordinal), opts.raise(opts.id))
-			end
-			require("bufferline").setup({
-				options = {
-					numbers = print_numbers,
-				},
-			})
-		end,
-	},
-	{
 		"ahmedkhalf/project.nvim",
 		lazy = false,
 		config = function()

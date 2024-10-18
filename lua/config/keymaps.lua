@@ -144,15 +144,16 @@ wk.add({
 -- LSP Telescope keymaps
 wk.add({
 	{ "<leader>fl", group = "[f]ind [l]sp" },
+	{ "<leader>fa", '<cmd>lua require("fastaction").code_action()<CR>', desc = "code actions" },
 	{ "<leader>fls", require("telescope.builtin").lsp_document_symbols, desc = "[L]SP document [s]ymbols" },
 	{ "<leader>flS", require("telescope.builtin").lsp_dynamic_workspace_symbols, desc = "[L]SP workspace [S]ymbols" },
 	{ "<leader>flr", require("telescope.builtin").lsp_references, desc = "[L]SP [r]eferences" },
 	{ "<leader>fli", require("telescope.builtin").lsp_implementations, desc = "[L]SP [i]mplementations" },
 	{ "<leader>fld", require("telescope.builtin").lsp_definitions, desc = "[L]SP [d]efinitions" },
+	{ "<leader>flD", require("telescope.builtin").diagnostics, desc = "[L]SP [d]iagnostics" },
 	{ "<leader>flt", require("telescope.builtin").lsp_type_definitions, desc = "[L]SP type [d]efinitions" },
 	{ "<leader>flI", require("telescope.builtin").lsp_incoming_calls, desc = "[L]SP incoming [c]alls" },
 	{ "<leader>flo", require("telescope.builtin").lsp_outgoing_calls, desc = "[L]SP outgoing [c]alls" },
-	{ "<leader>flds", require("telescope.builtin").diagnostics, desc = "[L]SP [d]iagnostics" },
 })
 
 -- dashboard
@@ -160,86 +161,106 @@ wk.add({
 	{ "gh", ":Dashboard<CR>", desc = "[G]oto [h]ome Dashboard" },
 })
 
--- bufferline
-local function open_split_buf(n, vert)
-	return function()
-		require("bufferline.commands").exec(n, function(buf, all_visible)
-			local str = vert and "vert sbuffer " or "sbuffer "
-			vim.cmd(str .. buf.id)
-		end)
-	end
-end
-
-local Bufferline = require("bufferline")
+-- bufferline barbar
 wk.add({
 	{ ";", group = "manage buffers and tabs" },
-	{
-		";]",
-		function()
-			return Bufferline.cycle(1)
-		end,
-		desc = "cycle next",
-	},
-	{
-		";[",
-		function()
-			return Bufferline.cycle(-1)
-		end,
-		desc = "cycle previous",
-	},
-	{
-		";x",
-		function()
-			return vim.cmd("bd")
-		end,
-		desc = "close current buffer",
-	},
-	{
-		";.",
-		function()
-			return Bufferline.close_in_direction("right")
-		end,
-		desc = "close all buffers to the right",
-	},
-	{
-		";,",
-		function()
-			return Bufferline.close_in_direction("left")
-		end,
-		desc = "close all buffers to the left",
-	},
-	{
-		";h",
-		function()
-			return vim.cmd("up | %bd | e#")
-		end,
-		desc = "delete hidden buffers",
-	},
-	{ ";p", ":BufferLinePick<CR>", desc = "pick buffer to goto" },
-	{ ";c", ":BufferLinePickClose<CR>", desc = "pick and close buffer" },
-	{ ";s", group = "Open buffer in new split" },
-	{ ";s1", open_split_buf(1, false), desc = "open buffer 1 in new split" },
-	{ ";s2", open_split_buf(2, false), desc = "open buffer 2 in new split" },
-	{ ";s3", open_split_buf(3, false), desc = "open buffer 3 in new split" },
-	{ ";s4", open_split_buf(4, false), desc = "open buffer 4 in new split" },
-	{ ";s5", open_split_buf(5, false), desc = "open buffer 5 in new split" },
-	{ ";s6", open_split_buf(6, false), desc = "open buffer 6 in new split" },
-	{ ";s7", open_split_buf(7, false), desc = "open buffer 7 in new split" },
-	{ ";s8", open_split_buf(8, false), desc = "open buffer 8 in new split" },
-	{ ";s9", open_split_buf(9, false), desc = "open buffer 9 in new split" },
-	{ ";s0", open_split_buf(10, false), desc = "open buffer 10 in new split" },
-	{ ";v", group = "Open buffer in new vertical split" },
-	{ ";v1", open_split_buf(1, true), desc = "open buffer 1 in new vertical split" },
-	{ ";v2", open_split_buf(2, true), desc = "open buffer 2 in new vertical split" },
-	{ ";v3", open_split_buf(3, true), desc = "open buffer 3 in new vertical split" },
-	{ ";v4", open_split_buf(4, true), desc = "open buffer 4 in new vertical split" },
-	{ ";v5", open_split_buf(5, true), desc = "open buffer 5 in new vertical split" },
-	{ ";v6", open_split_buf(6, true), desc = "open buffer 6 in new vertical split" },
-	{ ";v7", open_split_buf(7, true), desc = "open buffer 7 in new vertical split" },
-	{ ";v8", open_split_buf(8, true), desc = "open buffer 8 in new vertical split" },
-	{ ";v9", open_split_buf(9, true), desc = "open buffer 9 in new vertical split" },
-	{ ";v0", open_split_buf(10, true), desc = "open buffer 10 in new vertical split" },
+	-- { ";]", "<cmd>bnext<CR>", desc = "Next buffer" },
+	-- { ";[", "<cmd>bprev<CR>", desc = "previous buffer" },
+	{ ";]", "<cmd>BufferNext<CR>", desc = "Next buffer" },
+	{ ";[", "<cmd>BufferPrevious<CR>", desc = "previous buffer" },
+	{ ";{", "<cmd>BufferMovePrevious<CR>", desc = "previous buffer" },
+	{ ";}", "<cmd>BufferMoveNext<CR>", desc = "Next buffer" },
+	{ ":{", "<cmd>BufferMovePrevious<CR>", desc = "previous buffer" },
+	{ ":}", "<cmd>BufferMoveNext<CR>", desc = "Next buffer" },
+	{ ";c", "<cmd>BufferClose<CR>", desc = "close buffer" },
+	{ ";.", "<cmd>BufferCloseBuffersRight<CR>", desc = "close buffers right" },
+	{ ";,", "<cmd>BufferCloseBuffersLeft<CR>", desc = "close buffers left" },
+	{ ";b", "<Cmd>BufferOrderByBufferNumber<CR>", desc = "order by number" },
+	{ ";n", "<Cmd>BufferOrderByName<CR>", desc = "order by name" },
+	{ ";d", "<Cmd>BufferOrderByDirectory<CR>", desc = "order by directory" },
+	{ ";l", "<Cmd>BufferOrderByLanguage<CR>", desc = "order by language" },
+	{ ";p", "<Cmd>BufferPick<CR>", desc = "buffer pick mode" },
 })
+
+-- local function open_split_buf(n, vert)
+-- 	return function()
+-- 		require("bufferline.commands").exec(n, function(buf, all_visible)
+-- 			local str = vert and "vert sbuffer " or "sbuffer "
+-- 			vim.cmd(str .. buf.id)
+-- 		end)
+-- 	end
+-- end
+--
+-- local Bufferline = require("bufferline")
+-- wk.add({
+-- 	{ ";", group = "manage buffers and tabs" },
+-- 	{
+-- 		";]",
+-- 		function()
+-- 			return Bufferline.cycle(1)
+-- 		end,
+-- 		desc = "cycle next",
+-- 	},
+-- 	{
+-- 		";[",
+-- 		function()
+-- 			return Bufferline.cycle(-1)
+-- 		end,
+-- 		desc = "cycle previous",
+-- 	},
+-- 	{
+-- 		";x",
+-- 		function()
+-- 			return vim.cmd("bd")
+-- 		end,
+-- 		desc = "close current buffer",
+-- 	},
+-- 	{
+-- 		";.",
+-- 		function()
+-- 			return Bufferline.close_in_direction("right")
+-- 		end,
+-- 		desc = "close all buffers to the right",
+-- 	},
+-- 	{
+-- 		";,",
+-- 		function()
+-- 			return Bufferline.close_in_direction("left")
+-- 		end,
+-- 		desc = "close all buffers to the left",
+-- 	},
+-- 	{
+-- 		";h",
+-- 		function()
+-- 			return vim.cmd("up | %bd | e#")
+-- 		end,
+-- 		desc = "delete hidden buffers",
+-- 	},
+-- 	{ ";p", ":BufferLinePick<CR>", desc = "pick buffer to goto" },
+-- 	{ ";c", ":BufferLinePickClose<CR>", desc = "pick and close buffer" },
+-- 	{ ";s", group = "Open buffer in new split" },
+-- 	{ ";s1", open_split_buf(1, false), desc = "open buffer 1 in new split" },
+-- 	{ ";s2", open_split_buf(2, false), desc = "open buffer 2 in new split" },
+-- 	{ ";s3", open_split_buf(3, false), desc = "open buffer 3 in new split" },
+-- 	{ ";s4", open_split_buf(4, false), desc = "open buffer 4 in new split" },
+-- 	{ ";s5", open_split_buf(5, false), desc = "open buffer 5 in new split" },
+-- 	{ ";s6", open_split_buf(6, false), desc = "open buffer 6 in new split" },
+-- 	{ ";s7", open_split_buf(7, false), desc = "open buffer 7 in new split" },
+-- 	{ ";s8", open_split_buf(8, false), desc = "open buffer 8 in new split" },
+-- 	{ ";s9", open_split_buf(9, false), desc = "open buffer 9 in new split" },
+-- 	{ ";s0", open_split_buf(10, false), desc = "open buffer 10 in new split" },
+-- 	{ ";v", group = "Open buffer in new vertical split" },
+-- 	{ ";v1", open_split_buf(1, true), desc = "open buffer 1 in new vertical split" },
+-- 	{ ";v2", open_split_buf(2, true), desc = "open buffer 2 in new vertical split" },
+-- 	{ ";v3", open_split_buf(3, true), desc = "open buffer 3 in new vertical split" },
+-- 	{ ";v4", open_split_buf(4, true), desc = "open buffer 4 in new vertical split" },
+-- 	{ ";v5", open_split_buf(5, true), desc = "open buffer 5 in new vertical split" },
+-- 	{ ";v6", open_split_buf(6, true), desc = "open buffer 6 in new vertical split" },
+-- 	{ ";v7", open_split_buf(7, true), desc = "open buffer 7 in new vertical split" },
+-- 	{ ";v8", open_split_buf(8, true), desc = "open buffer 8 in new vertical split" },
+-- 	{ ";v9", open_split_buf(9, true), desc = "open buffer 9 in new vertical split" },
+-- 	{ ";v0", open_split_buf(10, true), desc = "open buffer 10 in new vertical split" },
+-- })
 
 -- Terminal
 wk.add({
