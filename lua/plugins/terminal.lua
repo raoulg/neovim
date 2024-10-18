@@ -2,10 +2,12 @@ return {
 	{
 		"milanglacier/yarepl.nvim",
 		config = function()
-			yarepl = require("yarepl")
+			require("telescope").load_extension("REPLShow")
+			local yarepl = require("yarepl")
 			yarepl.setup({
 				-- see `:h buflisted`, whether the REPL buffer should be buflisted.
-				buflisted = true,
+				buflisted = false,
+				ft = "REPL",
 				-- wincmd = "belowright 15 split",
 				wincmd = "vertical 50 split",
 				-- The available REPL palattes that `yarepl` can create REPL based on
