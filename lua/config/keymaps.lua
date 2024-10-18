@@ -170,8 +170,8 @@ wk.add({
 	{ ";[", "<cmd>BufferPrevious<CR>", desc = "previous buffer" },
 	{ ";{", "<cmd>BufferMovePrevious<CR>", desc = "previous buffer" },
 	{ ";}", "<cmd>BufferMoveNext<CR>", desc = "Next buffer" },
-	{ ":{", "<cmd>BufferMovePrevious<CR>", desc = "previous buffer" },
-	{ ":}", "<cmd>BufferMoveNext<CR>", desc = "Next buffer" },
+	-- { ":{", "<cmd>BufferMovePrevious<CR>", desc = "previous buffer" },
+	-- { ":}", "<cmd>BufferMoveNext<CR>", desc = "Next buffer" },
 	{ ";c", "<cmd>BufferClose<CR>", desc = "close buffer" },
 	{ ";.", "<cmd>BufferCloseBuffersRight<CR>", desc = "close buffers right" },
 	{ ";,", "<cmd>BufferCloseBuffersLeft<CR>", desc = "close buffers left" },
@@ -276,9 +276,10 @@ wk.add({
 -- yarepl
 wk.add({
 	{ "<leader>s", group = "send to repl" },
+	{ "<leader>sf", "<cmd>Telescope REPLShow<CR>", desc = "Find all REPLs" },
 	{ "<leader>ss", "<Plug>(REPLStart)", desc = "[S]tart REPL" },
 	{ "<leader>st", "<Plug>(REPLHideOrFocus)", desc = "REPL [t]oggle" },
-	{ "<leader>sf", "<Plug>(REPLFocus)", desc = "REPL [F]ocus" },
+	{ "<leader>sF", "<Plug>(REPLFocus)", desc = "REPL [F]ocus" },
 	{ "<leader>sh", "<Plug>(REPLHide)", desc = "REPL [H]ide" },
 	{ "<leader>sc", "<Plug>(REPLClose)", desc = "REPL [C]lose" },
 	{ "<leader>sl", "<Plug>(REPLSendVisual)", desc = "REPL Send Visual [l]ines", mode = "v" },
