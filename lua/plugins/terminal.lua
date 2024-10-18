@@ -4,6 +4,8 @@ return {
 		config = function()
 			yarepl = require("yarepl")
 			yarepl.setup({
+				-- see `:h buflisted`, whether the REPL buffer should be buflisted.
+				buflisted = true,
 				-- wincmd = "belowright 15 split",
 				wincmd = "vertical 50 split",
 				-- The available REPL palattes that `yarepl` can create REPL based on
