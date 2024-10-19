@@ -49,8 +49,10 @@ wk.add({
 	{ "<leader>yf", '<cmd>let @+ = expand("%")<CR>', desc = "[y]ank current [f]ilename to system clipboard" },
 	{ "<leader>yP", '<cmd>let @+ = expand("%:p")<CR>', desc = "[y]ank full [p]ath to system clipboard" },
 	{ "<leader>yp", '<cmd>let @" = expand("%:p")<CR>', desc = "[y]ank full [p]ath" },
-	{ "<leader>yf", '<cmd>let @" = expand("%")<CR>', desc = "[y]ank current [F]ilename" },
-	{ "<leader>y", '"+y', desc = "[y]ank to system clipboard", mode = "v" },
+	{ "<leader>yF", '<cmd>let @" = expand("%")<CR>', desc = "[y]ank current [F]ilename" },
+	{ "<leader>yy", '"+y', desc = "[y]ank to system clipboard", mode = "v" },
+	{ "<leader>yh", "<cmd>Telescope neoclip<CR>", desc = "[y]ank history (<c-p> to paste)" },
+	{ "<leader>ym", "<cmd>Telescope macroscope<CR>", desc = "macros history (<c-p> to paste)" },
 })
 
 vim.keymap.set({ "n", "v" }, "gx", ":execute '!open ' . shellescape(expand('<cfile>'), 1)<CR>")
