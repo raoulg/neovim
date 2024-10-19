@@ -41,34 +41,18 @@ return {
 
 		version = "^1.0.0", -- optional: only update when a new 1.x version is released
 	},
-	{
-		"tomiis4/BufferTabs.nvim",
-		enabled = false,
-		dependencies = {
-			"nvim-tree/nvim-web-devicons", -- optional
-		},
-		lazy = false,
-		config = function()
-			require("buffertabs").setup({
-				show_single_buffer = false,
-				horizontal = "right",
-				-- config
-			})
-		end,
-	},
 	-- {
-	-- 	"akinsho/bufferline.nvim",
-	-- 	enable = false,
-	-- 	version = "*",
-	-- 	dependencies = "nvim-tree/nvim-web-devicons",
+	-- 	"tomiis4/BufferTabs.nvim",
+	-- 	enabled = false,
+	-- 	dependencies = {
+	-- 		"nvim-tree/nvim-web-devicons", -- optional
+	-- 	},
+	-- 	lazy = false,
 	-- 	config = function()
-	-- 		local function print_numbers(opts)
-	-- 			return string.format("%s", opts.raise(opts.ordinal), opts.raise(opts.id))
-	-- 		end
-	-- 		require("bufferline").setup({
-	-- 			options = {
-	-- 				numbers = print_numbers,
-	-- 			},
+	-- 		require("buffertabs").setup({
+	-- 			show_single_buffer = false,
+	-- 			horizontal = "right",
+	-- 			-- config
 	-- 		})
 	-- 	end,
 	-- },
@@ -83,35 +67,35 @@ return {
 		event = "VeryLazy",
 		opts = {
 			notify = {
-				enabled = true,
+				enabled = false,
 				view = "notify",
 			},
-			lsp = {
-				-- override markdown rendering so that **cmp** and other plugins use **Treesitter**
-				override = {
-					["vim.lsp.util.convert_input_to_markdown_lines"] = true,
-					["vim.lsp.util.stylize_markdown"] = true,
-					["cmp.entry.get_documentation"] = true, -- requires hrsh7th/nvim-cmp
-				},
-			},
-			-- you can enable a preset for easier configuration
-			presets = {
-				bottom_search = true, -- use a classic bottom cmdline for search
-				command_palette = true, -- position the cmdline and popupmenu together
-				long_message_to_split = true, -- long messages will be sent to a split
-				inc_rename = false, -- enables an input dialog for inc-rename.nvim
-				lsp_doc_border = false, -- add a border to hover docs and signature help
-			},
-			messages = {
-				-- NOTE: If you enable messages, then the cmdline is enabled automatically.
-				-- This is a current Neovim limitation.
-				enabled = true, -- enables the Noice messages UI
-				view = "mini", -- default view for messages
-				view_error = "split", -- view for errors
-				view_warn = "split", -- view for warnings
-				view_history = "messages", -- view for :messages
-				view_search = "virtualtext", -- view for search count messages. Set to `false` to disable
-			},
+			-- lsp = {
+			-- 	-- override markdown rendering so that **cmp** and other plugins use **Treesitter**
+			-- 	override = {
+			-- 		["vim.lsp.util.convert_input_to_markdown_lines"] = true,
+			-- 		["vim.lsp.util.stylize_markdown"] = true,
+			-- 		["cmp.entry.get_documentation"] = true, -- requires hrsh7th/nvim-cmp
+			-- 	},
+			-- },
+			-- -- you can enable a preset for easier configuration
+			-- presets = {
+			-- 	bottom_search = true, -- use a classic bottom cmdline for search
+			-- 	command_palette = true, -- position the cmdline and popupmenu together
+			-- 	long_message_to_split = true, -- long messages will be sent to a split
+			-- 	inc_rename = false, -- enables an input dialog for inc-rename.nvim
+			-- 	lsp_doc_border = false, -- add a border to hover docs and signature help
+			-- },
+			-- messages = {
+			-- 	-- NOTE: If you enable messages, then the cmdline is enabled automatically.
+			-- 	-- This is a current Neovim limitation.
+			-- 	enabled = true, -- enables the Noice messages UI
+			-- 	view = "mini", -- default view for messages
+			-- 	view_error = "split", -- view for errors
+			-- 	view_warn = "split", -- view for warnings
+			-- 	view_history = "messages", -- view for :messages
+			-- 	view_search = "virtualtext", -- view for search count messages. Set to `false` to disable
+			-- },
 		},
 		dependencies = {
 			-- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
@@ -209,7 +193,14 @@ return {
 							path = 3,
 						},
 					},
-					lualine_x = { "aerial" },
+					lualine_y = { "aerial" },
+					lualine_x = {
+						{
+							require("noice").api.statusline.mode.get,
+							cond = require("noice").api.statusline.mode.has,
+							color = { fg = "#ff9e64" },
+						},
+					},
 				},
 			})
 		end,
