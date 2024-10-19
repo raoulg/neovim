@@ -25,6 +25,8 @@ COLORS = {
 vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
 
+vim.opt.colorcolumn = "88"
+
 -- [[ Setting options ]]
 -- See `:help vim.o`
 
