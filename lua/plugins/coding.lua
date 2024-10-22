@@ -25,7 +25,7 @@ return {
 					on_load = true,
 					on_quit = true,
 				},
-				autoload = true, -- or 'last' or 'auto_cwd' or 'last_cwd' or fun(): string
+				autoload = "auto_cwd", -- or 'last' or 'auto_cwd' or 'last_cwd' or fun(): string
 				commands = {
 					save = "PossessionSave",
 					load = "PossessionLoad",
@@ -101,7 +101,7 @@ return {
 		"neph-iap/easycolor.nvim",
 		dependencies = { "stevearc/dressing.nvim" }, -- Optional, but provides better UI for editing the formatting template
 		opts = {},
-		keys = { { "<leader>B", "<cmd>EasyColor<cr>", desc = "Color Picker" } },
+		keys = { { "<leader>bb", "<cmd>EasyColor<cr>", desc = "Easycolor" } },
 		config = function()
 			require("easycolor").setup({
 				color_format = "hex",
