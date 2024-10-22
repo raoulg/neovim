@@ -28,7 +28,7 @@ vim.keymap.set("n", "<leader>q", function()
 end, {
 	desc = "Toggle quickfix",
 })
-vim.keymap.set("n", "<leader>L", function()
+vim.keymap.set("n", "<leader>Tl", function()
 	require("quicker").toggle({ loclist = true })
 end, {
 	desc = "Toggle loclist",
@@ -120,6 +120,7 @@ wk.add({
 -- Oil keymappings
 wk.add({
 	{ "<leader>o", "<cmd>Oil<CR>", desc = "Open oil" },
+	{ "<leader>n", "<cmd>Neotree<CR>", desc = "Neotree" },
 })
 
 -- Windows naviation
@@ -338,13 +339,25 @@ end, { desc = "Previous todo comment" })
 
 -- code companion
 wk.add({
-	{ "<leader>c", group = "[c]ode companion LLM" },
+	{ "<leader>c", group = "[c]ode" },
 	{ "<leader>ca", "<cmd>CodeCompanionActions<CR>", desc = "Show [c]ode LLM [a]ctions", mode = "n" },
 	{ "<leader>ca", "<cmd>CodeCompanionActions<CR>", desc = "Show [c]ode LLM [a]ctions", mode = "v" },
-	{ "<leader>cc", "<cmd>CodeCompanionChat Toggle<CR>", desc = "[c]ode LLM [t]oggle", mode = "n" },
-	{ "<leader>cc", "<cmd>CodeCompanionChat Toggle<CR>", desc = "[c]ode LLM [t]oggle", mode = "v" },
+	{ "<leader>cc", "<cmd>CodeCompanionChat Toggle<CR>", desc = "[c]ode LLM [t]oggle", mode = { "n", "v" } },
 	{ "<leader>cd", "<cmd>CodeCompanion Add<CR>", desc = "[c]ode LLM a[d]d" },
 	{ "<leader>ci", "<cmd>CodeCompanion<CR>", desc = "[c]ode LLM [i]nline chat" },
+	{ "<leader>ct", "<cmd>AerialToggle!<CR>", desc = "Aerial code tree" },
+})
+
+-- docstrings
+wk.add({
+	{ "<leader>cD", "<cmd>lua require('neogen').generate()<CR>", desc = "Generate [D]ocstring" },
+	{
+		"<leader>cC",
+		"<cmd>lua require('neogen').generate({type = 'class'})<CR>",
+		desc = "Generate [D]ocstring [c]lass",
+	},
+	{ "<leader>cb", "<cmd>CBclbox<CR>", desc = "Generate docstring [b]ox", mode = { "n", "v" } },
+	{ "<leader>cl", "<Cmd>CBllline<CR>", desc = "box titled [l]ine", mode = { "n", "v" } },
 })
 
 -- latex
@@ -373,7 +386,7 @@ wk.add({
 
 wk.add({
 	{ "<leader>x", group = "Trouble" },
-	{ "<leader>z", "<cmd>ZenMode<CR>", desc = "Zenmode" },
+	{ "<leader>Tz", "<cmd>ZenMode<CR>", desc = "Zenmode" },
 })
 
 wk.add({
@@ -387,19 +400,6 @@ vim.keymap.set("n", "<C-h>", require("smart-splits").resize_left)
 vim.keymap.set("n", "<C-j>", require("smart-splits").resize_down)
 vim.keymap.set("n", "<C-k>", require("smart-splits").resize_up)
 vim.keymap.set("n", "<C-l>", require("smart-splits").resize_right)
-
--- Docstrings
-wk.add({
-	{ "<leader>D", group = "[D]ocstrings" },
-	{ "<leader>DD", "<cmd>lua require('neogen').generate()<CR>", desc = "Generate [D]ocstring" },
-	{
-		"<leader>Dc",
-		"<cmd>lua require('neogen').generate({type = 'class'})<CR>",
-		desc = "Generate [D]ocstring [c]lass",
-	},
-	{ "<leader>Db", "<cmd>CBclbox<CR>", desc = "Generate [b]ox", mode = { "n", "v" } },
-	{ "<leader>Dt", "<Cmd>CBllline<CR>", desc = "[b]ox [t]itled Line", mode = { "n", "v" } },
-})
 
 -- debug
 wk.add({
@@ -501,4 +501,9 @@ wk.add({
 		end,
 		desc = "next buffer",
 	},
+})
+
+wk.add({
+	{ "<leader>e", "<cmd>Triptych<CR>", desc = "Triptych explorer" },
+	{ "<leader>e", "<cmd>Triptych<CR>", desc = "Triptych explorer" },
 })
