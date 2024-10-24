@@ -6,43 +6,46 @@ return {
 			{ "nvim-telescope/telescope.nvim" },
 			-- {'ibhagwan/fzf-lua'},
 		},
-		config = function()
-			require("neoclip").setup()
-		end,
+		keys = {
+			{ "<leader>yh", "<cmd>Telescope neoclip<CR>", desc = "[y]ank history (<c-p> to paste)" },
+			{ "<leader>ym", "<cmd>Telescope macroscope<CR>", desc = "macros history (<c-p> to paste)" },
+		},
+		lazy = true,
+		event = "BufReadPre",
+		opts = {},
+	},
+	-- Lua
+	{
+		"folke/persistence.nvim",
+		event = "BufReadPre", -- this will only start session saving when an actual file was opened
+		opts = {},
+		keys = {
+			{
+				"<leader>SS",
+				function()
+					require("persistence").load()
+				end,
+				desc = "load session",
+			},
+			{
+				"<leader>Ss",
+				function()
+					require("persistence").select()
+				end,
+				desc = "select session",
+			},
+		},
 	},
 	{
-		"jedrzejboczar/possession.nvim",
-		lazy = true,
-		event = "VeryLazy",
-		dependencies = { "nvim-lua/plenary.nvim" },
-		config = function()
-			require("possession").setup({
-				autosave = {
-					current = true, -- or fun(name): boolean
-					cwd = true, -- or fun(): boolean
-					tmp = false, -- or fun(): boolean
-					tmp_name = "tmp", -- or fun(): string
-					on_load = true,
-					on_quit = true,
-				},
-				autoload = "auto_cwd", -- or 'last' or 'auto_cwd' or 'last_cwd' or fun(): string
-				commands = {
-					save = "PossessionSave",
-					load = "PossessionLoad",
-					save_cwd = "PossessionSaveCwd",
-					load_cwd = "PossessionLoadCwd",
-					rename = "PossessionRename",
-					close = "PossessionClose",
-					delete = "PossessionDelete",
-					show = "PossessionShow",
-					list = "PossessionList",
-					list_cwd = "PossessionListCwd",
-					migrate = "PossessionMigrate",
-				},
-				-- autoload = "auto_cwd", -- or 'last' or 'auto_cwd' or 'last_cwd' or fun(): string
-			})
-			require("telescope").load_extension("possession")
-		end,
+		"echasnovski/mini.sessions",
+		version = false,
+		opts = {},
+	},
+	-- Lua
+	{
+		"folke/persistence.nvim",
+		event = "BufReadPre", -- this will only start session saving when an actual file was opened
+		opts = {},
 	},
 	{
 		"linux-cultist/venv-selector.nvim",
@@ -52,11 +55,10 @@ return {
 			"mfussenegger/nvim-dap-python", --optional
 			-- { "nvim-telescope/telescope.nvim", branch = "0.1.x", dependencies = { "nvim-lua/plenary.nvim" } },
 		},
-		lazy = false,
+		lazy = true,
+		event = "BufEnter *.py",
 		branch = "regexp", -- This is the regexp branch, use this for the new version
-		config = function()
-			require("venv-selector").setup()
-		end,
+		opts = {},
 		keys = {
 			{ "<leader>v", "<cmd>VenvSelect<cr>" },
 		},
@@ -65,9 +67,20 @@ return {
 		"Chaitanyabsprip/fastaction.nvim",
 		---@type FastActionConfig
 		opts = {},
+		keys = {
+			{ "<leader>fa", '<cmd>lua require("fastaction").code_action()<CR>', desc = "code actions" },
+		},
 	},
 	{
 		"danymat/neogen",
+		keys = {
+			{ "<leader>cD", "<cmd>lua require('neogen').generate()<CR>", desc = "Generate [D]ocstring" },
+			{
+				"<leader>cC",
+				"<cmd>lua require('neogen').generate({type = 'class'})<CR>",
+				desc = "Generate [D]ocstring [c]lass",
+			},
+		},
 		-- config = true,
 		config = function()
 			require("neogen").setup({
@@ -81,7 +94,15 @@ return {
 			})
 		end,
 	},
-	{ "LudoPinelli/comment-box.nvim" },
+	{
+		"LudoPinelli/comment-box.nvim",
+		lazy = true,
+		event = "InsertEnter",
+		keys = {
+			{ "<leader>cb", "<cmd>CBclbox<CR>", desc = "Generate docstring [b]ox", mode = { "n", "v" } },
+			{ "<leader>cl", "<Cmd>CBllline<CR>", desc = "box titled [l]ine", mode = { "n", "v" } },
+		},
+	},
 	{
 		"rbong/vim-flog",
 		lazy = true,
@@ -92,11 +113,19 @@ return {
 	},
 	{
 		"ziontee113/color-picker.nvim",
-		config = function()
-			require("color-picker")
-		end,
+		lazy = true,
+		event = "InsertEnter",
+		opts = {},
 	},
-	{ "nvchad/minty", lazy = true, dependencies = { "nvchad/volt" } },
+	{
+		"nvchad/minty",
+		lazy = true,
+		dependencies = { "nvchad/volt" },
+		keys = {
+			{ "<leader>bh", "<cmd>lua require('minty.huefy').open()<CR>", desc = "Minty huefy" },
+			{ "<leader>bs", "<cmd>lua require('minty.shades').open()<CR>", desc = "Minty shades" },
+		},
+	},
 	{
 		"neph-iap/easycolor.nvim",
 		dependencies = { "stevearc/dressing.nvim" }, -- Optional, but provides better UI for editing the formatting template
@@ -136,6 +165,8 @@ return {
 	},
 	{
 		"roobert/tailwindcss-colorizer-cmp.nvim",
+		lazy = true,
+		event = { "BufEnter *.css", "BufEnter *.html", "BufEnter *.scss" },
 		-- optionally, override the default options:
 		config = function()
 			require("tailwindcss-colorizer-cmp").setup({
@@ -171,45 +202,18 @@ return {
 			-- })
 		end,
 	},
-	{
-		"alexpasmantier/pymple.nvim",
-		dependencies = {
-			"nvim-lua/plenary.nvim",
-			"MunifTanjim/nui.nvim",
-			-- optional (nicer ui)
-			"stevearc/dressing.nvim",
-			"nvim-tree/nvim-web-devicons",
-		},
-		build = ":PympleBuild",
-		config = function()
-			require("pymple").setup({
-				keymaps = {
-					-- Resolves import for symbol under cursor.
-					-- This will automatically find and add the corresponding import to
-					-- the top of the file (below any existing doctsring)
-					resolve_import_under_cursor = {
-						desc = "Resolve import under cursor",
-						keys = ",i", -- feel free to change this to whatever you like
-					},
-				},
-				-- automatically register the following keymaps on plugin setup
-			})
-		end,
-	},
-
-	{ "wakatime/vim-wakatime", lazy = false },
+	{ "wakatime/vim-wakatime" },
 	{
 		"ActivityWatch/aw-watcher-vim",
 	},
 	{
 		"stevearc/quicker.nvim",
 		event = "FileType qf",
-		---@module "quicker"
-		---@type quicker.SetupOptions
-		opts = {},
 		config = function()
 			require("quicker").setup({
 				keys = {
+					{ "<leader>Tq", require("quicker").toggle(), desc = "toggle quickfix" },
+					{ "<leader>Tq", require("quicker").toggle({ loclist = true }), desc = "toggle loclist" },
 					{
 						">",
 						function()
@@ -228,14 +232,15 @@ return {
 			})
 		end,
 	},
-	{
-		"quentingruber/timespent.nvim",
-		lazy = true,
-		event = "VeryLazy",
-		keys = {
-			{ "<leader>tT", "<cmd>:ShowTimeSpent<cr>", mode = { "n" }, desc = "Show time spent" },
-		},
-	},
+	-- {
+	-- 	"quentingruber/timespent.nvim",
+	-- 	lazy = true,
+	-- 	cmd = "ShowTimeSpent",
+	-- 	-- event = "VeryLazy",
+	-- 	keys = {
+	-- 		{ "<leader>tT", "<cmd>:ShowTimeSpent<cr>", mode = { "n" }, desc = "Show time spent" },
+	-- 	},
+	-- },
 	{
 		"zbirenbaum/copilot.lua",
 		lazy = true,
@@ -251,11 +256,14 @@ return {
 	},
 	{
 		"zbirenbaum/copilot-cmp",
-		lazy = false,
+		lazy = true,
+		event = "InsertEnter",
 		opts = {},
 	},
 	{
 		"olimorris/codecompanion.nvim",
+		lazy = true,
+		event = "InsertEnter",
 		dependencies = {
 			"nvim-lua/plenary.nvim",
 			"nvim-treesitter/nvim-treesitter",
@@ -265,6 +273,13 @@ return {
 				opts = {},
 			},
 			"nvim-telescope/telescope.nvim", -- Optional: For using slash commands
+		},
+		keys = {
+			{ "<leader>ca", "<cmd>CodeCompanionActions<CR>", desc = "Show [c]ode LLM [a]ctions", mode = "n" },
+			{ "<leader>ca", "<cmd>CodeCompanionActions<CR>", desc = "Show [c]ode LLM [a]ctions", mode = "v" },
+			{ "<leader>cc", "<cmd>CodeCompanionChat Toggle<CR>", desc = "[c]ode LLM [t]oggle", mode = { "n", "v" } },
+			{ "<leader>cd", "<cmd>CodeCompanion Add<CR>", desc = "[c]ode LLM a[d]d" },
+			{ "<leader>ci", "<cmd>CodeCompanion<CR>", desc = "[c]ode LLM [i]nline chat" },
 		},
 		config = function()
 			require("codecompanion").setup({
@@ -296,13 +311,44 @@ return {
 	{
 		"GCBallesteros/jupytext.nvim",
 		config = true,
-		lazy = false,
-		event = "VeryLazy",
+		lazy = true,
+		event = "BufReadPre *.ipynb",
 	},
 	{
 		"lervag/vimtex",
-		lazy = false, -- we don't want to lazy load VimTeX
+		lazy = true, -- we don't want to lazy load VimTeX
+		event = "BufEnter *.tex",
 		-- tag = "v2.15", -- uncomment to pin to a specific release
+		keys = {
+			{ "<leader>li", "<cmd>VimtexInfo<CR>", desc = "show latex info", noremap = true },
+			{ "<leader>lI", "<cmd>VimtexInfoFull<CR>", desc = "show full latex info", noremap = true },
+			{ "<leader>lt", "<cmd>VimtexTocOpen<CR>", desc = "open latex table of contents", noremap = true },
+			{ "<leader>lT", "<cmd>VimtexTocToggle<CR>", desc = "toggle latex table of contents", noremap = true },
+			{ "<leader>lq", "<cmd>VimtexLog<CR>", desc = "show latex compiler log", noremap = true },
+			{ "<leader>lv", "<cmd>VimtexView<CR>", desc = "view latex output", noremap = true },
+			{ "<leader>ll", "<cmd>VimtexCompile<CR>", desc = "start latex compilation", noremap = true },
+			{
+				"<leader>lL",
+				"<cmd>VimtexCompileSelected<CR>",
+				desc = "start latex compilation for selection",
+				noremap = true,
+			},
+			{ "<leader>lk", "<cmd>VimtexStop<CR>", desc = "stop latex compilation", noremap = true },
+			{ "<leader>lK", "<cmd>VimtexStopAll<CR>", desc = "stop all latex compilation", noremap = true },
+			{ "<leader>le", "<cmd>VimtexErrors<CR>", desc = "show latex compilation errors", noremap = true },
+			{
+				"<leader>lo",
+				"<cmd>VimtexCompileOutput<CR>",
+				desc = "open file where compiler is redirected",
+				noremap = true,
+			},
+			{ "<leader>lg", "<cmd>VimtexStatus<CR>", desc = "show latex compiler status", noremap = true },
+			{ "<leader>lG", "<cmd>VimtexStatusAll<CR>", desc = "show latex compiler status for all", noremap = true },
+			{ "<leader>lc", "<cmd>VimtexClean<CR>", desc = "clean latex output", noremap = true },
+			{ "<leader>lC", "<cmd>VimtexCleanAll<CR>", desc = "clean all latex output", noremap = true },
+			{ "<leader>lx", "<cmd>VimtexReload<CR>", desc = "reload vimtex", noremap = true },
+			{ "<leader>la", "<cmd>VimtexContextMenu<CR>", desc = "open latex context menu", noremap = true },
+		},
 		init = function()
 			-- VimTeX configuration goes here, e.g.
 			-- vim.g.vimtex_view_method = "zathura"
@@ -331,6 +377,8 @@ return {
 	},
 	{
 		"folke/trouble.nvim",
+		lazy = true,
+		event = "InsertEnter",
 		opts = {}, -- for default options, refer to the configuration section for custom setup.
 		cmd = "Trouble",
 		keys = {

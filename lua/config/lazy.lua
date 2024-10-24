@@ -28,4 +28,9 @@ require("lazy").setup({
 	},
 	-- install = { colorscheme = { "tokyonight" } },
 	checker = { enabled = true },
+	vim.keymap.set("n", "<leader>U", "<cmd>Lazy<CR>", { noremap = true, silent = true, desc = "Update via Lazy" }),
 })
+local theme_file = vim.fn.stdpath("config") .. "/lua/current-theme.lua"
+if vim.fn.filereadable(theme_file) == 1 then
+	dofile(theme_file)
+end

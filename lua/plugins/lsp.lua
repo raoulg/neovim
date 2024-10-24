@@ -48,7 +48,7 @@ return {
 					} },
 				},
 				mapping = cmp.mapping.preset.insert({
-					["<tab>"] = cmp.mapping.confirm({
+					["<CR>"] = cmp.mapping.confirm({
 						-- documentation says this is important.
 						-- I don't know why.
 						behavior = cmp.ConfirmBehavior.Replace,

@@ -1,6 +1,8 @@
 return {
 	{
 		"milanglacier/yarepl.nvim",
+		lazy = true,
+		event = "InsertEnter",
 		config = function()
 			require("telescope").load_extension("REPLShow")
 			local yarepl = require("yarepl")
@@ -26,7 +28,8 @@ return {
 	},
 	{
 		"akinsho/toggleterm.nvim",
-		lazy = false,
+		lazy = true,
+		event = "InsertEnter",
 		config = function()
 			local function termsize(term)
 				if term.direction == "horizontal" then
