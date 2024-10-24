@@ -31,7 +31,7 @@ return {
 			"nvim-tree/nvim-web-devicons", -- optional
 		},
 		keys = {
-			{ "<leader>e", "<cmd>Triptych<CR>", desc = "Triptych explorer" },
+			{ "<leader>e", "<cmd>Triptych<CR>", desc = "File explorer" },
 		},
 		config = function()
 			require("triptych").setup()

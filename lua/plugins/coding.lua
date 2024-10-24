@@ -60,7 +60,7 @@ return {
 		branch = "regexp", -- This is the regexp branch, use this for the new version
 		opts = {},
 		keys = {
-			{ "<leader>v", "<cmd>VenvSelect<cr>" },
+			{ "<leader>v", "<cmd>VenvSelect<cr>", desc = "venv selector" },
 		},
 	},
 	{
@@ -369,10 +369,9 @@ return {
 		dependencies = {
 			"nvim-lua/plenary.nvim",
 		},
-		-- setting the keybinding for LazyGit with 'keys' is recommended in
-		-- order to load the plugin when the command is run for the first time
 		keys = {
-			{ "<leader>gl", "<cmd>LazyGit<cr>", desc = "[L]azy[G]it" },
+			{ "<leader>GG", "<cmd>LazyGit<cr>", desc = "Lazy[G]it" },
+			{ "<leader>Gc", "<cmd>LazyGitCurrentFile<cr>", desc = "Lazy[G]it current file" },
 		},
 	},
 	{
