@@ -11,7 +11,8 @@ return {
 			"3rd/image.nvim", -- Optional image support in preview window: See `# Preview Mode` for more information
 		},
 		keys = {
-			{ "<leader>n", "<cmd>Neotree<CR>", desc = "Neotree" },
+			{ "<leader>n", "<cmd>Neotree<CR>", desc = "Neotree <C-n>" },
+			{ "<C-n>", "<cmd>Neotree<CR>", desc = "Neotree" },
 		},
 		config = function()
 			require("neo-tree").setup({
@@ -32,6 +33,7 @@ return {
 		},
 		keys = {
 			{ "<leader>e", "<cmd>Triptych<CR>", desc = "File explorer" },
+			{ "<C-e>", "<cmd>Triptych<CR>", desc = "File explorer <C-e>" },
 		},
 		config = function()
 			require("triptych").setup()
@@ -131,7 +133,14 @@ return {
 			"nvim-telescope/telescope-fzy-native.nvim",
 		},
 	},
-	{ "folke/which-key.nvim", lazy = true },
+	{
+		"folke/which-key.nvim",
+		lazy = true,
+		opts = {
+			---@type false | "classic" | "modern" | "helix"
+			preset = "modern",
+		},
+	},
 	{
 		"nvim-telescope/telescope.nvim",
 		dependencies = { "nvim-lua/plenary.nvim" },
@@ -255,6 +264,8 @@ return {
 	},
 	{
 		"lewis6991/gitsigns.nvim",
+		lazy = true,
+		event = "InsertEnter",
 		config = function()
 			require("gitsigns").setup({
 				signs = {

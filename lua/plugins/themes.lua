@@ -231,7 +231,7 @@ return {
 	{
 		"andrew-george/telescope-themes",
 		lazy = true,
-		event = "VeryLazy",
+		event = "InsertEnter",
 		keys = {
 			{ "<leader>fT", "<cmd>Telescope themes<CR>", desc = "Theme Switcher" },
 		},

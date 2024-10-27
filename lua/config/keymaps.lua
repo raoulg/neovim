@@ -16,6 +16,7 @@ wk.add({
 	{ "<leader>x", group = "Trouble" },
 	{ "<leader>y", group = "yank" },
 	{ "<leader>O", group = "org" },
+	{ "<leader>L", group = "Lazy" },
 })
 
 -- set keymap for :w to save current buffer
@@ -145,3 +146,4 @@ wk.add({
 	{ "<leader>sb", "<cmd>REPLAttachBufferToREPL<CR>", desc = "Attach current [b]uffer" },
 	{ "<leader>sB", "<cmd>REPLDetachBufferToREPL<CR>", desc = "Detach current [B]uffer" },
 })
+

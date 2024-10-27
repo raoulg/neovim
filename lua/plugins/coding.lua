@@ -203,7 +203,7 @@ return {
 			-- })
 		end,
 	},
-	{ "wakatime/vim-wakatime" },
+	-- { "wakatime/vim-wakatime" },
 	{
 		"ActivityWatch/aw-watcher-vim",
 	},
