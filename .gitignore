@@ -3,3 +3,4 @@ lua/core/pluginconfig/debugger.lua
 lua/core/pluginconfig/debugger.lua
 **/bak/
 Session.vim
+lua/current-theme.lua
