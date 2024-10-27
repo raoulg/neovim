@@ -152,6 +152,8 @@ return {
 	},
 	{
 		"NyxVim/nvim-colorizer.lua",
+		lazy = true,
+		ft = { "css", "scss", "javascript", "html" },
 		config = function()
 			require("colorizer").setup({
 				filetypes = {
@@ -179,7 +181,6 @@ return {
 	},
 	{
 		"nvim-orgmode/orgmode",
-		event = "VeryLazy",
 		ft = { "org" },
 		config = function()
 			-- Setup orgmode
@@ -209,11 +210,12 @@ return {
 	{
 		"stevearc/quicker.nvim",
 		event = "FileType qf",
+		---@module "quicker"
+		---@type quicker.SetupOptions
+		opts = {},
 		config = function()
 			require("quicker").setup({
 				keys = {
-					{ "<leader>Tq", require("quicker").toggle(), desc = "toggle quickfix" },
-					{ "<leader>Tq", require("quicker").toggle({ loclist = true }), desc = "toggle loclist" },
 					{
 						">",
 						function()
@@ -357,7 +359,7 @@ return {
 	{
 		"kdheepak/lazygit.nvim",
 		lazy = true,
-		event = "VeryLazy",
+		event = "InsertEnter",
 		cmd = {
 			"LazyGit",
 			"LazyGitConfig",

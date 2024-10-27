@@ -9,11 +9,13 @@ wk.add({
 	{ "<leader>f", group = "Find everything" },
 	{ "<leader>fx", group = "[F]ind [T]reesitter objects" },
 	{ "<leader>fl", group = "[f]ind [l]sp" },
+	{ "<leader>G", group = "Git" },
 	{ "<leader>l", group = "LaTeX commands" },
 	{ "<leader>S", group = "Sessions" },
 	{ "<leader>T", group = "toggle" },
 	{ "<leader>x", group = "Trouble" },
 	{ "<leader>y", group = "yank" },
+	{ "<leader>O", group = "org" },
 })
 
 -- set keymap for :w to save current buffer
@@ -111,4 +113,35 @@ wk.add({
 		end,
 		desc = "find harpoon",
 	},
+})
+
+vim.keymap.set("n", "<leader>Tq", function()
+	require("quicker").toggle()
+end, {
+	desc = "Toggle quickfix",
+})
+-- Terminal
+wk.add({
+	{ "<leader>t", group = "Terminal" },
+	{ "<leader>tt", "<cmd>ToggleTerm direction=vertical<CR>", desc = "vertical [t]erminal (can also do <C-\\>)" },
+	{ "<leader>tf", "<cmd>ToggleTerm direction=float<CR>", desc = "vertical [t]erminal (can also do <C-\\>)" },
+	{ "<leader>th", "<cmd>ToggleTerm direction=horizontal<CR>", desc = "Open [t]erminal horizontal" },
+	{ "<leader>tz", "<cmd>vs term://zsh<cr>", desc = "open a [z]sh [t]erminal in a new vertical split" },
+	{ "<C-n>", "<cmd>stopinsert!<CR>", desc = "get out insert mode", noremap = true, mode = "t" },
+	{ "jj", "<cmd>stopinsert!<CR>", desc = "get out insert mode", noremap = true, mode = "t" },
+})
+
+-- yarepl
+wk.add({
+	{ "<leader>s", group = "send to repl" },
+	{ "<leader>sf", "<cmd>Telescope REPLShow<CR>", desc = "Find all REPLs" },
+	{ "<leader>ss", "<Plug>(REPLStart)", desc = "[S]tart REPL" },
+	{ "<leader>st", "<Plug>(REPLHideOrFocus)", desc = "REPL [t]oggle" },
+	{ "<leader>sF", "<Plug>(REPLFocus)", desc = "REPL [F]ocus" },
+	{ "<leader>sh", "<Plug>(REPLHide)", desc = "REPL [H]ide" },
+	{ "<leader>sc", "<Plug>(REPLClose)", desc = "REPL [C]lose" },
+	{ "<leader>sl", "<Plug>(REPLSendVisual)", desc = "REPL Send Visual [l]ines", mode = "v" },
+	{ "<leader>sl", "<Plug>(REPLSendLine)", desc = "REPL Send [l]ine", mode = "n" },
+	{ "<leader>sb", "<cmd>REPLAttachBufferToREPL<CR>", desc = "Attach current [b]uffer" },
+	{ "<leader>sB", "<cmd>REPLDetachBufferToREPL<CR>", desc = "Detach current [B]uffer" },
 })

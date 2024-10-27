@@ -23,7 +23,43 @@ return {
 		},
 		version = false,
 		config = function()
-			require("mini.starter").setup()
+			local telescope = function()
+				return function()
+					return {
+						{ action = "Triptych", name = "Browser", section = "Telescope" },
+						{ action = "Telescope smart_open", name = "Fuzzy find files", section = "Telescope" },
+						{
+							action = "lua require'telescope'.extensions.projects.projects{}",
+							name = "Projects",
+							section = "Telescope",
+						},
+					}
+				end
+			end
+			local starter = require("mini.starter")
+			starter.setup({
+				items = {
+					starter.sections.sessions(3, true),
+					telescope(),
+					starter.sections.recent_files(3, false),
+					starter.sections.recent_files(3, true),
+					starter.sections.builtin_actions(),
+				},
+				content_hooks = {
+					starter.gen_hook.adding_bullet(),
+					starter.gen_hook.aligning("center", "center"),
+				},
+				-- evaluate_single = true,
+				-- items = {
+				-- },
+				header = "Hello Raoul!",
+				-- content_hooks = {
+				-- 	starter.gen_hook.adding_bullet(),
+				-- 	-- 	-- starter.gen_hook.indexing("all", { "Builtin actions" }),
+				-- 	-- 	-- starter.gen_hook.padding(3, 2),
+				-- 	starter.gen_hook.aligning("center", "center"),
+				-- },
+			})
 		end,
 	},
 	{
@@ -77,7 +113,7 @@ return {
 	},
 	{
 		"chentoast/marks.nvim",
-		event = "VeryLazy",
+		event = "InsertEnter",
 		opts = {},
 	},
 	{ "LudoPinelli/comment-box.nvim", opts = {} },
