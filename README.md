@@ -13,19 +13,20 @@ Clone the repository and install the plugins:
 
 ```sh
 git clone git@github.com:raoulg/neovim ~/.config/raoulg/neovim
+git clone https://github.com/raoulg/neovim.git ~/.config/raoulg/nvim
 ```
 
 To test this config:
 
 ```sh
-NVIM_APPNAME=raoulg/neovim/ nvim
+NVIM_APPNAME=raoulg/nvim/ nvim
 ```
 
 or (optionally) back up existing config with
 ```mv ~/.config/nvim ~/.config/nvim.bak``` 
 and then install it with 
 ```sh
-git clone git@github.com:raoulg.neovim ~/.config/nvim
+git clone https://github.com/raoulg/neovim.git ~/.config/nvim
 ```
 
 ## Plugins
