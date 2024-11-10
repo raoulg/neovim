@@ -116,11 +116,6 @@ wk.add({
 	},
 })
 
-vim.keymap.set("n", "<leader>Tq", function()
-	require("quicker").toggle()
-end, {
-	desc = "Toggle quickfix",
-})
 -- Terminal
 wk.add({
 	{ "<leader>t", group = "Terminal" },
@@ -146,4 +141,3 @@ wk.add({
 	{ "<leader>sb", "<cmd>REPLAttachBufferToREPL<CR>", desc = "Attach current [b]uffer" },
 	{ "<leader>sB", "<cmd>REPLDetachBufferToREPL<CR>", desc = "Detach current [B]uffer" },
 })
-
