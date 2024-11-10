@@ -1,5 +1,20 @@
 return {
 	{
+		"nvimdev/lspsaga.nvim",
+		lazy = true,
+		event = "LspAttach",
+		config = function()
+			require("lspsaga").setup({})
+		end,
+		dependencies = {
+			"nvim-treesitter/nvim-treesitter", -- optional
+			"nvim-tree/nvim-web-devicons", -- optional
+		},
+		keys = {
+			{ "<leader>ft", "<cmd>Lspsaga finder<CR>", desc = "Lspsaga finder" },
+		},
+	},
+	{
 		"VonHeikemen/lsp-zero.nvim",
 		branch = "v4.x",
 		lazy = true,
@@ -48,11 +63,11 @@ return {
 					} },
 				},
 				mapping = cmp.mapping.preset.insert({
-					["<CR>"] = cmp.mapping.confirm({
+					["<tab>"] = cmp.mapping.confirm({
 						-- documentation says this is important.
 						-- I don't know why.
-						behavior = cmp.ConfirmBehavior.Replace,
-						select = false,
+						-- behavior = cmp.ConfirmBehavior.Replace,
+						select = true,
 					}),
 					["<C-Space>"] = cmp.mapping.complete(),
 					["<C-u>"] = cmp.mapping.scroll_docs(-4),
@@ -175,6 +190,8 @@ return {
 	},
 	{
 		"nvim-treesitter/nvim-treesitter",
+		lazy = true,
+		event = "BufReadPre",
 		config = function()
 			require("nvim-treesitter.configs").setup({
 				ensure_installed = {
@@ -208,7 +225,8 @@ return {
 	},
 	{
 		"stevearc/conform.nvim",
-		lazy = false,
+		lazy = true,
+		event = "BufReadPre",
 		config = function()
 			require("conform").setup({
 				formatters_by_ft = {
