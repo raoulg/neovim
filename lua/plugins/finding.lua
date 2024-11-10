@@ -24,9 +24,44 @@ return {
 			})
 		end,
 	},
+	-- ---@type LazySpec
+	-- {
+	-- 	"mikavilpas/yazi.nvim",
+	-- 	event = "VeryLazy",
+	-- 	keys = {
+	-- 		-- 👇 in this section, choose your own keymappings!
+	-- 		{
+	-- 			"<leader>-",
+	-- 			"<cmd>Yazi<cr>",
+	-- 			desc = "Open yazi at the current file",
+	-- 		},
+	-- 		{
+	-- 			-- Open in the current working directory
+	-- 			"<leader>cw",
+	-- 			"<cmd>Yazi cwd<cr>",
+	-- 			desc = "Open the file manager in nvim's working directory",
+	-- 		},
+	-- 		{
+	-- 			-- NOTE: this requires a version of yazi that includes
+	-- 			-- https://github.com/sxyazi/yazi/pull/1305 from 2024-07-18
+	-- 			"<c-up>",
+	-- 			"<cmd>Yazi toggle<cr>",
+	-- 			desc = "Resume the last yazi session",
+	-- 		},
+	-- 	},
+	-- 	opts = {
+	-- 		-- if you want to open yazi instead of netrw, see below for more info
+	-- 		open_for_directories = false,
+	-- 		keymaps = {
+	-- 			show_help = "<f1>",
+	-- 		},
+	-- 	},
+	-- },
 	{
 		"simonmclean/triptych.nvim",
-		event = "VeryLazy",
+		lazy = true,
+		cmd = "Triptych",
+		event = "VimEnter",
 		dependencies = {
 			"nvim-lua/plenary.nvim", -- required
 			"nvim-tree/nvim-web-devicons", -- optional
@@ -143,6 +178,8 @@ return {
 	},
 	{
 		"nvim-telescope/telescope.nvim",
+		lazy = true,
+		event = "VimEnter",
 		dependencies = { "nvim-lua/plenary.nvim" },
 		config = function()
 			require("telescope").setup()
@@ -163,6 +200,7 @@ return {
 			{ "<leader>flI", require("telescope.builtin").lsp_incoming_calls, desc = "[L]SP incoming [c]alls" },
 			{ "<leader>flo", require("telescope.builtin").lsp_outgoing_calls, desc = "[L]SP outgoing [c]alls" },
 			{ "<leader>fg", "<cmd>Telescope live_grep<CR>", desc = "Grep pwd" },
+			{ "<leader>fF", "<cmd>lua require('telescope.builtin').find_files{}<CR>", desc = "find files pwd" },
 			{ "<leader>fb", "<cmd>Telescope buffers<CR>", desc = "Find recent buffers" },
 			{ "<leader>fm", "<cmd>Telescope marks<CR>", desc = "Find marks" },
 			{ "<leader>fH", "<cmd>Telescope help_tags<CR>", desc = "Search help" },
@@ -178,10 +216,11 @@ return {
 				"<leader>f/",
 				function()
 					require("telescope.builtin").current_buffer_fuzzy_find(
-						require("telescope.themes").get_dropdown({ winblend = 10, previewer = false })
+						-- get_dropdown, get_ivy
+						require("telescope.themes").get_ivy({ winblend = 10, previewer = true })
 					)
 				end,
-				desc = "Fuzzily search in current buffer]",
+				desc = "Fuzzily search in buffer]",
 			},
 		},
 	},
@@ -288,17 +327,15 @@ return {
 	},
 	{
 		"folke/todo-comments.nvim",
+		lazy = true,
+		event = "BufReadPre",
 		dependencies = { "nvim-lua/plenary.nvim" },
 		keys = {
-			{ "<leader>ft", "<cmd>TodoTelescope<CR>", desc = "[f]ind all project [t]odo comments" },
+			{ "<leader>fc", "<cmd>TodoTelescope<CR>", desc = "[f]ind all project todo [c]omments" },
 			-- { "]t", require("todo-comments").jump_next(), desc = "Next todo comment" },
 			-- { "[t", require("todo-comments").jump_prev(), desc = "Previous todo comment" },
 		},
-		opts = {
-			-- your configuration comes here
-			-- or leave it empty to use the default settings
-			-- refer to the configuration section below
-		},
+		opts = {},
 	},
 	{
 		"stevearc/aerial.nvim",
