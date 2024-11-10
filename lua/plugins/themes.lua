@@ -64,6 +64,8 @@ return {
 	},
 	{
 		"echasnovski/mini.animate",
+		lazy = true,
+		event = "InsertEnter",
 		version = false,
 		config = function()
 			require("mini.animate").setup()
@@ -241,6 +243,8 @@ return {
 	},
 	{
 		"nvim-lualine/lualine.nvim",
+		lazy = true,
+		event = "VimEnter",
 		dependencies = { "nvim-tree/nvim-web-devicons" },
 		config = function()
 			require("lualine").setup({
@@ -272,6 +276,8 @@ return {
 	},
 	{
 		"nvimdev/indentmini.nvim",
+		lazy = true,
+		event = "InsertEnter",
 		config = function()
 			require("indentmini").setup({
 				exclude = {},
