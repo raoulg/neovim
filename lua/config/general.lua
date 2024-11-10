@@ -77,3 +77,21 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 	group = highlight_group,
 	pattern = "*",
 })
+
+-- Disable netrw
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+
+-- Create autocmd for directory handling
+vim.api.nvim_create_autocmd("VimEnter", {
+	pattern = "*",
+	callback = function()
+		local path = vim.fn.expand("%:p")
+		if vim.fn.isdirectory(path) == 1 then
+			-- Close the empty buffer that was opened
+			vim.cmd("bd")
+			-- Open Triptych for the directory
+			vim.cmd("Yazi")
+		end
+	end,
+})
