@@ -214,6 +214,10 @@ return {
 		---@type quicker.SetupOptions
 		opts = {},
 		config = function()
+			require("which-key").add({
+				{ "<leader>Tq", "<cmd>lua require('quicker').toggle()<CR>", desc = "Toggle quickfix" },
+				{ ",t", "<cmd>lua require('quicker').toggle()<CR>", desc = "Toggle quickfix" },
+			})
 			require("quicker").setup({
 				keys = {
 					{
@@ -252,7 +256,7 @@ return {
 			require("copilot").setup({
 				suggestion = { enabled = true },
 				panel = { enabled = true },
-				filetypes = { markdown = true },
+				-- filetypes = { markdown = true },
 			})
 		end,
 	},
@@ -318,8 +322,8 @@ return {
 	},
 	{
 		"lervag/vimtex",
-		lazy = true, -- we don't want to lazy load VimTeX
-		event = "BufEnter *.tex",
+		lazy = false,
+		-- event = "InsertEnter",
 		-- tag = "v2.15", -- uncomment to pin to a specific release
 		keys = {
 			{ "<leader>li", "<cmd>VimtexInfo<CR>", desc = "show latex info", noremap = true },
