@@ -28,6 +28,10 @@ and then install it with
 ```sh
 git clone https://github.com/raoulg/neovim.git ~/.config/nvim
 ```
+For ubuntu, it is possible to use the install script:
+```sh
+curl -sSL https://raw.githubusercontent.com/raoulg/neovim/main/install-nvim.sh | bash
+```
 
 ## Plugins
 
