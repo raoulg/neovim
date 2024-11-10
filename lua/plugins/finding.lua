@@ -8,11 +8,11 @@ return {
 			"nvim-lua/plenary.nvim",
 			"nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
 			"MunifTanjim/nui.nvim",
-			"3rd/image.nvim", -- Optional image support in preview window: See `# Preview Mode` for more information
+			-- "3rd/image.nvim", -- Optional image support in preview window: See `# Preview Mode` for more information
 		},
 		keys = {
 			{ "<leader>n", "<cmd>Neotree<CR>", desc = "Neotree <C-n>" },
-			{ "<C-n>", "<cmd>Neotree<CR>", desc = "Neotree" },
+			{ "<C-n>",     "<cmd>Neotree<CR>", desc = "Neotree" },
 		},
 		config = function()
 			require("neo-tree").setup({
@@ -68,7 +68,7 @@ return {
 		},
 		keys = {
 			{ "<leader>e", "<cmd>Triptych<CR>", desc = "File explorer" },
-			{ "<C-e>", "<cmd>Triptych<CR>", desc = "File explorer <C-e>" },
+			{ "<C-e>",     "<cmd>Triptych<CR>", desc = "File explorer <C-e>" },
 		},
 		config = function()
 			require("triptych").setup()
@@ -186,27 +186,27 @@ return {
 			require("telescope").load_extension("fzy_native")
 		end,
 		keys = {
-			{ "<leader>fls", require("telescope.builtin").lsp_document_symbols, desc = "[L]SP document [s]ymbols" },
+			{ "<leader>fls", require("telescope.builtin").lsp_document_symbols,        desc = "[L]SP document [s]ymbols" },
 			{
 				"<leader>flS",
 				require("telescope.builtin").lsp_dynamic_workspace_symbols,
 				desc = "[L]SP workspace [S]ymbols",
 			},
-			{ "<leader>flr", require("telescope.builtin").lsp_references, desc = "[L]SP [r]eferences" },
-			{ "<leader>fli", require("telescope.builtin").lsp_implementations, desc = "[L]SP [i]mplementations" },
-			{ "<leader>fld", require("telescope.builtin").lsp_definitions, desc = "[L]SP [d]efinitions" },
-			{ "<leader>flD", require("telescope.builtin").diagnostics, desc = "[L]SP [d]iagnostics" },
-			{ "<leader>flt", require("telescope.builtin").lsp_type_definitions, desc = "[L]SP type [d]efinitions" },
-			{ "<leader>flI", require("telescope.builtin").lsp_incoming_calls, desc = "[L]SP incoming [c]alls" },
-			{ "<leader>flo", require("telescope.builtin").lsp_outgoing_calls, desc = "[L]SP outgoing [c]alls" },
-			{ "<leader>fg", "<cmd>Telescope live_grep<CR>", desc = "Grep pwd" },
-			{ "<leader>fF", "<cmd>lua require('telescope.builtin').find_files{}<CR>", desc = "find files pwd" },
-			{ "<leader>fb", "<cmd>Telescope buffers<CR>", desc = "Find recent buffers" },
-			{ "<leader>fm", "<cmd>Telescope marks<CR>", desc = "Find marks" },
-			{ "<leader>fH", "<cmd>Telescope help_tags<CR>", desc = "Search help" },
-			{ "<leader>fd", "<cmd>Telescope diagnostics<CR>", desc = "Search diagnostics" },
-			{ "<leader>fk", "<cmd>Telescope keymaps<CR>", desc = "Search keymaps" },
-			{ "<leader>fj", "<cmd>lua require('telescope.builtin').jumplist{}<CR>", desc = "[f]ind [j]umplist" },
+			{ "<leader>flr", require("telescope.builtin").lsp_references,              desc = "[L]SP [r]eferences" },
+			{ "<leader>fli", require("telescope.builtin").lsp_implementations,         desc = "[L]SP [i]mplementations" },
+			{ "<leader>fld", require("telescope.builtin").lsp_definitions,             desc = "[L]SP [d]efinitions" },
+			{ "<leader>flD", require("telescope.builtin").diagnostics,                 desc = "[L]SP [d]iagnostics" },
+			{ "<leader>flt", require("telescope.builtin").lsp_type_definitions,        desc = "[L]SP type [d]efinitions" },
+			{ "<leader>flI", require("telescope.builtin").lsp_incoming_calls,          desc = "[L]SP incoming [c]alls" },
+			{ "<leader>flo", require("telescope.builtin").lsp_outgoing_calls,          desc = "[L]SP outgoing [c]alls" },
+			{ "<leader>fg",  "<cmd>Telescope live_grep<CR>",                           desc = "Grep pwd" },
+			{ "<leader>fF",  "<cmd>lua require('telescope.builtin').find_files{}<CR>", desc = "find files pwd" },
+			{ "<leader>fb",  "<cmd>Telescope buffers<CR>",                             desc = "Find recent buffers" },
+			{ "<leader>fm",  "<cmd>Telescope marks<CR>",                               desc = "Find marks" },
+			{ "<leader>fH",  "<cmd>Telescope help_tags<CR>",                           desc = "Search help" },
+			{ "<leader>fd",  "<cmd>Telescope diagnostics<CR>",                         desc = "Search diagnostics" },
+			{ "<leader>fk",  "<cmd>Telescope keymaps<CR>",                             desc = "Search keymaps" },
+			{ "<leader>fj",  "<cmd>lua require('telescope.builtin').jumplist{}<CR>",   desc = "[f]ind [j]umplist" },
 			{
 				"<leader>fxo",
 				"<cmd>lua require('telescope.builtin').treesitter{}<CR>",
@@ -216,7 +216,7 @@ return {
 				"<leader>f/",
 				function()
 					require("telescope.builtin").current_buffer_fuzzy_find(
-						-- get_dropdown, get_ivy
+					-- get_dropdown, get_ivy
 						require("telescope.themes").get_ivy({ winblend = 10, previewer = true })
 					)
 				end,

@@ -29,7 +29,7 @@ return {
 	{
 		-- "hrsh7th/nvim-cmp",
 		"iguanacucumber/magazine.nvim", -- maintained fork from hrsh7th
-		name = "nvim-cmp", -- Otherwise highlighting gets messed up
+		name = "nvim-cmp",        -- Otherwise highlighting gets messed up
 		event = "InsertEnter",
 		enabled = true,
 		dependencies = {
@@ -58,9 +58,12 @@ return {
 					{ name = "orgmode" },
 					{ name = "emoji" },
 					{ name = "luasnip" },
-					{ name = "latex_symbols", option = {
-						strategy = 0,
-					} },
+					{
+						name = "latex_symbols",
+						option = {
+							strategy = 0,
+						}
+					},
 				},
 				mapping = cmp.mapping.preset.insert({
 					["<tab>"] = cmp.mapping.confirm({
@@ -134,8 +137,8 @@ return {
 
 			require("mason-lspconfig").setup({
 				ensure_installed = {
-					"pyright",
-					"lua_ls",
+					-- "pyright",
+					-- "lua_ls",
 				},
 				handlers = {
 					-- this first function is the "default handler"
