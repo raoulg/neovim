@@ -9,6 +9,8 @@
 
  > Install requires Neovim 0.9+. Always review the code before installing a configuration.
 
+## Test the setup
+You can test this setup.
 Clone the repository and install the plugins:
 
 ```sh
@@ -20,17 +22,22 @@ To test this config:
 ```sh
 NVIM_APPNAME=raoulg/nvim/ nvim
 ```
-
+## Or, backup
 or (optionally) back up existing config with
 ```mv ~/.config/nvim ~/.config/nvim.bak``` 
-and then install it with 
+and then install it directly with 
 ```sh
 git clone https://github.com/raoulg/neovim.git ~/.config/nvim
 ```
+
+## Install script
 For ubuntu, it is possible to use the install script:
 ```sh
 curl -sSL https://raw.githubusercontent.com/raoulg/neovim/main/install-nvim.sh | bash
 ```
+However, some plugins dont work great on a VM because not all dependencies are set up.
+I am planning on adding some code to set up a leaner version, that doesnt require dependencies (eg npm for the pyright linter).
+
 
 ## Plugins
 
