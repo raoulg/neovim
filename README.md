@@ -12,7 +12,6 @@
 Clone the repository and install the plugins:
 
 ```sh
-git clone git@github.com:raoulg/neovim ~/.config/raoulg/neovim
 git clone https://github.com/raoulg/neovim.git ~/.config/raoulg/nvim
 ```
 
