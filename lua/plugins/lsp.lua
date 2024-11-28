@@ -27,10 +27,10 @@ return {
 	},
 	-- Autocompletion
 	{
-		-- "hrsh7th/nvim-cmp",
+		"hrsh7th/nvim-cmp",
 		"iguanacucumber/magazine.nvim", -- maintained fork from hrsh7th
-		name = "nvim-cmp",        -- Otherwise highlighting gets messed up
-		event = "InsertEnter",
+		name = "nvim-cmp", -- Otherwise highlighting gets messed up
+		event = "VeryLazy",
 		enabled = true,
 		dependencies = {
 			{
@@ -110,6 +110,14 @@ return {
 			{ "williamboman/mason-lspconfig.nvim" },
 		},
 		config = function()
+			vim.diagnostic.config({
+				virtual_text = {
+					prefix = "●",
+					format = function(diagnostic)
+						return string.format("%s [%s]", diagnostic.message, diagnostic.code or "")
+					end,
+				},
+			})
 			local lsp_zero = require("lsp-zero")
 
 			-- lsp_attach is where you enable features that only work
