@@ -27,11 +27,10 @@ return {
 	},
 	-- Autocompletion
 	{
-		"hrsh7th/nvim-cmp",
+		-- "hrsh7th/nvim-cmp",
 		"iguanacucumber/magazine.nvim", -- maintained fork from hrsh7th
 		name = "nvim-cmp", -- Otherwise highlighting gets messed up
 		event = "VeryLazy",
-		enabled = true,
 		dependencies = {
 			{
 				"L3MON4D3/LuaSnip",
@@ -42,6 +41,7 @@ return {
 				"hrsh7th/cmp-cmdline",
 				"hrsh7th/cmp-buffer",
 				"hrsh7th/cmp-emoji",
+				"zbirenbaum/copilot.lua",
 			},
 		},
 		config = function()
@@ -62,7 +62,7 @@ return {
 						name = "latex_symbols",
 						option = {
 							strategy = 0,
-						}
+						},
 					},
 				},
 				mapping = cmp.mapping.preset.insert({
