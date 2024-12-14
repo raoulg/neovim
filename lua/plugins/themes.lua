@@ -41,8 +41,8 @@ return {
 				items = {
 					starter.sections.sessions(3, true),
 					telescope(),
-					starter.sections.recent_files(3, false),
-					starter.sections.recent_files(3, true),
+					starter.sections.recent_files(5, false),
+					starter.sections.recent_files(5, true),
 					starter.sections.builtin_actions(),
 				},
 				content_hooks = {
