@@ -11,7 +11,8 @@ return {
 			"nvim-tree/nvim-web-devicons", -- optional
 		},
 		keys = {
-			{ "<leader>ft", "<cmd>Lspsaga finder<CR>", desc = "Lspsaga finder" },
+			{ "<leader>cs", "<cmd>Lspsaga finder<CR>", desc = "Lspsaga finder" },
+			{ "<leader>cp", "<cmd>Lspsaga peek_definition<CR>", desc = "Lspsaga peek definition" },
 		},
 	},
 	{
