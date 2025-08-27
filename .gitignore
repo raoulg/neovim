@@ -4,3 +4,4 @@ lua/core/pluginconfig/debugger.lua
 **/bak/
 Session.vim
 lua/current-theme.lua
+.aider*
