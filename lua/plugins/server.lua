@@ -70,6 +70,60 @@ return {
 		end,
 	},
 	-- Autocompletion
+	---@type LazySpec
+	{
+		"mikavilpas/yazi.nvim",
+		event = "VeryLazy",
+		keys = {
+			-- 👇 in this section, choose your own keymappings!
+			{
+				"<leader>e",
+				"<cmd>Yazi<cr>",
+				desc = "Open yazi at the current file",
+			},
+			{
+				-- Open in the current working directory
+				"<leader>cw",
+				"<cmd>Yazi cwd<cr>",
+				desc = "Open the file manager in nvim's working directory",
+			},
+			{
+				-- NOTE: this requires a version of yazi that includes
+				-- https://github.com/sxyazi/yazi/pull/1305 from 2024-07-18
+				"<c-up>",
+				"<cmd>Yazi toggle<cr>",
+				desc = "Resume the last yazi session",
+			},
+		},
+		opts = {
+			-- if you want to open yazi instead of netrw, see below for more info
+			open_for_directories = false,
+			keymaps = {
+				show_help = "g?",
+			},
+		},
+	},
+	-- Formatter
+	{
+		"stevearc/conform.nvim",
+		lazy = true,
+		event = "BufReadPre",
+		config = function()
+			require("conform").setup({
+				formatters_by_ft = {
+					lua = { "stylua" },
+					python = { "isort", "ruff_format", "ruff_fix" },
+					html = { "prettier" },
+					css = { "prettier" },
+					javascript = { "prettier" },
+				},
+				format_on_save = {
+					timeout_ms = 500,
+					lsp_format = "fallback",
+				},
+			})
+		end,
+	},
 	{
 		"iguanacucumber/magazine.nvim", -- maintained fork from hrsh7th
 		name = "nvim-cmp", -- Otherwise highlighting gets messed up
@@ -121,38 +175,5 @@ return {
 				},
 			})
 		end,
-	},
-	---@type LazySpec
-	{
-		"mikavilpas/yazi.nvim",
-		event = "VeryLazy",
-		keys = {
-			-- 👇 in this section, choose your own keymappings!
-			{
-				"<leader>e",
-				"<cmd>Yazi<cr>",
-				desc = "Open yazi at the current file",
-			},
-			{
-				-- Open in the current working directory
-				"<leader>cw",
-				"<cmd>Yazi cwd<cr>",
-				desc = "Open the file manager in nvim's working directory",
-			},
-			{
-				-- NOTE: this requires a version of yazi that includes
-				-- https://github.com/sxyazi/yazi/pull/1305 from 2024-07-18
-				"<c-up>",
-				"<cmd>Yazi toggle<cr>",
-				desc = "Resume the last yazi session",
-			},
-		},
-		opts = {
-			-- if you want to open yazi instead of netrw, see below for more info
-			open_for_directories = false,
-			keymaps = {
-				show_help = "g?",
-			},
-		},
 	},
 }
