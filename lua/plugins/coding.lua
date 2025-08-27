@@ -1,5 +1,21 @@
 return {
 	{
+		"renerocksai/telekasten.nvim",
+		dependencies = {
+			"nvim-telescope/telescope.nvim",
+			"toppair/peek.nvim",
+			"nvim-telekasten/calendar-vim",
+		},
+		config = function()
+			require("telekasten").setup({
+				home = "/Users/rgrouls/code/pttrn/notes",
+				daily_notes = {
+					date_format = "%Y-%m-%d",
+				},
+			})
+		end,
+	},
+	{
 		"f-person/git-blame.nvim",
 		-- load the plugin at startup
 		event = "VeryLazy",
@@ -222,9 +238,6 @@ return {
 	},
 	-- { "wakatime/vim-wakatime" },
 	{
-		"ActivityWatch/aw-watcher-vim",
-	},
-	{
 		"stevearc/quicker.nvim",
 		event = "FileType qf",
 		---@module "quicker"
@@ -264,73 +277,6 @@ return {
 	-- 		{ "<leader>tT", "<cmd>:ShowTimeSpent<cr>", mode = { "n" }, desc = "Show time spent" },
 	-- 	},
 	-- },
-	{
-		"zbirenbaum/copilot.lua",
-		lazy = false,
-		cmd = "Copilot",
-		-- event = "InsertEnter",
-		config = function()
-			require("copilot").setup({
-				suggestion = { enabled = true },
-				panel = { enabled = true },
-				-- filetypes = { markdown = true },
-			})
-		end,
-	},
-	{
-		"zbirenbaum/copilot-cmp",
-		lazy = false,
-		-- event = "InsertEnter",
-		opts = {},
-	},
-	{
-		"olimorris/codecompanion.nvim",
-		lazy = true,
-		event = "InsertEnter",
-		dependencies = {
-			"nvim-lua/plenary.nvim",
-			"nvim-treesitter/nvim-treesitter",
-			"hrsh7th/nvim-cmp", -- Optional: For using slash commands and variables in the chat buffer
-			{
-				"stevearc/dressing.nvim", -- Optional: Improves the default Neovim UI
-				opts = {},
-			},
-			"nvim-telescope/telescope.nvim", -- Optional: For using slash commands
-		},
-		keys = {
-			{ "<leader>ca", "<cmd>CodeCompanionActions<CR>", desc = "Show [c]ode LLM [a]ctions", mode = "n" },
-			{ "<leader>ca", "<cmd>CodeCompanionActions<CR>", desc = "Show [c]ode LLM [a]ctions", mode = "v" },
-			{ "<leader>cc", "<cmd>CodeCompanionChat Toggle<CR>", desc = "[c]ode LLM [t]oggle", mode = { "n", "v" } },
-			{ "<leader>cd", "<cmd>CodeCompanion Add<CR>", desc = "[c]ode LLM a[d]d" },
-			{ "<leader>ci", "<cmd>CodeCompanion<CR>", desc = "[c]ode LLM [i]nline chat" },
-		},
-		config = function()
-			require("codecompanion").setup({
-				strategies = {
-					chat = {
-						adapter = "ollama",
-					},
-					inline = {
-						adapter = "ollama",
-					},
-					agent = {
-						adapter = "ollama",
-					},
-				},
-				adapters = {
-					ollama = function()
-						return require("codecompanion.adapters").extend("ollama", {
-							schema = {
-								model = {
-									default = "eramax/nxcode-cq-7b-orpo:q6",
-								},
-							},
-						})
-					end,
-				},
-			})
-		end,
-	},
 	{
 		"GCBallesteros/jupytext.nvim",
 		config = true,

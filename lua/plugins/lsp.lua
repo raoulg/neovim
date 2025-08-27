@@ -1,4 +1,6 @@
+-- LSP Configuration
 return {
+	-- LSP UI Enhancements
 	{
 		"nvimdev/lspsaga.nvim",
 		lazy = true,
@@ -7,110 +9,36 @@ return {
 			require("lspsaga").setup({})
 		end,
 		dependencies = {
-			"nvim-treesitter/nvim-treesitter", -- optional
-			"nvim-tree/nvim-web-devicons", -- optional
+			"nvim-treesitter/nvim-treesitter",
+			"nvim-tree/nvim-web-devicons",
 		},
 		keys = {
 			{ "<leader>cs", "<cmd>Lspsaga finder<CR>", desc = "Lspsaga finder" },
 			{ "<leader>cp", "<cmd>Lspsaga peek_definition<CR>", desc = "Lspsaga peek definition" },
 		},
 	},
+
+	-- LSP Core Components
 	{
-		"VonHeikemen/lsp-zero.nvim",
-		branch = "v4.x",
-		lazy = true,
-		config = false,
-	},
-	{
-		"williamboman/mason.nvim",
-		lazy = false,
-		config = true,
-	},
-	-- Autocompletion
-	{
-		-- "hrsh7th/nvim-cmp",
-		"iguanacucumber/magazine.nvim", -- maintained fork from hrsh7th
-		name = "nvim-cmp", -- Otherwise highlighting gets messed up
-		event = "VeryLazy",
+		"neovim/nvim-lspconfig",
+		event = { "BufReadPre", "BufNewFile" },
+		cmd = { "LspInfo", "LspInstall", "LspStart" },
 		dependencies = {
+			-- LSP Management
 			{
-				"L3MON4D3/LuaSnip",
-				"saadparwaiz1/cmp_luasnip",
-				"kdheepak/cmp-latex-symbols",
-				"micangl/cmp-vimtex",
-				"hrsh7th/cmp-path",
-				"hrsh7th/cmp-cmdline",
-				"hrsh7th/cmp-buffer",
-				"hrsh7th/cmp-emoji",
-				"zbirenbaum/copilot.lua",
+				"williamboman/mason.nvim",
+				config = true,
+			},
+			{
+				"williamboman/mason-lspconfig.nvim",
+			},
+			-- CMP Integration
+			{
+				"hrsh7th/cmp-nvim-lsp",
 			},
 		},
 		config = function()
-			local cmp = require("cmp")
-
-			cmp.setup({
-				sources = {
-					{ name = "copilot" },
-					{ name = "nvim_lsp" },
-					{ name = "vimtext" },
-					{ name = "path" },
-					{ name = "luasnip" },
-					{ name = "buffer" },
-					{ name = "orgmode" },
-					{ name = "emoji" },
-					{ name = "luasnip" },
-					{
-						name = "latex_symbols",
-						option = {
-							strategy = 0,
-						},
-					},
-				},
-				mapping = cmp.mapping.preset.insert({
-					["<tab>"] = cmp.mapping.confirm({
-						-- documentation says this is important.
-						-- I don't know why.
-						-- behavior = cmp.ConfirmBehavior.Replace,
-						select = true,
-					}),
-					["<C-Space>"] = cmp.mapping.complete(),
-					["<C-u>"] = cmp.mapping.scroll_docs(-4),
-					["<C-d>"] = cmp.mapping.scroll_docs(4),
-				}),
-				snippet = {
-					expand = function(args)
-						require("luasnip").lsp_expand(args.body)
-						vim.snippet.expand(args.body)
-					end,
-				},
-			})
-		end,
-	},
-	{
-		"L3MON4D3/LuaSnip",
-		dependencies = { "rafamadriz/friendly-snippets" },
-		lazy = true,
-		event = "InsertEnter",
-		config = function()
-			local luasnip = require("luasnip")
-			luasnip.config.set_config({
-				history = true,
-				updateevents = "TextChanged,TextChangedI",
-			})
-			require("luasnip/loaders/from_vscode").lazy_load()
-		end,
-	},
-	-- LSP
-	{
-		"neovim/nvim-lspconfig",
-		cmd = { "LspInfo", "LspInstall", "LspStart" },
-		event = { "BufReadPre", "BufNewFile" },
-		dependencies = {
-			{ "hrsh7th/cmp-nvim-lsp" },
-			{ "williamboman/mason.nvim" },
-			{ "williamboman/mason-lspconfig.nvim" },
-		},
-		config = function()
+			-- Diagnostics configuration
 			vim.diagnostic.config({
 				virtual_text = {
 					prefix = "●",
@@ -119,10 +47,8 @@ return {
 					end,
 				},
 			})
-			local lsp_zero = require("lsp-zero")
 
-			-- lsp_attach is where you enable features that only work
-			-- if there is a language server active in the file
+			-- LSP keybindings - applied on LSP server attach
 			local lsp_attach = function(client, bufnr)
 				local opts = { buffer = bufnr }
 
@@ -138,25 +64,30 @@ return {
 				vim.keymap.set("n", "<F4>", "<cmd>lua vim.lsp.buf.code_action()<cr>", opts)
 			end
 
-			lsp_zero.extend_lspconfig({
-				sign_text = true,
-				lsp_attach = lsp_attach,
-				capabilities = require("cmp_nvim_lsp").default_capabilities(),
-			})
+			-- Default capabilities - enhanced with nvim-cmp
+			local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
+			-- Configure language servers
 			require("mason-lspconfig").setup({
 				ensure_installed = {
+					-- Add your preferred language servers here
 					-- "pyright",
 					-- "lua_ls",
 				},
 				handlers = {
-					-- this first function is the "default handler"
-					-- it applies to every language server without a "custom handler"
+					-- Default handler for all LSP servers
 					function(server_name)
-						require("lspconfig")[server_name].setup({})
+						require("lspconfig")[server_name].setup({
+							on_attach = lsp_attach,
+							capabilities = capabilities,
+						})
 					end,
+
+					-- Custom server configurations
 					pyright = function()
 						require("lspconfig").pyright.setup({
+							on_attach = lsp_attach,
+							capabilities = capabilities,
 							on_init = function(client)
 								local venvPath = vim.fn.getcwd()
 								local pythonPath = venvPath .. "/.venv/bin/python"
@@ -168,27 +99,25 @@ return {
 							end,
 						})
 					end,
+
 					lua_ls = function()
 						require("lspconfig").lua_ls.setup({
+							on_attach = lsp_attach,
+							capabilities = capabilities,
 							settings = {
 								Lua = {
 									runtime = {
-										-- Tell the language server which version of Lua you're using
-										-- (most likely LuaJIT in the case of Neovim)
 										version = "LuaJIT",
 									},
 									diagnostics = {
-										-- Get the language server to recognize the `vim` global
 										globals = {
 											"vim",
 											"require",
 										},
 									},
 									workspace = {
-										-- Make the server aware of Neovim runtime files
 										library = vim.api.nvim_get_runtime_file("", true),
 									},
-									-- Do not send telemetry data containing a randomized but unique identifier
 									telemetry = {
 										enable = false,
 									},
@@ -200,6 +129,24 @@ return {
 			})
 		end,
 	},
+
+	-- Snippets
+	{
+		"L3MON4D3/LuaSnip",
+		dependencies = { "rafamadriz/friendly-snippets" },
+		lazy = true,
+		event = "InsertEnter",
+		config = function()
+			local luasnip = require("luasnip")
+			luasnip.config.set_config({
+				history = true,
+				updateevents = "TextChanged,TextChangedI",
+			})
+			require("luasnip/loaders/from_vscode").lazy_load()
+		end,
+	},
+
+	-- Treesitter for better syntax highlighting
 	{
 		"nvim-treesitter/nvim-treesitter",
 		lazy = true,
@@ -221,12 +168,8 @@ return {
 					"typescript",
 					"vim",
 				},
-				ignore_install = {},
-				modules = {},
-
 				sync_install = false,
 				auto_install = true,
-
 				highlight = {
 					enable = true,
 					additional_vim_regex_highlighting = false,
@@ -235,6 +178,8 @@ return {
 			})
 		end,
 	},
+
+	-- Formatter
 	{
 		"stevearc/conform.nvim",
 		lazy = true,
@@ -243,14 +188,12 @@ return {
 			require("conform").setup({
 				formatters_by_ft = {
 					lua = { "stylua" },
-					-- Conform will run multiple formatters sequentially
 					python = { "isort", "ruff_format", "ruff_fix" },
 					html = { "prettier" },
 					css = { "prettier" },
 					javascript = { "prettier" },
 				},
 				format_on_save = {
-					-- These options will be passed to conform.format()
 					timeout_ms = 500,
 					lsp_format = "fallback",
 				},
