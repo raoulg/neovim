@@ -127,17 +127,17 @@ wk.add({
 	{ "jj", "<cmd>stopinsert!<CR>", desc = "get out insert mode", noremap = true, mode = "t" },
 })
 
--- yarepl
+-- yarepl terminal
 wk.add({
 	{ "<leader>s", group = "send to repl" },
 	{ "<leader>sf", "<cmd>Telescope REPLShow<CR>", desc = "Find all REPLs" },
-	{ "<leader>ss", "<Plug>(REPLStart)", desc = "[S]tart REPL" },
-	{ "<leader>st", "<Plug>(REPLHideOrFocus)", desc = "REPL [t]oggle" },
-	{ "<leader>sF", "<Plug>(REPLFocus)", desc = "REPL [F]ocus" },
-	{ "<leader>sh", "<Plug>(REPLHide)", desc = "REPL [H]ide" },
-	{ "<leader>sc", "<Plug>(REPLClose)", desc = "REPL [C]lose" },
-	{ "<leader>sl", "<Plug>(REPLSendVisual)", desc = "REPL Send Visual [l]ines", mode = "v" },
-	{ "<leader>sl", "<Plug>(REPLSendLine)", desc = "REPL Send [l]ine", mode = "n" },
+	{ "<leader>ss", "<cmd>REPLStart<CR>", desc = "[S]tart REPL" },
+	{ "<leader>st", "<cmd>REPLHideOrFocus<CR>", desc = "REPL [t]oggle" },
+	{ "<leader>sF", "<cmd>REPLFocus<CR>", desc = "REPL [F]ocus" },
+	{ "<leader>sh", "<cmd>REPLHide<CR>", desc = "REPL [H]ide" },
+	{ "<leader>sc", "<cmd>REPLClose<CR>", desc = "REPL [C]lose" },
+	{ "<leader>sl", "<cmd>REPLSendVisual<CR>", desc = "REPL Send Visual [l]ines", mode = "v" },
+	{ "<leader>sl", "<cmd>REPLSendLine<CR>", desc = "REPL Send [l]ine", mode = "n" },
 	{ "<leader>sb", "<cmd>REPLAttachBufferToREPL<CR>", desc = "Attach current [b]uffer" },
 	{ "<leader>sB", "<cmd>REPLDetachBufferToREPL<CR>", desc = "Detach current [B]uffer" },
 })
