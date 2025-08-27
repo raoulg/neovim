@@ -2,7 +2,7 @@ return {
 	{
 		"milanglacier/yarepl.nvim",
 		lazy = true,
-		event = "InsertEnter",
+		event = "VeryLazy",
 		config = function()
 			require("telescope").load_extension("REPLShow")
 			local yarepl = require("yarepl")
@@ -14,14 +14,14 @@ return {
 				wincmd = "vertical 50 split",
 				-- The available REPL palattes that `yarepl` can create REPL based on
 				metas = {
+					zsh = { cmd = "zsh", formatter = yarepl.formatter.bracketed_pasting },
 					python = { cmd = "python", formatter = yarepl.formatter.trim_empty_lines },
+					julia = { cmd = "julia", formatter = yarepl.formatter.trim_empty_lines },
 					aichat = { cmd = "aichat", formatter = yarepl.formatter.bracketed_pasting },
-					radian = { cmd = "radian", formatter = yarepl.formatter.bracketed_pasting },
 					ipython = { cmd = "ipython", formatter = yarepl.formatter.bracketed_pasting },
 					bpython = { cmd = "bpython", formatter = yarepl.formatter.trim_empty_lines },
-					R = { cmd = "R", formatter = yarepl.formatter.trim_empty_lines },
 					bash = { cmd = "bash", formatter = yarepl.formatter.trim_empty_lines },
-					zsh = { cmd = "zsh", formatter = yarepl.formatter.bracketed_pasting },
+					R = false,
 				},
 			})
 		end,
@@ -35,7 +35,8 @@ return {
 				if term.direction == "horizontal" then
 					return 20
 				elseif term.direction == "vertical" then
-					return vim.o.columns * 0.3
+					-- return vim.o.columns * 0.5
+					return 80
 				end
 			end
 
