@@ -34,28 +34,11 @@ cd "$TEMP_DIR" || exit 1
 
 # Download latest Neovim AppImage
 print_status "yellow" "Downloading latest Neovim AppImage..."
-curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim.appimage
+curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux-x86_64.tar.gz
+sudo rm -rf /opt/nvim
+sudo tar -C /opt -xzf nvim-linux-x86_64.tar.gz
 check_status "Download"
-
-# Make AppImage executable
-print_status "yellow" "Setting executable permissions..."
-chmod u+x nvim.appimage
-check_status "Chmod"
-
-# Using sudo only for the system-wide installation steps
-print_status "yellow" "Installing Neovim system-wide (requires sudo)..."
-sudo mv nvim.appimage /usr/local/bin/nvim
-sudo chmod 755 /usr/local/bin/nvim
-sudo chown root:root /usr/local/bin/nvim
-check_status "Installation"
-
-# Create symbolic link (optional)
-if [ -L /usr/local/bin/vim ]; then
-    print_status "yellow" "Updating vim symlink (requires sudo)..."
-    sudo rm /usr/local/bin/vim
-    sudo ln -s /usr/local/bin/nvim /usr/local/bin/vim
-    check_status "Symlink creation"
-fi
+echo "export PATH=\"\$PATH:/opt/nvim-linux-x86_64/bin\"" >> .bashrc
 
 # Clean up
 cd - > /dev/null
