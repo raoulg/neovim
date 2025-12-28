@@ -1,4 +1,6 @@
 -- LSP Configuration
+local env = require("config.environment")
+
 return {
 	-- LSP UI Enhancements
 	{
@@ -68,12 +70,17 @@ return {
 			local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
 			-- Configure language servers
+			-- Build ensure_installed list based on environment
+			local ensure_installed = { "lua_ls" } -- Always install Lua LSP
+
+			-- Add npm-dependent servers only if npm available
+			if env.features.npm_lsp then
+				table.insert(ensure_installed, "pyright")
+				table.insert(ensure_installed, "html")
+			end
+
 			require("mason-lspconfig").setup({
-				ensure_installed = {
-					-- Add your preferred language servers here
-					-- "pyright",
-					-- "lua_ls",
-				},
+				ensure_installed = ensure_installed,
 				handlers = {
 					-- Default handler for all LSP servers
 					function(server_name)

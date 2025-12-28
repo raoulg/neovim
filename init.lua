@@ -1,5 +1,5 @@
--- require("current-theme.lua")
+-- Load environment detection first (sets profile and features)
+require("config.environment")
 require("config.general")
 require("config.lazy")
 require("config.keymaps")
--- require("core.pluginconfig")

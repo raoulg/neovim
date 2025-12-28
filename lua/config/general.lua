@@ -95,3 +95,21 @@ vim.api.nvim_create_autocmd("VimEnter", {
 		end
 	end,
 })
+
+-- Command to check environment and profile
+vim.api.nvim_create_user_command("NvimEnv", function()
+	local env = require("config.environment")
+	local info = env.debug_info()
+	print("=== Neovim Environment ===")
+	print("Profile: " .. info.profile)
+	print("OS: " .. info.os)
+	print("Hostname: " .. info.hostname)
+	print("\n=== Features ===")
+	for feature, enabled in pairs(info.features) do
+		print(string.format("  %s: %s", feature, enabled and "✓" or "✗"))
+	end
+	print("\n=== Dependencies ===")
+	for dep, available in pairs(info.dependencies) do
+		print(string.format("  %s: %s", dep, available and "✓" or "✗"))
+	end
+end, { desc = "Show Neovim environment and profile info" })

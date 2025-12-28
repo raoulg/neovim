@@ -9,6 +9,15 @@ This is a personal Neovim configuration repository using **lazy.nvim** plugin ma
 **Platform**: macOS (primary), Linux (Ubuntu supported via install script)  
 **Shell**: zsh (default for terminals)
 
+### 🎯 Environment-Aware Configuration
+
+**This config automatically adapts to your environment!**
+
+- **Full profile** (laptop): All features including Copilot, ActivityWatch, CodeCompanion
+- **Minimal profile** (VMs/remote): Core features only, no external dependencies
+
+The profile is auto-detected based on hostname and OS. See `lua/config/environment.lua` for details.
+
 ## Directory Structure
 
 ```
@@ -16,6 +25,7 @@ This is a personal Neovim configuration repository using **lazy.nvim** plugin ma
 ├── init.lua                    # Entry point - loads config modules
 ├── lua/
 │   ├── config/
+│   │   ├── environment.lua     # 🆕 Environment detection & profile system
 │   │   ├── general.lua         # Global vim settings, autocmds, leader key
 │   │   ├── keymaps.lua         # All keybindings using which-key
 │   │   └── lazy.lua            # Lazy.nvim bootstrap and setup
@@ -34,6 +44,9 @@ This is a personal Neovim configuration repository using **lazy.nvim** plugin ma
 ├── lazy-lock.json              # Lazy.nvim plugin lockfile
 ├── install-nvim.sh             # Ubuntu installation script
 ├── minimal_init.lua            # Minimal test configuration
+├── AGENTS.md                   # This file - guide for AI agents
+├── SETUP_VM.md                 # 🆕 Quick setup guide for VMs
+├── README.md                   # Plugin list and installation
 └── .gitignore                  # Git ignore rules
 ```
 
@@ -72,6 +85,7 @@ All plugin management is done through **lazy.nvim**:
 - **Update plugins**: `<leader>Lu` or `:Lazy` then `U`
 - **Sync plugins**: `:Lazy sync` (install missing, clean removed, update)
 - **Check startup performance**: `<leader>Lp` or `:Lazy profile`
+- **Check environment**: `:NvimEnv` - Shows profile and enabled features
 - **Install new plugin**: Add spec to `lua/plugins/*.lua`, restart nvim (auto-updates on VimEnter)
 
 ### Updating This Configuration
@@ -94,7 +108,8 @@ git pull
 
 ### Loading Strategy
 
-1. `init.lua` loads three core modules:
+1. `init.lua` loads four core modules:
+   - `config.environment` → **🆕 Detect OS/hostname, set profile**
    - `config.general` → Global settings, options, autocmds
    - `config.lazy` → Plugin manager bootstrap
    - `config.keymaps` → All keybindings
@@ -102,6 +117,7 @@ git pull
 2. `config.lazy` imports all plugins from `lua/plugins/*.lua`
 
 3. Plugins use lazy-loading strategies:
+   - `cond = env.should_load("feature")` → **🆕 Environment-based loading**
    - `event = "VeryLazy"` → After UI loads
    - `event = "InsertEnter"` → First time entering insert mode
    - `event = "BufReadPre"` → Before reading buffer
@@ -118,11 +134,15 @@ git pull
 
 **Plugin specs**:
 - Each plugin in `lua/plugins/*.lua` returns a table of plugin specs
+- **Important**: Add `local env = require("config.environment")` at top of plugin files
 - Format:
   ```lua
+  local env = require("config.environment")
+  
   return {
       {
           "owner/plugin-name",
+          cond = env.should_load("feature"),  -- 🆕 Conditional loading
           lazy = true,            -- Load strategy
           event = "VeryLazy",     -- When to load
           dependencies = {...},   -- Plugin dependencies
@@ -176,6 +196,82 @@ COLORS = {
 ### Current Theme Management
 
 Theme is saved to `lua/current-theme.lua` (gitignored). Theme switcher plugins write to this file, and it's loaded in `config/lazy.lua:39-42`.
+
+## Environment Detection System
+
+### Overview
+
+The config uses `lua/config/environment.lua` to detect your machine and enable/disable features automatically.
+
+**Profiles**:
+- **full** - Your laptop (MacBook-Pro-2.local) with all features
+- **minimal** - VMs and remote machines with core features only
+
+### How It Works
+
+**Detection logic**:
+1. Check hostname against `FULL_HOSTS` table
+2. If match → `full` profile
+3. If no match → `minimal` profile
+4. Set feature flags based on profile
+5. Override features if dependencies missing
+
+**To add new laptop**:
+Edit `lua/config/environment.lua` line ~14:
+```lua
+local FULL_HOSTS = {
+    ["MacBook-Pro-2.local"] = true,
+    ["your-new-laptop"] = true,  -- Add here
+}
+```
+
+### Feature Flags
+
+Available in `env.features`:
+
+- `copilot` - GitHub Copilot (requires auth)
+- `activity_watch` - ActivityWatch integration
+- `codecompanion` - LLM chat (requires Ollama)
+- `npm_lsp` - npm-dependent LSP servers (pyright, html)
+- `animations` - UI animations
+- `image_preview` - Image preview plugins
+- `git_blame` - Git blame plugin
+- `telekasten` - Note-taking
+
+### Using in Plugins
+
+```lua
+local env = require("config.environment")
+
+return {
+    {
+        "some/plugin",
+        cond = env.should_load("copilot"),  -- Only load on full profile
+        -- ... rest of config
+    },
+}
+```
+
+### Checking Environment
+
+Inside Neovim:
+```vim
+:NvimEnv
+```
+
+Shows current profile, enabled features, and available dependencies.
+
+### Dependency Detection
+
+Automatically checks for:
+- `npm`, `node` - JavaScript ecosystem
+- `python`, `python3` - Python
+- `cargo` - Rust
+- `go` - Go
+- `ollama` - Local LLM
+- `yazi` - File manager
+
+Features auto-disable if dependencies missing, even on full profile.
 
 ## Language Servers & Development
 
@@ -554,13 +650,18 @@ Use this to test if issues are plugin-related.
 
 Edit `lua/plugins/lsp.lua`:
 
-**Add to ensure_installed** (lines 72-76):
+**The ensure_installed list is now dynamic** (built based on environment):
 ```lua
-ensure_installed = {
-    "pyright",
-    "gopls",      -- Add Go LSP
-    "rust_analyzer",  -- Add Rust LSP
-},
+local ensure_installed = { "lua_ls" } -- Always install
+
+if env.features.npm_lsp then
+    table.insert(ensure_installed, "pyright")  -- Add if npm available
+end
+
+-- Add more servers
+if env.has.go then
+    table.insert(ensure_installed, "gopls")
+end
 ```
 
 **Add custom configuration** (lines 86-100):
@@ -663,36 +764,50 @@ git pull
 - `<leader>` (wait) - View all keybindings via which-key
 
 **External Dependencies**:
-- `ripgrep` - Required for Telescope file searching
-- `fd` - Optional, improves file finding
-- `Node.js` - Required for Copilot, some LSP servers
-- `Python` - Required for pyright, debugpy
-- `Ollama` - Required for CodeCompanion LLM features
+
+*Core (always needed)*:
 - `git` - Required for plugin management
-- `Yazi` - File manager (optional but recommended)
+
+*Full profile only*:
+- `Node.js` / `npm` - For Copilot, pyright, html LSP
+- `Ollama` - For CodeCompanion LLM features
+
+*Optional (improve experience)*:
+- `ripgrep` - Better Telescope searching
+- `fd` - Faster file finding
+- `Yazi` - File manager
+- `Python` - For pyright LSP
 
 ## Summary for AI Agents
 
 **When working in this repository**:
 
-1. **Never modify**: `lazy-lock.json` (unless explicitly updating plugins), `lua/current-theme.lua` (auto-generated)
+1. **Environment-aware**: Config auto-adapts based on hostname/OS. Use `env.should_load("feature")` for conditional plugins.
 
-2. **Plugin changes**: Add to `lua/plugins/*.lua`, keybindings to `lua/config/keymaps.lua`, restart to test
+2. **Never modify**: `lazy-lock.json` (unless explicitly updating plugins), `lua/current-theme.lua` (auto-generated), `lua/config/environment.lua` (unless adding machines)
 
-3. **LSP changes**: Edit `lua/plugins/lsp.lua`, ensure Mason dependencies installed
+3. **Plugin changes**: 
+   - Add `local env = require("config.environment")` at top of plugin files
+   - Use `cond = env.should_load("feature")` for environment-specific plugins
+   - Add keybindings to `lua/config/keymaps.lua`
+   - Restart to test
 
-4. **Testing**: Use `:Lazy profile`, `:checkhealth`, `minimal_init.lua` for debugging
+4. **LSP changes**: Edit `lua/plugins/lsp.lua`, use dynamic `ensure_installed` based on `env.features.npm_lsp`
 
-5. **Code style**: 4 spaces, Lua conventions, lazy-load everything possible
+5. **Testing**: Use `:NvimEnv`, `:Lazy profile`, `:checkhealth`, `minimal_init.lua` for debugging
 
-6. **Keybinding philosophy**: Use which-key groups, descriptive labels, follow existing patterns
+6. **Code style**: 4 spaces, Lua conventions, lazy-load everything possible
 
-7. **Documentation**: Update this file when adding significant features or changing workflows
+7. **Keybinding philosophy**: Use which-key groups, descriptive labels, follow existing patterns
 
-8. **Python focus**: Primary language is Python, virtual env in `.venv`, pyright LSP
+8. **Documentation**: Update AGENTS.md and SETUP_VM.md when changing environment system or workflows
 
-9. **AI tools**: Copilot for suggestions, CodeCompanion for chat (via local Ollama)
+9. **Python focus**: Primary language is Python, virtual env in `.venv`, pyright LSP (full profile only)
 
-10. **File navigation**: Yazi preferred, Triptych for directory view, Harpoon for quick marks
+10. **AI tools** (full profile): Copilot for suggestions, CodeCompanion for chat (via local Ollama)
 
-This configuration prioritizes productivity, discoverability (which-key), and lazy-loading for performance. It's actively maintained and synced across machines via Git.
+11. **File navigation**: Yazi preferred, Triptych for directory view, Harpoon for quick marks
+
+12. **Portability**: Config works on VMs without external dependencies - minimal profile loads only core features
+
+This configuration prioritizes **portability** (works everywhere), **productivity** (full features on laptop), **discoverability** (which-key), and **performance** (lazy-loading). It's actively maintained and synced across machines via Git.

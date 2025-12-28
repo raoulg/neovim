@@ -1,3 +1,5 @@
+local env = require("config.environment")
+
 local header = {
 	[[            ___             ]],
 	[[          /\   \            ]],
@@ -64,6 +66,7 @@ return {
 	},
 	{
 		"echasnovski/mini.animate",
+		cond = env.should_load("animations"),
 		lazy = true,
 		event = "InsertEnter",
 		version = false,

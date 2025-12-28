@@ -1,28 +1,31 @@
+local env = require("config.environment")
+
 return {
 	{
 		"ActivityWatch/aw-watcher-vim",
+		cond = env.should_load("activity_watch"),
 	},
 	{
 		"zbirenbaum/copilot.lua",
+		cond = env.should_load("copilot"),
 		lazy = false,
 		cmd = "Copilot",
-		-- event = "InsertEnter",
 		config = function()
 			require("copilot").setup({
 				suggestion = { enabled = true },
 				panel = { enabled = true },
-				-- filetypes = { markdown = true },
 			})
 		end,
 	},
 	{
 		"zbirenbaum/copilot-cmp",
+		cond = env.should_load("copilot"),
 		lazy = false,
-		-- event = "InsertEnter",
 		opts = {},
 	},
 	{
 		"olimorris/codecompanion.nvim",
+		cond = env.should_load("codecompanion"),
 		lazy = true,
 		event = "InsertEnter",
 		dependencies = {

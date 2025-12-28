@@ -1,6 +1,9 @@
+local env = require("config.environment")
+
 return {
 	{
 		"renerocksai/telekasten.nvim",
+		cond = env.should_load("telekasten"),
 		dependencies = {
 			"nvim-telescope/telescope.nvim",
 			"toppair/peek.nvim",
@@ -17,6 +20,7 @@ return {
 	},
 	{
 		"f-person/git-blame.nvim",
+		cond = env.should_load("git_blame"),
 		lazy = true,
 		cmd = { "GitBlameToggle", "GitBlameEnable" },
 		keys = {
