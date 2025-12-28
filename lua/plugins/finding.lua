@@ -105,12 +105,6 @@ return {
 		},
 	},
 	{
-		"ggandor/leap.nvim",
-		config = function()
-			require("leap").create_default_mappings()
-		end,
-	},
-	{
 		"danielfalk/smart-open.nvim",
 		-- lazy = true,
 		-- cmd = "Telescope",

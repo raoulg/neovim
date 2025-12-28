@@ -17,19 +17,16 @@ return {
 	},
 	{
 		"f-person/git-blame.nvim",
-		-- load the plugin at startup
-		event = "VeryLazy",
-		-- Because of the keys part, you will be lazy loading this plugin.
-		-- The plugin wil only load once one of the keys is used.
-		-- If you want to load the plugin at startup, add something like event = "VeryLazy",
-		-- or lazy = false. One of both options will work.
+		lazy = true,
+		cmd = { "GitBlameToggle", "GitBlameEnable" },
+		keys = {
+			{ "<leader>Gb", "<cmd>GitBlameToggle<CR>", desc = "Toggle git blame" },
+		},
 		opts = {
-			-- your configuration comes here
-			-- for example
-			enabled = true, -- if you want to enable the plugin
-			message_template = " <summary> • <date> • <author> • <<sha>>", -- template for the blame message, check the Message template section for more options
-			date_format = "%m-%d-%Y %H:%M:%S", -- template for the date, check Date format section for more options
-			virtual_text_column = 1, -- virtual text start column, check Start virtual text at column section for more options
+			enabled = false, -- Start disabled, enable manually with <leader>Gb
+			message_template = " <summary> • <date> • <author> • <<sha>>",
+			date_format = "%m-%d-%Y %H:%M:%S",
+			virtual_text_column = 1,
 		},
 	},
 	{
@@ -80,22 +77,22 @@ return {
 		event = "BufReadPre", -- this will only start session saving when an actual file was opened
 		opts = {},
 	},
-	{
-		"linux-cultist/venv-selector.nvim",
-		dependencies = {
-			"neovim/nvim-lspconfig",
-			"mfussenegger/nvim-dap",
-			"mfussenegger/nvim-dap-python", --optional
-			-- { "nvim-telescope/telescope.nvim", branch = "0.1.x", dependencies = { "nvim-lua/plenary.nvim" } },
-		},
-		lazy = true,
-		event = "BufEnter *.py",
-		branch = "regexp", -- This is the regexp branch, use this for the new version
-		opts = {},
-		keys = {
-			{ "<leader>v", "<cmd>VenvSelect<cr>", desc = "venv selector" },
-		},
-	},
+	-- {
+	-- 	"linux-cultist/venv-selector.nvim",
+	-- 	dependencies = {
+	-- 		"neovim/nvim-lspconfig",
+	-- 		"mfussenegger/nvim-dap",
+	-- 		"mfussenegger/nvim-dap-python", --optional
+	-- 		-- { "nvim-telescope/telescope.nvim", branch = "0.1.x", dependencies = { "nvim-lua/plenary.nvim" } },
+	-- 	},
+	-- 	lazy = true,
+	-- 	event = "BufEnter *.py",
+	-- 	branch = "regexp", -- This is the regexp branch, use this for the new version
+	-- 	opts = {},
+	-- 	keys = {
+	-- 		{ "<leader>v", "<cmd>VenvSelect<cr>", desc = "venv selector" },
+	-- 	},
+	-- },
 	{
 		"Chaitanyabsprip/fastaction.nvim",
 		---@type FastActionConfig
