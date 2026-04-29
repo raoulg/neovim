@@ -223,7 +223,7 @@ return {
 				org_default_notes_file = "~/code/org/refile.org",
 				mappings = {
 					global = {
-						org_agenda = { "gA", "<Leader>Oa" },
+						org_agenda = { "gA", "<Leader>a" },
 						org_capture = { "gC", "<Leader>Oc" },
 					},
 				},
